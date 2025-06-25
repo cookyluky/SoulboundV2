@@ -81,3 +81,26 @@ Thumbs.db
 # Cursor AI files (optional - you can remove this if you want to track cursor files)
 .cursor/settings.json
 .cursor/logs/ 
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+dev-debug.log
+# Dependency directories
+node_modules/
+# Environment variables
+.env
+# Editor directories and files
+.idea
+.vscode
+*.ntvs*
+*.njsproj
+*.sw?
+# OS specific
+
+# Task files
+# tasks.json
+# tasks/ 

@@ -1,0 +1,133 @@
+{
+	"meta": {
+		"generatedAt": "2025-06-25T15:33:05.887Z",
+		"tasksAnalyzed": 15,
+		"totalTasks": 15,
+		"analysisCount": 15,
+		"thresholdScore": 5,
+		"projectName": "Taskmaster",
+		"usedResearch": true
+	},
+	"complexityAnalysis": [
+		{
+			"taskId": 1,
+			"taskTitle": "Setup Unity Project with Required SDKs",
+			"complexityScore": 7,
+			"recommendedSubtasks": 6,
+			"expansionPrompt": "Break down the Unity project setup process into detailed steps for each SDK integration and configuration task.",
+			"reasoning": "This task involves setting up a complex development environment with multiple SDKs and configurations. It requires careful planning and execution to ensure compatibility across platforms."
+		},
+		{
+			"taskId": 2,
+			"taskTitle": "Implement Core Soul-Binding Mechanics",
+			"complexityScore": 8,
+			"recommendedSubtasks": 7,
+			"expansionPrompt": "Detail the implementation steps for each component of the soul-binding system, including essence collection, storage, and usage mechanics.",
+			"reasoning": "This is a core gameplay mechanic that involves multiple interconnected systems. It requires careful design and implementation to ensure balanced and engaging gameplay."
+		},
+		{
+			"taskId": 3,
+			"taskTitle": "Develop Third-Person Combat System",
+			"complexityScore": 9,
+			"recommendedSubtasks": 8,
+			"expansionPrompt": "Break down the combat system implementation into individual mechanics, including movement, attacks, dodging, blocking, and spirit-infused abilities.",
+			"reasoning": "Combat systems are highly complex, requiring precise timing, animations, and intricate mechanics. This task forms a critical part of the gameplay experience and needs extensive testing and refinement."
+		},
+		{
+			"taskId": 4,
+			"taskTitle": "Create Character Progression System",
+			"complexityScore": 8,
+			"recommendedSubtasks": 7,
+			"expansionPrompt": "Detail the steps to implement each branch of the skill tree, including data structures, UI representation, and gameplay effects of skills.",
+			"reasoning": "This system involves complex data structures and interrelated mechanics. It requires careful balancing and integration with other game systems."
+		},
+		{
+			"taskId": 5,
+			"taskTitle": "Design and Implement Three Distinct Biomes",
+			"complexityScore": 7,
+			"recommendedSubtasks": 6,
+			"expansionPrompt": "Break down the creation of each biome into specific tasks including terrain generation, asset placement, and unique gameplay elements.",
+			"reasoning": "Creating distinct, immersive environments requires a combination of artistic and technical skills. Each biome needs unique characteristics while maintaining overall game consistency."
+		},
+		{
+			"taskId": 6,
+			"taskTitle": "Implement Corruption System",
+			"complexityScore": 7,
+			"recommendedSubtasks": 6,
+			"expansionPrompt": "Detail the implementation of corruption tracking, visual effects, and gameplay impacts across different corruption levels.",
+			"reasoning": "This system affects multiple aspects of gameplay and requires careful integration with other systems. It needs to be balanced to provide meaningful choices without overwhelming the player."
+		},
+		{
+			"taskId": 7,
+			"taskTitle": "Design and Implement Enemy Archetypes",
+			"complexityScore": 8,
+			"recommendedSubtasks": 10,
+			"expansionPrompt": "Break down the implementation of each enemy type, detailing unique behaviors, attack patterns, and integration with the combat system.",
+			"reasoning": "Creating diverse and engaging enemies requires complex AI behaviors and unique mechanics for each type. This task is crucial for gameplay variety and challenge."
+		},
+		{
+			"taskId": 8,
+			"taskTitle": "Develop Boss Battle Systems",
+			"complexityScore": 9,
+			"recommendedSubtasks": 7,
+			"expansionPrompt": "Detail the implementation of each boss battle, including phase transitions, unique mechanics, and arena designs.",
+			"reasoning": "Boss battles are complex set pieces requiring intricate design and implementation. They need to be challenging, memorable, and integrate well with the game's narrative and mechanics."
+		},
+		{
+			"taskId": 9,
+			"taskTitle": "Implement Narrative and Choice System",
+			"complexityScore": 8,
+			"recommendedSubtasks": 7,
+			"expansionPrompt": "Break down the implementation of the dialogue system, narrative structure, and choice consequences across the game's five acts.",
+			"reasoning": "This system involves complex branching narratives and needs to integrate closely with other game systems. It requires careful writing and implementation to ensure player choices feel meaningful."
+		},
+		{
+			"taskId": 10,
+			"taskTitle": "Create Side Quest System",
+			"complexityScore": 7,
+			"recommendedSubtasks": 8,
+			"expansionPrompt": "Detail the implementation of each side quest, including trigger conditions, progression tracking, and outcome variations.",
+			"reasoning": "Side quests add depth to the game world but require careful integration with the main narrative and gameplay systems. Each quest needs unique elements to remain engaging."
+		},
+		{
+			"taskId": 11,
+			"taskTitle": "Design and Implement UI System",
+			"complexityScore": 7,
+			"recommendedSubtasks": 6,
+			"expansionPrompt": "Break down the UI implementation into specific components, detailing the creation of seed pod interfaces, HUD elements, and menu systems.",
+			"reasoning": "Creating a unique, organic UI system requires both artistic design and technical implementation. It needs to be intuitive while maintaining the game's aesthetic."
+		},
+		{
+			"taskId": 12,
+			"taskTitle": "Implement Accessibility Features",
+			"complexityScore": 8,
+			"recommendedSubtasks": 7,
+			"expansionPrompt": "Detail the implementation of each accessibility feature, including visual, motor, and cognitive assistance options.",
+			"reasoning": "Accessibility features are crucial and complex, requiring careful consideration of various user needs. They often require significant testing and refinement."
+		},
+		{
+			"taskId": 13,
+			"taskTitle": "Implement Cross-Platform Save System",
+			"complexityScore": 8,
+			"recommendedSubtasks": 7,
+			"expansionPrompt": "Break down the save system implementation, detailing local saving, cloud synchronization, and conflict resolution mechanisms.",
+			"reasoning": "Cross-platform save systems are technically complex, requiring secure data handling and careful synchronization across different platforms."
+		},
+		{
+			"taskId": 14,
+			"taskTitle": "Implement Analytics and Telemetry",
+			"complexityScore": 6,
+			"recommendedSubtasks": 5,
+			"expansionPrompt": "Detail the implementation of each analytics tracking system, including progression milestones, player choices, and performance metrics.",
+			"reasoning": "While not as complex as core gameplay systems, analytics require careful implementation to ensure data privacy and meaningful insights."
+		},
+		{
+			"taskId": 15,
+			"taskTitle": "Implement Platform-Specific Optimizations",
+			"complexityScore": 8,
+			"recommendedSubtasks": 6,
+			"expansionPrompt": "Break down the optimization process for each platform, detailing specific feature implementations and performance enhancements.",
+			"reasoning": "Platform-specific optimizations require in-depth knowledge of each system and careful testing to ensure consistent performance and feature parity where possible."
+		}
+	]
+}

@@ -1,0 +1,1413 @@
+{
+  "master": {
+    "tasks": [
+      {
+        "id": 1,
+        "title": "Setup Unity Project with Required SDKs",
+        "description": "Initialize the Unity 2023.2 LTS project with Universal Render Pipeline (URP) and integrate all required platform-specific SDKs.",
+        "details": "1. Create new Unity 2023.2 LTS project\n2. Configure Universal Render Pipeline (URP) for optimized performance\n3. Install and configure platform SDKs:\n   - Steamworks SDK\n   - PlayStation 5 SDK\n   - Xbox Game Development Kit\n   - Nintendo Switch SDK\n4. Setup Perforce version control integration\n5. Configure project settings for cross-platform development\n6. Setup initial folder structure following Unity best practices\n7. Configure build settings for all target platforms\n8. Implement basic CI/CD pipeline with Jenkins",
+        "testStrategy": "1. Verify successful project creation and URP configuration\n2. Confirm all SDKs are properly integrated with no errors\n3. Test Perforce connectivity and asset check-in/out\n4. Validate build pipeline generates empty builds for all target platforms\n5. Ensure project meets memory allocation requirements (4GB RAM maximum on console platforms)",
+        "priority": "high",
+        "dependencies": [],
+        "status": "pending",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Install Unity and required SDKs",
+            "description": "Download and install Unity Hub, Unity Editor, and necessary SDKs for Android and iOS development.",
+            "dependencies": [],
+            "details": "1. Install Unity Hub\n2. Install Unity Editor (latest LTS version)\n3. Install Android SDK and NDK\n4. Install Xcode (for iOS development)\n5. Configure Unity Hub with installed components",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 2,
+            "title": "Set up project in Unity",
+            "description": "Create a new Unity project and configure initial settings for cross-platform development.",
+            "dependencies": [
+              1
+            ],
+            "details": "1. Create new 3D project in Unity\n2. Set up version control (Git)\n3. Configure project settings for Android and iOS\n4. Set up asset folders structure\n5. Import necessary Unity packages",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 3,
+            "title": "Integrate AR Foundation",
+            "description": "Set up AR Foundation framework for cross-platform AR development.",
+            "dependencies": [
+              2
+            ],
+            "details": "1. Install AR Foundation package\n2. Configure AR Foundation settings\n3. Set up AR Session Origin and AR Session components\n4. Test basic AR functionality",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 4,
+            "title": "Implement Vuforia integration",
+            "description": "Integrate and configure Vuforia SDK for image recognition and tracking.",
+            "dependencies": [
+              3
+            ],
+            "details": "1. Download and import Vuforia SDK\n2. Set up Vuforia license key\n3. Configure Vuforia AR Camera\n4. Create and set up image targets\n5. Test Vuforia image recognition",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 5,
+            "title": "Set up Firebase integration",
+            "description": "Integrate Firebase SDK for analytics, cloud storage, and real-time database functionality.",
+            "dependencies": [
+              2
+            ],
+            "details": "1. Create Firebase project\n2. Download and import Firebase Unity SDK\n3. Configure Firebase for Android and iOS\n4. Set up Firebase Analytics\n5. Initialize Firebase Realtime Database and Cloud Storage\n6. Test Firebase connectivity",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 6,
+            "title": "Configure build settings for multiple platforms",
+            "description": "Set up build settings and player settings for Android and iOS platforms.",
+            "dependencies": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "details": "1. Configure Android build settings\n2. Set up iOS build settings\n3. Create development and production build configurations\n4. Set up app icons and splash screens for both platforms\n5. Test builds on Android and iOS devices",
+            "status": "pending",
+            "testStrategy": ""
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "title": "Implement Core Soul-Binding System",
+        "description": "Develop the fundamental soul essence absorption mechanics that allow players to absorb essences from defeated enemies for health/stamina restoration or banking for upgrades.",
+        "details": "1. Create SoulEssence class with properties for type, quantity, and effects\n2. Implement EssenceManager singleton to track collected essences\n3. Develop absorption mechanics with timing window (3 seconds post-enemy defeat)\n4. Create visual particle effects and audio feedback for absorption events\n5. Implement decision system for immediate consumption vs. banking\n6. Design UI indicators for essence types and quantities\n7. Develop scaling absorption rate based on player progression\n8. Create data structures for essence inventory management\n\nCode structure:\n```csharp\npublic enum EssenceType { Vitality, Strength, Arcane, Forbidden }\n\npublic class SoulEssence {\n    public EssenceType Type { get; private set; }\n    public float Quantity { get; private set; }\n    public float AbsorptionRate { get; private set; }\n    \n    // Methods for consumption and banking\n}\n\npublic class EssenceManager : MonoBehaviour {\n    private Dictionary<EssenceType, float> bankedEssence;\n    \n    public void AbsorbEssence(SoulEssence essence, bool consumeImmediately);\n    public float GetBankedEssence(EssenceType type);\n}\n```",
+        "testStrategy": "1. Unit tests for SoulEssence and EssenceManager classes\n2. Verify absorption timing window functions correctly\n3. Test visual and audio feedback systems\n4. Validate essence tracking and inventory management\n5. Playtest immediate consumption vs. banking decision points\n6. Performance testing with multiple simultaneous essence absorptions\n7. Verify scaling absorption rate with player progression",
+        "priority": "high",
+        "dependencies": [
+          1
+        ],
+        "status": "pending",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Design essence collection mechanics",
+            "description": "Create a system for players to collect soul essence from defeated enemies or specific in-game events.",
+            "dependencies": [],
+            "details": "Define types of essence, collection methods, and drop rates. Consider player level and enemy difficulty in essence acquisition.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 2,
+            "title": "Implement essence storage system",
+            "description": "Develop a storage mechanism for collected essence, including UI elements and backend data management.",
+            "dependencies": [
+              1
+            ],
+            "details": "Create inventory system for essence, design UI for displaying essence types and quantities, implement save/load functionality for essence data.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 3,
+            "title": "Design soul-binding mechanics",
+            "description": "Create the core mechanics for binding collected essence to weapons or abilities.",
+            "dependencies": [
+              1,
+              2
+            ],
+            "details": "Define binding process, essence requirements for different item tiers, and effects of soul-binding on item properties.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 4,
+            "title": "Implement soul-bound item enhancement system",
+            "description": "Develop a system for upgrading and customizing soul-bound items using additional essence.",
+            "dependencies": [
+              3
+            ],
+            "details": "Create upgrade paths, define essence costs for enhancements, implement UI for upgrade selection and confirmation.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 5,
+            "title": "Create essence usage mechanics for abilities",
+            "description": "Implement a system for using essence to power special abilities or spells.",
+            "dependencies": [
+              1,
+              2
+            ],
+            "details": "Design essence-powered abilities, balance essence consumption rates, create UI for ability selection and activation.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 6,
+            "title": "Develop essence regeneration and management systems",
+            "description": "Implement mechanics for essence regeneration and overall essence economy management.",
+            "dependencies": [
+              1,
+              2,
+              5
+            ],
+            "details": "Define essence regeneration rates, create essence sinks to maintain game balance, implement UI for tracking essence regeneration.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 7,
+            "title": "Balance and playtest soul-binding system",
+            "description": "Conduct thorough playtesting and balancing of the entire soul-binding system.",
+            "dependencies": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6
+            ],
+            "details": "Analyze player feedback, adjust essence drop rates and usage costs, fine-tune soul-binding effects, ensure system integrates well with overall game balance.",
+            "status": "pending",
+            "testStrategy": ""
+          }
+        ]
+      },
+      {
+        "id": 3,
+        "title": "Develop Third-Person Combat System",
+        "description": "Implement the core third-person melee combat system with dodge, block, and spirit-infused attack combinations, stamina-based action economy, and parry mechanics.",
+        "details": "1. Create PlayerCombatController with input handling for attacks, dodges, blocks\n2. Implement stamina system with regeneration mechanics\n3. Develop hit detection and damage calculation systems\n4. Create combo system for spirit-infused attack combinations\n5. Implement parry system with slow-motion counterattack opportunities\n6. Develop environmental hazard integration affecting all entities\n7. Create animation state machine for combat actions\n8. Implement camera control optimized for combat\n\nCode structure:\n```csharp\npublic class PlayerCombatController : MonoBehaviour {\n    [SerializeField] private float maxStamina = 100f;\n    [SerializeField] private float staminaRegenRate = 10f;\n    [SerializeField] private float dodgeCost = 20f;\n    [SerializeField] private float attackCost = 15f;\n    \n    private float currentStamina;\n    private bool isBlocking;\n    private int comboCounter;\n    \n    public void Attack();\n    public void Dodge();\n    public void Block(bool isBlocking);\n    public bool TryParry(Attack incomingAttack);\n    private void RegenerateStamina();\n}\n\npublic class ParrySystem : MonoBehaviour {\n    [SerializeField] private float parryWindow = 0.2f;\n    [SerializeField] private float slowMotionFactor = 0.3f;\n    \n    public void TriggerSlowMotion();\n    public void EndSlowMotion();\n}\n```",
+        "testStrategy": "1. Unit tests for combat mechanics and stamina system\n2. Playtest dodge, block, and attack combinations\n3. Verify parry timing windows and slow-motion effects\n4. Test stamina regeneration rates and action costs\n5. Validate environmental hazard interactions\n6. Performance testing during intense combat scenarios\n7. Controller and keyboard/mouse input validation",
+        "priority": "high",
+        "dependencies": [
+          1
+        ],
+        "status": "pending",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Implement Basic Character Movement",
+            "description": "Create the core movement system for characters including walking, running, and directional controls.",
+            "dependencies": [],
+            "details": "Implement character controller with appropriate physics, ensure smooth movement with acceleration/deceleration, add animation transitions between movement states, and implement camera following logic.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 2,
+            "title": "Develop Basic Attack System",
+            "description": "Create the fundamental attack mechanics including light and heavy attacks with appropriate animations and hit detection.",
+            "dependencies": [
+              1
+            ],
+            "details": "Implement attack input handling, create attack animations, develop hit detection system using raycasts or colliders, add basic damage calculation, and create visual/audio feedback for successful hits.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 3,
+            "title": "Implement Dodging Mechanics",
+            "description": "Create a dodge/roll system that allows players to evade attacks with appropriate invincibility frames.",
+            "dependencies": [
+              1
+            ],
+            "details": "Implement dodge input handling, create dodge animations, add invincibility frame system during appropriate animation frames, implement dodge cooldown, and create visual effects for dodging.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 4,
+            "title": "Develop Blocking System",
+            "description": "Implement a blocking mechanic that reduces incoming damage and potentially staggers attackers.",
+            "dependencies": [
+              2
+            ],
+            "details": "Create block input handling, implement damage reduction calculations, add block animations and effects, develop block stamina system, and implement perfect block timing mechanics for advanced players.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 5,
+            "title": "Create Combat Stats System",
+            "description": "Develop the underlying stats system that powers combat, including health, stamina, and spirit energy.",
+            "dependencies": [
+              2,
+              3,
+              4
+            ],
+            "details": "Implement health system with damage handling, create stamina system for attacks/dodges/blocks, develop spirit energy accumulation mechanics, add UI elements to display all stats, and implement regeneration logic.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 6,
+            "title": "Implement Spirit-Infused Abilities",
+            "description": "Create special abilities powered by spirit energy that provide powerful combat options.",
+            "dependencies": [
+              5
+            ],
+            "details": "Design 3-5 unique spirit abilities, implement spirit energy consumption, create special effects and animations for each ability, add cooldown systems, and balance damage/utility of each ability.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 7,
+            "title": "Develop Enemy AI Combat Behaviors",
+            "description": "Create AI systems for enemies to engage in combat using the implemented mechanics.",
+            "dependencies": [
+              2,
+              3,
+              4,
+              6
+            ],
+            "details": "Implement enemy attack patterns, create AI decision making for different combat situations, add difficulty scaling, implement enemy use of special abilities, and create varied enemy types with different combat styles.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 8,
+            "title": "Combat System Testing and Balancing",
+            "description": "Test all combat mechanics for balance, responsiveness, and fun factor, making adjustments as needed.",
+            "dependencies": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7
+            ],
+            "details": "Create combat testing scenarios, gather feedback on feel and responsiveness, balance damage values and cooldowns, fix any bugs or inconsistencies, and polish animations and effects for maximum impact.",
+            "status": "pending",
+            "testStrategy": ""
+          }
+        ]
+      },
+      {
+        "id": 4,
+        "title": "Create Multi-Branch Skill Progression System",
+        "description": "Implement the character progression system with 15 abilities across Wraith, Hollow, and Arcanum branches, including memory fragment collection and corruption-level effects.",
+        "details": "1. Design data structure for 15 abilities across 3 branches (Wraith, Hollow, Arcanum)\n2. Implement SkillTree class to manage ability unlocks and prerequisites\n3. Create MemoryFragment collection system for Soulstone abilities\n4. Develop cross-branch synergy system with prerequisite chains\n5. Implement corruption level tracking affecting ability availability\n6. Create UI visualization for skill trees as branching plant growth\n7. Develop save/load system for progression persistence\n\nCode structure:\n```csharp\npublic enum SkillBranch { Wraith, Hollow, Arcanum }\n\n[System.Serializable]\npublic class Ability {\n    public string Id;\n    public string Name;\n    public string Description;\n    public SkillBranch Branch;\n    public List<string> Prerequisites;\n    public int CorruptionRequirement;\n    public bool IsForbidden;\n    public UnityEvent OnActivated;\n}\n\npublic class ProgressionManager : MonoBehaviour {\n    [SerializeField] private List<Ability> allAbilities;\n    private List<string> unlockedAbilities = new List<string>();\n    private int memoryFragments;\n    private float corruptionLevel;\n    \n    public bool UnlockAbility(string abilityId);\n    public bool CanUnlockAbility(string abilityId);\n    public void CollectMemoryFragment();\n    public void ModifyCorruption(float amount);\n}\n```",
+        "testStrategy": "1. Unit tests for ProgressionManager and ability unlock logic\n2. Verify prerequisite chains function correctly\n3. Test corruption level effects on ability availability\n4. Validate memory fragment collection and Soulstone abilities\n5. Test cross-branch synergy activation\n6. Verify save/load functionality for progression data\n7. UI visualization testing for skill tree representation",
+        "priority": "high",
+        "dependencies": [
+          1,
+          2
+        ],
+        "status": "pending",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Design Skill Tree Data Structure",
+            "description": "Create a data structure to represent the skill tree, including nodes, connections, and skill properties.",
+            "dependencies": [],
+            "details": "Define classes or structures for skills, branches, and the overall tree. Include properties such as skill name, description, level, prerequisites, and effects.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 2,
+            "title": "Implement UI Representation",
+            "description": "Develop the user interface to visually represent the skill tree and allow player interaction.",
+            "dependencies": [
+              1
+            ],
+            "details": "Create a scalable and intuitive UI that displays skills as nodes, connections as lines, and allows zooming and panning. Implement click/tap functionality for skill selection and information display.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 3,
+            "title": "Develop Skill Activation System",
+            "description": "Create a system to handle skill activation, deactivation, and level progression.",
+            "dependencies": [
+              1
+            ],
+            "details": "Implement methods to activate skills, check prerequisites, handle skill point allocation, and update the player's active skills. Include validation to prevent illegal skill activations.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 4,
+            "title": "Implement Gameplay Effects",
+            "description": "Integrate skill effects into the game's core mechanics and systems.",
+            "dependencies": [
+              3
+            ],
+            "details": "Create a flexible system to apply skill effects to relevant game systems (e.g., combat, crafting, exploration). Ensure effects are properly scaled with skill levels and can be easily modified or expanded.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 5,
+            "title": "Balance Skill Tree",
+            "description": "Analyze and adjust skill values, costs, and effects for game balance.",
+            "dependencies": [
+              4
+            ],
+            "details": "Conduct playtesting and data analysis to identify overpowered or underpowered skills. Adjust skill point costs, effect magnitudes, and progression paths to ensure a balanced and engaging experience.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 6,
+            "title": "Implement Save/Load System",
+            "description": "Develop functionality to save and load skill tree progress.",
+            "dependencies": [
+              3
+            ],
+            "details": "Create methods to serialize and deserialize the skill tree state, including activated skills, levels, and available skill points. Integrate with the game's overall save/load system.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 7,
+            "title": "Optimize Performance",
+            "description": "Analyze and improve the performance of the skill tree system.",
+            "dependencies": [
+              2,
+              4,
+              6
+            ],
+            "details": "Profile the skill tree implementation, identifying any performance bottlenecks. Optimize data structures, algorithms, and UI rendering to ensure smooth performance, especially with large skill trees.",
+            "status": "pending",
+            "testStrategy": ""
+          }
+        ]
+      },
+      {
+        "id": 5,
+        "title": "Design and Implement Three Distinct Biomes",
+        "description": "Create the three main game environments (Singing Meadowlands, Whispering Canopy, Floating Garden Archipelago) with unique visual styles, gameplay characteristics, and environmental storytelling.",
+        "details": "1. Design and implement Singing Meadowlands (tutorial area):\n   - Open meadow environment with gentle terrain\n   - Tutorial integration points\n   - Basic enemy encounters\n   - Initial lore fragments\n\n2. Design and implement Whispering Canopy (mid-game):\n   - Vertical forest environment with platforming elements\n   - Mid-game puzzle focus\n   - Intermediate enemy encounters\n   - Hidden paths and secrets\n\n3. Design and implement Floating Garden Archipelago (late-game):\n   - Disconnected floating islands requiring advanced traversal\n   - Late-game challenges and puzzles\n   - Advanced enemy encounters\n   - Major lore revelations\n\n4. Implement Veil Sight ability revealing hidden paths and spirit trails\n5. Create environmental storytelling through discoverable lore fragments\n6. Develop dynamic waypoint system for optional guidance\n\nImplementation approach:\n- Use Unity Terrain system with custom shaders for each biome\n- Implement procedural foliage placement with wind animation\n- Create custom post-processing profiles for each biome's atmosphere\n- Develop transition zones between biomes for seamless world",
+        "testStrategy": "1. Performance testing in each biome for target frame rates\n2. Verify loading times under 5 seconds between areas\n3. Test Veil Sight ability functionality across all biomes\n4. Validate environmental storytelling elements and lore fragments\n5. Playtest navigation and exploration flow\n6. Verify secrets are accessible through different progression stages\n7. Test dynamic waypoint system functionality",
+        "priority": "medium",
+        "dependencies": [
+          1
+        ],
+        "status": "pending",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Define biome characteristics",
+            "description": "Outline the unique features, climate, and overall atmosphere for each biome",
+            "dependencies": [],
+            "details": "Create a detailed document specifying the visual style, color palette, and environmental elements for each biome",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 2,
+            "title": "Develop terrain generation algorithms",
+            "description": "Create algorithms for procedurally generating terrain specific to each biome",
+            "dependencies": [
+              1
+            ],
+            "details": "Implement height maps, noise functions, and erosion simulations to create realistic and varied landscapes",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 3,
+            "title": "Design and create biome-specific assets",
+            "description": "Develop 3D models, textures, and vegetation assets unique to each biome",
+            "dependencies": [
+              1
+            ],
+            "details": "Model and texture rocks, plants, trees, and other environmental objects that fit the biome's theme",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 4,
+            "title": "Implement asset placement system",
+            "description": "Create a system for procedurally placing assets within each biome",
+            "dependencies": [
+              2,
+              3
+            ],
+            "details": "Develop algorithms for distributing assets based on terrain features, density maps, and biome-specific rules",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 5,
+            "title": "Design unique gameplay elements",
+            "description": "Create gameplay mechanics and interactions specific to each biome",
+            "dependencies": [
+              1
+            ],
+            "details": "Develop features such as weather effects, environmental hazards, and biome-specific resources or challenges",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 6,
+            "title": "Integrate and test biome generation",
+            "description": "Combine all elements and test the complete biome generation process",
+            "dependencies": [
+              2,
+              3,
+              4,
+              5
+            ],
+            "details": "Implement the full biome creation pipeline, including terrain generation, asset placement, and gameplay elements, then conduct thorough testing and refinement",
+            "status": "pending",
+            "testStrategy": ""
+          }
+        ]
+      },
+      {
+        "id": 6,
+        "title": "Implement Dynamic Corruption System",
+        "description": "Develop the corruption tracking system that affects abilities, story outcomes, creates environmental damage zones, and influences NPC interactions.",
+        "details": "1. Create CorruptionManager to track player corruption level (0-100)\n2. Implement visual feedback for corruption level (UI and character appearance)\n3. Develop audio feedback that changes with corruption level\n4. Create environmental corruption zones causing damage to player\n5. Implement corruption resistance mechanics through skill investment\n6. Develop NPC interaction system affected by corruption level\n7. Create forbidden ability unlock system tied to high corruption\n\nCode structure:\n```csharp\npublic class CorruptionManager : MonoBehaviour {\n    [SerializeField] private float maxCorruption = 100f;\n    [SerializeField] private float startingCorruption = 0f;\n    [SerializeField] private AnimationCurve corruptionEffectCurve;\n    \n    private float currentCorruption;\n    private float corruptionResistance;\n    \n    public event Action<float> OnCorruptionChanged;\n    \n    public void ModifyCorruption(float amount);\n    public void IncreaseResistance(float amount);\n    public float GetCorruptionLevel();\n    public bool IsForbiddenAbilityAvailable(float requiredCorruption);\n}\n\npublic class CorruptionZone : MonoBehaviour {\n    [SerializeField] private float damagePerSecond = 5f;\n    [SerializeField] private float corruptionPerSecond = 2f;\n    \n    private void OnTriggerStay(Collider other);\n}\n```",
+        "testStrategy": "1. Unit tests for CorruptionManager functionality\n2. Verify visual and audio feedback for corruption changes\n3. Test environmental corruption damage zones\n4. Validate corruption resistance mechanics\n5. Test NPC interaction changes based on corruption level\n6. Verify forbidden ability unlocks at appropriate corruption thresholds\n7. Performance testing with multiple corruption zones active",
+        "priority": "medium",
+        "dependencies": [
+          1,
+          4
+        ],
+        "status": "pending",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Define corruption levels and thresholds",
+            "description": "Establish a clear scale of corruption levels and the thresholds for transitioning between them.",
+            "dependencies": [],
+            "details": "Create a numerical scale (e.g., 0-100) for corruption, define 3-5 distinct levels (e.g., Low, Medium, High), and set the threshold values for each level transition.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 2,
+            "title": "Implement corruption tracking system",
+            "description": "Develop a system to track and update the player's corruption level based on in-game actions and decisions.",
+            "dependencies": [
+              1
+            ],
+            "details": "Create a CorruptionManager class to handle corruption value changes, level calculations, and event triggers when thresholds are crossed.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 3,
+            "title": "Design visual effects for corruption levels",
+            "description": "Create a set of visual effects that represent different corruption levels on the player character and environment.",
+            "dependencies": [
+              1
+            ],
+            "details": "Design particle effects, color grading changes, and character appearance modifications for each corruption level. Implement a system to smoothly transition between these effects.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 4,
+            "title": "Implement gameplay impacts of corruption",
+            "description": "Develop systems to alter gameplay mechanics based on the player's current corruption level.",
+            "dependencies": [
+              1,
+              2
+            ],
+            "details": "Modify player stats, abilities, and interactions with NPCs and the environment based on corruption levels. This may include unlocking new abilities, changing dialogue options, or altering quest availability.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 5,
+            "title": "Create UI elements for corruption display",
+            "description": "Design and implement UI components to show the current corruption level and its effects to the player.",
+            "dependencies": [
+              1,
+              2
+            ],
+            "details": "Develop a corruption meter for the HUD, tooltips explaining corruption effects, and a detailed corruption info page in the character menu.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 6,
+            "title": "Balance and playtest corruption system",
+            "description": "Fine-tune the corruption system's impact on gameplay and ensure it provides meaningful choices without being overpowered.",
+            "dependencies": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "details": "Conduct playtesting sessions, gather feedback, and iterate on corruption level thresholds, visual effects intensity, and gameplay impacts to achieve the desired balance and player experience.",
+            "status": "pending",
+            "testStrategy": ""
+          }
+        ]
+      },
+      {
+        "id": 7,
+        "title": "Design and Implement Enemy Archetypes",
+        "description": "Create 10 unique enemy types with distinct behaviors, weaknesses, and attack patterns, including specialized enemies like Wraithborne Stalkers, Hollow Sentinels, and Soul Gorgers.",
+        "details": "1. Develop base Enemy class with shared functionality\n2. Implement specialized enemy types with unique behaviors:\n   - Wraithborne Stalkers (invisibility when unobserved)\n   - Hollow Sentinels (positional attack requirements)\n   - Soul Gorgers (steal banked soul resources)\n   - 7 additional enemy types with distinct behaviors\n3. Create AI state machines for each enemy type\n4. Implement enemy spawning and difficulty scaling system\n5. Develop enemy-specific animations and effects\n6. Create enemy-specific audio cues for player feedback\n\nCode structure:\n```csharp\npublic abstract class Enemy : MonoBehaviour {\n    [SerializeField] protected float health;\n    [SerializeField] protected float damage;\n    [SerializeField] protected EssenceType primaryEssenceType;\n    [SerializeField] protected float essenceQuantity;\n    \n    protected StateMachine stateMachine;\n    \n    public abstract void SpecialBehavior();\n    public virtual void TakeDamage(float amount, AttackType type);\n    protected virtual void Die();\n}\n\npublic class WraithborneStalker : Enemy {\n    private bool isObserved;\n    \n    public override void SpecialBehavior() {\n        // Invisibility logic when not observed\n    }\n    \n    private void CheckIfObserved();\n}\n\npublic class HollowSentinel : Enemy {\n    [SerializeField] private Transform weakPoint;\n    \n    public override void TakeDamage(float amount, AttackType type) {\n        // Only take damage when attacked from behind\n    }\n}\n\npublic class SoulGorger : Enemy {\n    [SerializeField] private float soulStealAmount;\n    \n    public void StealSouls(PlayerController player);\n}\n```",
+        "testStrategy": "1. Unit tests for base enemy functionality\n2. Verify unique behaviors for each enemy type\n3. Test enemy AI state machines and decision making\n4. Validate enemy spawning and difficulty scaling\n5. Performance testing with multiple enemies active\n6. Playtest enemy encounters for balance and engagement\n7. Verify audio-visual feedback for enemy states and attacks",
+        "priority": "high",
+        "dependencies": [
+          1,
+          3
+        ],
+        "status": "pending",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Define enemy types and characteristics",
+            "description": "Create a comprehensive list of enemy types and their unique characteristics",
+            "dependencies": [],
+            "details": "Identify at least 5 distinct enemy types, outlining their basic attributes, strengths, and weaknesses",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 2,
+            "title": "Design enemy AI behavior patterns",
+            "description": "Develop AI behavior patterns for each enemy type",
+            "dependencies": [
+              1
+            ],
+            "details": "Create flowcharts or state machines for each enemy's decision-making process and movement patterns",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 3,
+            "title": "Implement basic enemy movement",
+            "description": "Code the basic movement mechanics for enemies",
+            "dependencies": [
+              1,
+              2
+            ],
+            "details": "Implement pathfinding, obstacle avoidance, and different movement speeds for each enemy type",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 4,
+            "title": "Develop unique attack patterns",
+            "description": "Create and implement unique attack patterns for each enemy type",
+            "dependencies": [
+              1,
+              2
+            ],
+            "details": "Design and code specific attack animations, projectiles, and damage calculations for each enemy",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 5,
+            "title": "Integrate enemies with combat system",
+            "description": "Ensure enemies interact properly with the existing combat system",
+            "dependencies": [
+              3,
+              4
+            ],
+            "details": "Implement hit detection, damage application, and enemy reactions to player attacks",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 6,
+            "title": "Create enemy spawning system",
+            "description": "Develop a system for spawning enemies in the game world",
+            "dependencies": [
+              1,
+              3,
+              4
+            ],
+            "details": "Implement enemy spawn points, spawn triggers, and balance spawn rates for different enemy types",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 7,
+            "title": "Implement enemy health and death mechanics",
+            "description": "Code health systems and death animations for enemies",
+            "dependencies": [
+              1,
+              5
+            ],
+            "details": "Create health bars, damage feedback, and unique death animations for each enemy type",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 8,
+            "title": "Design and implement boss enemies",
+            "description": "Create more complex boss enemies with multiple phases and attack patterns",
+            "dependencies": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "details": "Design at least 2 boss enemies with unique mechanics, multiple attack phases, and complex AI behaviors",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 9,
+            "title": "Balance enemy difficulty",
+            "description": "Adjust enemy attributes and behaviors for balanced gameplay",
+            "dependencies": [
+              5,
+              6,
+              7,
+              8
+            ],
+            "details": "Playtest and iterate on enemy difficulty, adjusting health, damage, and AI aggressiveness as needed",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 10,
+            "title": "Optimize enemy performance",
+            "description": "Optimize enemy AI and rendering for improved game performance",
+            "dependencies": [
+              3,
+              4,
+              5,
+              6,
+              7,
+              8
+            ],
+            "details": "Profile and optimize enemy-related code, implement LOD systems, and ensure smooth performance with multiple enemies on screen",
+            "status": "pending",
+            "testStrategy": ""
+          }
+        ]
+      },
+      {
+        "id": 8,
+        "title": "Develop Boss Battle System",
+        "description": "Create three multi-phase boss battles with environmental interactions, unique reward drops, and adaptive AI patterns responding to player progression.",
+        "details": "1. Design base Boss class extending from Enemy\n2. Implement phase transition system for multi-stage battles\n3. Create environmental interaction mechanics for boss arenas\n4. Develop unique reward drop system (fragments, abilities, equipment)\n5. Implement adaptive AI patterns based on player's collected fragments\n6. Create boss-specific animations and visual effects\n7. Develop dynamic difficulty scaling based on player progression\n\nCode structure:\n```csharp\npublic abstract class Boss : Enemy {\n    [SerializeField] protected int totalPhases = 3;\n    [SerializeField] protected List<BossReward> phaseRewards;\n    \n    protected int currentPhase = 1;\n    protected List<GameObject> environmentalHazards;\n    \n    public event Action<int> OnPhaseChanged;\n    \n    protected abstract void TransitionToNextPhase();\n    protected abstract void ActivateEnvironmentalHazard(int hazardIndex);\n    protected virtual void AdaptToPlayerProgression(ProgressionManager playerProgression);\n    protected virtual void DropRewards();\n}\n\n[System.Serializable]\npublic class BossReward {\n    public enum RewardType { Fragment, Ability, Equipment }\n    \n    public RewardType Type;\n    public string RewardId;\n    public GameObject VisualPrefab;\n}\n```",
+        "testStrategy": "1. Unit tests for Boss class functionality\n2. Verify phase transition mechanics\n3. Test environmental hazard interactions\n4. Validate reward drop system\n5. Test adaptive AI based on player progression\n6. Performance testing during boss battles with effects\n7. Playtest boss encounters for difficulty balance\n8. Verify boss animations and visual effects",
+        "priority": "medium",
+        "dependencies": [
+          1,
+          3,
+          7
+        ],
+        "status": "pending",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Design boss battle phases",
+            "description": "Create a detailed plan for each boss battle's phases, including transitions and escalation of difficulty.",
+            "dependencies": [],
+            "details": "Outline 2-3 distinct phases for each boss, considering how they tie into the boss's character and the overall game narrative.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 2,
+            "title": "Develop unique mechanics for each boss",
+            "description": "Design and implement special abilities, attack patterns, and mechanics specific to each boss.",
+            "dependencies": [
+              1
+            ],
+            "details": "Create at least 3 unique mechanics per boss that challenge players to use different strategies and game skills.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 3,
+            "title": "Create arena designs",
+            "description": "Design and implement the battle arenas for each boss encounter.",
+            "dependencies": [],
+            "details": "Ensure each arena complements the boss's abilities and provides interesting tactical options for players.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 4,
+            "title": "Implement boss AI and behavior patterns",
+            "description": "Program the AI for each boss, including decision-making processes and reaction to player actions.",
+            "dependencies": [
+              1,
+              2
+            ],
+            "details": "Develop adaptive AI that changes behavior based on the current phase and player strategies.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 5,
+            "title": "Design and implement visual effects",
+            "description": "Create and integrate visual effects for boss attacks, phase transitions, and arena interactions.",
+            "dependencies": [
+              2,
+              3
+            ],
+            "details": "Ensure visual effects are distinctive and provide clear feedback to players about boss actions and vulnerabilities.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 6,
+            "title": "Develop audio design for boss battles",
+            "description": "Create and implement music and sound effects for each boss battle.",
+            "dependencies": [
+              1,
+              2,
+              3
+            ],
+            "details": "Compose dynamic music that changes with battle phases and design unique sound effects for each boss's abilities.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 7,
+            "title": "Balance and playtest boss battles",
+            "description": "Conduct thorough playtesting and balancing for each boss encounter.",
+            "dependencies": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6
+            ],
+            "details": "Adjust difficulty, timing, and mechanics based on player feedback and data to ensure challenging but fair encounters.",
+            "status": "pending",
+            "testStrategy": ""
+          }
+        ]
+      },
+      {
+        "id": 9,
+        "title": "Implement Narrative and Choice System",
+        "description": "Develop the five-act narrative structure with branching dialogue choices, multiple endings based on corruption level and key decisions, and the Elysia trust system.",
+        "details": "1. Create DialogueManager for conversation handling\n2. Implement choice system with corruption and trust consequences\n3. Develop StoryManager tracking act progression and key decisions\n4. Create three possible ending paths based on corruption and choices\n5. Implement Elysia trust system influencing guidance and story reveals\n6. Develop cinematic sequence system for key story moments\n7. Create save/load system for narrative state persistence\n\nCode structure:\n```csharp\npublic class DialogueManager : MonoBehaviour {\n    [SerializeField] private TextAsset dialogueDatabase;\n    \n    private Dictionary<string, DialogueNode> dialogueNodes;\n    \n    public void StartDialogue(string nodeId);\n    public void MakeChoice(int choiceIndex);\n    private void ApplyChoiceConsequences(DialogueChoice choice);\n}\n\npublic class StoryManager : MonoBehaviour {\n    [SerializeField] private int currentAct = 1;\n    \n    private Dictionary<string, bool> keyDecisions = new Dictionary<string, bool>();\n    private float elysiasTrust = 50f; // 0-100 scale\n    \n    public void AdvanceToNextAct();\n    public void RecordDecision(string decisionId, bool choice);\n    public void ModifyElysiasTrust(float amount);\n    public string DetermineEnding();\n}\n```",
+        "testStrategy": "1. Unit tests for DialogueManager and StoryManager\n2. Verify branching dialogue paths function correctly\n3. Test corruption and trust consequences from choices\n4. Validate all three ending paths are reachable\n5. Test Elysia trust system effects on guidance\n6. Verify cinematic sequence triggering\n7. Test save/load functionality for narrative state",
+        "priority": "medium",
+        "dependencies": [
+          1,
+          6
+        ],
+        "status": "pending",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Design dialogue system architecture",
+            "description": "Create a flexible dialogue system architecture that can handle branching conversations and player choices",
+            "dependencies": [],
+            "details": "Define data structures for dialogue nodes, conversation trees, and choice options. Design APIs for integrating dialogue with other game systems.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 2,
+            "title": "Develop narrative structure for five acts",
+            "description": "Outline the main story beats and key decision points for each of the game's five acts",
+            "dependencies": [],
+            "details": "Create a high-level narrative flowchart showing major plot points, character arcs, and potential branching paths across all five acts.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 3,
+            "title": "Implement dialogue scripting system",
+            "description": "Create a scripting language or tool for writers to easily create and manage complex dialogues",
+            "dependencies": [
+              1
+            ],
+            "details": "Develop a user-friendly interface for writing branching dialogues, including support for variables, conditions, and callbacks to game systems.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 4,
+            "title": "Design choice consequence tracking system",
+            "description": "Develop a system to track player choices and their impacts throughout the game",
+            "dependencies": [
+              1,
+              2
+            ],
+            "details": "Create a database to store player decisions, implement methods to query and update this database, and design interfaces for other systems to react to these choices.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 5,
+            "title": "Write dialogue content for Act 1",
+            "description": "Create all dialogue content for the first act of the game",
+            "dependencies": [
+              2,
+              3
+            ],
+            "details": "Write character dialogues, narrative descriptions, and player choice options for Act 1, ensuring they align with the overall narrative structure and utilize the dialogue scripting system.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 6,
+            "title": "Implement dialogue UI and interaction system",
+            "description": "Develop the user interface for displaying dialogues and handling player interactions",
+            "dependencies": [
+              1,
+              3
+            ],
+            "details": "Create UI elements for dialogue boxes, choice selection, and character portraits. Implement input handling for player choices and dialogue progression.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 7,
+            "title": "Integrate dialogue system with game world",
+            "description": "Connect the dialogue system to other game systems such as quests, inventory, and character relationships",
+            "dependencies": [
+              1,
+              3,
+              4,
+              6
+            ],
+            "details": "Implement callbacks and events to trigger changes in the game world based on dialogue choices. Ensure dialogue options reflect current game state and character relationships.",
+            "status": "pending",
+            "testStrategy": ""
+          }
+        ]
+      },
+      {
+        "id": 10,
+        "title": "Create Side Quest System",
+        "description": "Implement eight side quests with moral choice consequences, faction reputation system, and hidden lore that reveals contradictions in the guidance system.",
+        "details": "1. Design QuestManager to track quest states and progress\n2. Implement moral choice system within quests affecting world state\n3. Create faction reputation system influencing NPC interactions\n4. Develop hidden lore discovery system revealing guidance contradictions\n5. Implement quest reward distribution system\n6. Create quest markers and tracking UI elements\n7. Develop quest-specific dialogue and cutscenes\n\nCode structure:\n```csharp\npublic class QuestManager : MonoBehaviour {\n    [SerializeField] private List<Quest> availableQuests;\n    \n    private Dictionary<string, QuestState> questStates = new Dictionary<string, QuestState>();\n    private Dictionary<string, float> factionReputation = new Dictionary<string, float>();\n    \n    public void StartQuest(string questId);\n    public void UpdateQuestObjective(string questId, string objectiveId);\n    public void CompleteQuest(string questId);\n    public void ModifyFactionReputation(string factionId, float amount);\n    public float GetFactionReputation(string factionId);\n}\n\n[System.Serializable]\npublic class Quest {\n    public string Id;\n    public string Title;\n    public string Description;\n    public List<QuestObjective> Objectives;\n    public List<QuestReward> Rewards;\n    public List<QuestChoice> MoralChoices;\n}\n\npublic enum QuestState { NotStarted, InProgress, Completed, Failed }\n```",
+        "testStrategy": "1. Unit tests for QuestManager functionality\n2. Verify quest state tracking and progression\n3. Test moral choice consequences on world state\n4. Validate faction reputation effects on NPC interactions\n5. Test hidden lore discovery and revelation system\n6. Verify quest reward distribution\n7. Playtest side quests for narrative coherence and engagement",
+        "priority": "medium",
+        "dependencies": [
+          1,
+          9
+        ],
+        "status": "pending",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Define side quest types and themes",
+            "description": "Categorize and outline different types of side quests and their thematic elements",
+            "dependencies": [],
+            "details": "Create a list of side quest categories (e.g., fetch quests, escort missions, puzzle-solving) and align them with the game's overall themes and setting",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 2,
+            "title": "Design trigger conditions for each side quest",
+            "description": "Specify the conditions that will initiate each side quest in the game",
+            "dependencies": [
+              1
+            ],
+            "details": "Define trigger events such as reaching specific locations, interacting with NPCs, or achieving certain milestones in the main storyline",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 3,
+            "title": "Develop progression tracking system",
+            "description": "Create a system to track player progress through each side quest",
+            "dependencies": [
+              1
+            ],
+            "details": "Implement a data structure to store quest states, objectives, and completion status for each side quest",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 4,
+            "title": "Design outcome variations for side quests",
+            "description": "Create multiple possible outcomes for each side quest based on player choices and actions",
+            "dependencies": [
+              1
+            ],
+            "details": "Develop branching narratives and consequence systems that affect both the side quest resolution and potentially the main storyline",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 5,
+            "title": "Implement side quest dialogue and scripting",
+            "description": "Write dialogue and create scripts for NPCs and events related to side quests",
+            "dependencies": [
+              1,
+              2,
+              4
+            ],
+            "details": "Develop conversation trees, cutscenes, and event triggers that guide players through the side quests",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 6,
+            "title": "Create reward system for side quests",
+            "description": "Design and implement rewards for completing side quests",
+            "dependencies": [
+              1,
+              4
+            ],
+            "details": "Balance rewards such as experience points, items, abilities, or story revelations to incentivize side quest completion without overshadowing the main storyline",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 7,
+            "title": "Integrate side quests with main storyline",
+            "description": "Ensure side quests complement and enhance the main narrative without disrupting its flow",
+            "dependencies": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6
+            ],
+            "details": "Adjust pacing, difficulty, and relevance of side quests to maintain coherence with the overall game progression",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 8,
+            "title": "Test and balance side quest implementation",
+            "description": "Conduct thorough testing of all side quests and make necessary adjustments",
+            "dependencies": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7
+            ],
+            "details": "Playtest each side quest, gather feedback, and iterate on design to ensure engaging and bug-free experiences",
+            "status": "pending",
+            "testStrategy": ""
+          }
+        ]
+      },
+      {
+        "id": 11,
+        "title": "Design and Implement UI System",
+        "description": "Create the organic, nature-inspired UI system with seed pod interface elements, including menus, inventory, skill trees, and HUD elements with accessibility considerations.",
+        "details": "1. Design and implement seed pod menu emergence animations\n2. Create inventory visualization with seeds within translucent pods\n3. Develop skill tree visualization as branching plant growth\n4. Implement notification system with blooming flower animations\n5. Create HUD elements for health/stamina, essence counter, and corruption meter\n6. Implement mini-map with environmental hazards and spirit signatures\n7. Develop accessibility features including colorblind support and text scaling\n8. Create responsive layouts for different screen sizes and platforms\n\nCode structure:\n```csharp\npublic class UIManager : MonoBehaviour {\n    [SerializeField] private GameObject mainMenuPod;\n    [SerializeField] private GameObject inventoryPod;\n    [SerializeField] private GameObject skillTreePod;\n    [SerializeField] private GameObject notificationPrefab;\n    \n    public void OpenMenu(MenuType type);\n    public void CloseMenu(MenuType type);\n    public void ShowNotification(string message, NotificationType type);\n    public void UpdateHUD(PlayerStats stats);\n}\n\npublic class AccessibilityManager : MonoBehaviour {\n    [SerializeField] private ColorBlindMode colorBlindMode;\n    [SerializeField] private float textScale = 1f;\n    [SerializeField] private bool highContrastMode;\n    \n    public void ApplyAccessibilitySettings();\n    public void SetColorBlindMode(ColorBlindMode mode);\n    public void SetTextScale(float scale);\n    public void ToggleHighContrastMode(bool enabled);\n}\n\npublic enum ColorBlindMode { None, Protanopia, Deuteranopia, Tritanopia }\npublic enum MenuType { Main, Inventory, SkillTree, Map, Settings }\npublic enum NotificationType { Info, Warning, Achievement, Quest }\n```",
+        "testStrategy": "1. Verify UI animations and transitions\n2. Test UI responsiveness on different screen sizes\n3. Validate accessibility features including colorblind modes\n4. Test controller and keyboard/mouse navigation\n5. Verify touch input support for Nintendo Switch\n6. Performance testing with multiple UI elements active\n7. Usability testing for menu navigation and information clarity",
+        "priority": "medium",
+        "dependencies": [
+          1
+        ],
+        "status": "pending",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Design Seed Pod Interface",
+            "description": "Create the visual design for the seed pod interface, incorporating organic shapes and nature-inspired elements.",
+            "dependencies": [],
+            "details": "Sketch and finalize the layout, color scheme, and visual elements of the seed pod interface. Ensure it aligns with the game's organic aesthetic.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 2,
+            "title": "Implement Seed Pod Interface",
+            "description": "Develop the functional seed pod interface based on the approved design.",
+            "dependencies": [
+              1
+            ],
+            "details": "Code the seed pod interface, including interactive elements, animations, and data display. Ensure smooth integration with the game's systems.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 3,
+            "title": "Design HUD Elements",
+            "description": "Create the visual design for essential HUD elements, such as health, energy, and resource indicators.",
+            "dependencies": [],
+            "details": "Design minimalistic yet informative HUD elements that blend well with the game environment. Consider using natural shapes and subtle animations.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 4,
+            "title": "Implement HUD Elements",
+            "description": "Develop and integrate the designed HUD elements into the game interface.",
+            "dependencies": [
+              3
+            ],
+            "details": "Code the HUD elements, ensuring they update in real-time and respond to player actions and game events. Implement any necessary animations or transitions.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 5,
+            "title": "Design Menu Systems",
+            "description": "Create the visual design for the game's menu systems, including main menu, settings, and in-game menus.",
+            "dependencies": [],
+            "details": "Design intuitive and visually appealing menu layouts that maintain the game's organic theme. Consider flow and usability in the design process.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 6,
+            "title": "Implement Menu Systems",
+            "description": "Develop and integrate the designed menu systems into the game.",
+            "dependencies": [
+              5
+            ],
+            "details": "Code the menu systems, ensuring smooth navigation, proper functionality of all options, and seamless integration with the game's core systems. Implement any necessary animations or transitions between menu states.",
+            "status": "pending",
+            "testStrategy": ""
+          }
+        ]
+      },
+      {
+        "id": 12,
+        "title": "Implement Cross-Platform Save Synchronization",
+        "description": "Develop the save system with local encryption, cloud backup via Firebase, cross-platform synchronization, and corruption detection/recovery.",
+        "details": "1. Create SaveManager for handling save/load operations\n2. Implement AES-256 encryption for local save files\n3. Integrate Firebase Cloud Storage for save backups\n4. Develop cross-platform save synchronization for supported platforms\n5. Create save file corruption detection and recovery system\n6. Implement automatic and manual save functionality\n7. Develop save slot management with previews\n\nCode structure:\n```csharp\npublic class SaveManager : MonoBehaviour {\n    [SerializeField] private int maxSaveSlots = 3;\n    \n    private FirebaseStorage firebaseStorage;\n    private bool isSyncing;\n    \n    public async Task<bool> SaveGame(int slotIndex);\n    public async Task<bool> LoadGame(int slotIndex);\n    public async Task<bool> SyncSavesToCloud();\n    public async Task<bool> SyncSavesFromCloud();\n    private string EncryptSaveData(string jsonData);\n    private string DecryptSaveData(string encryptedData);\n    private bool CheckSaveFileIntegrity(string filePath);\n    private async Task<bool> RestoreFromBackup(int slotIndex);\n}\n\n[System.Serializable]\npublic class SaveData {\n    public string PlayerName;\n    public float PlayTime;\n    public DateTime SaveDate;\n    public int CurrentAct;\n    public float CorruptionLevel;\n    public List<string> UnlockedAbilities;\n    public Dictionary<string, QuestState> QuestStates;\n    public Dictionary<EssenceType, float> BankedEssence;\n    // Additional game state data\n}\n```",
+        "testStrategy": "1. Unit tests for SaveManager functionality\n2. Verify encryption/decryption works correctly\n3. Test cloud save backup and restoration\n4. Validate cross-platform synchronization\n5. Test save file corruption detection and recovery\n6. Verify save slot management and previews\n7. Performance testing for save/load operations\n8. Test synchronization with poor network conditions",
+        "priority": "high",
+        "dependencies": [
+          1
+        ],
+        "status": "pending",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Implement screen reader compatibility",
+            "description": "Ensure all content is accessible to screen readers",
+            "dependencies": [],
+            "details": "Add appropriate ARIA labels, implement proper heading structure, and ensure all interactive elements are keyboard accessible",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 2,
+            "title": "Develop high contrast mode",
+            "description": "Create a high contrast color scheme option for visually impaired users",
+            "dependencies": [],
+            "details": "Design and implement a high contrast theme, allowing users to toggle between normal and high contrast modes",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 3,
+            "title": "Implement text-to-speech functionality",
+            "description": "Add text-to-speech capabilities for content reading",
+            "dependencies": [],
+            "details": "Integrate a text-to-speech engine and add controls for users to activate and customize the feature",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 4,
+            "title": "Create keyboard navigation system",
+            "description": "Develop a comprehensive keyboard navigation system for motor-impaired users",
+            "dependencies": [
+              1
+            ],
+            "details": "Implement keyboard shortcuts, focus management, and ensure all interactive elements are operable without a mouse",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 5,
+            "title": "Implement customizable font sizes and styles",
+            "description": "Allow users to adjust text size and font styles for better readability",
+            "dependencies": [],
+            "details": "Create controls for users to increase/decrease font size and choose from a selection of accessible font styles",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 6,
+            "title": "Develop cognitive assistance features",
+            "description": "Implement features to assist users with cognitive disabilities",
+            "dependencies": [
+              5
+            ],
+            "details": "Add options for simplified layouts, reduced animations, and customizable content density to reduce cognitive load",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 7,
+            "title": "Conduct accessibility testing and refinement",
+            "description": "Perform thorough testing of all implemented accessibility features and refine as necessary",
+            "dependencies": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6
+            ],
+            "details": "Use automated accessibility testing tools, conduct manual testing, and gather feedback from users with disabilities to identify and address any issues",
+            "status": "pending",
+            "testStrategy": ""
+          }
+        ]
+      },
+      {
+        "id": 13,
+        "title": "Optimize Performance Across Platforms",
+        "description": "Implement performance optimizations to achieve target frame rates (60 FPS on PC/PS5/Xbox, 30 FPS on Switch) and loading times under 5 seconds between areas.",
+        "details": "1. Implement level of detail (LOD) system for environment assets\n2. Create asset streaming system for seamless world loading\n3. Develop memory management system to stay under 4GB RAM on consoles\n4. Implement occlusion culling for complex environments\n5. Create platform-specific graphics settings presets\n6. Optimize particle systems and visual effects\n7. Implement texture compression strategies for each platform\n8. Create loading screen system with progress indicators\n\nCode structure:\n```csharp\npublic class PerformanceManager : MonoBehaviour {\n    [SerializeField] private RuntimePlatform targetPlatform;\n    [SerializeField] private int targetFrameRate;\n    \n    private void ApplyPlatformSpecificSettings();\n    private void MonitorPerformance();\n    private void AdjustDynamicSettings(float currentFPS);\n}\n\npublic class AssetStreamer : MonoBehaviour {\n    [SerializeField] private float streamingDistance = 50f;\n    [SerializeField] private Transform playerTransform;\n    \n    private List<StreamingArea> streamingAreas;\n    \n    private void UpdateStreamingAreas();\n    private IEnumerator LoadAreaAsync(StreamingArea area);\n    private IEnumerator UnloadAreaAsync(StreamingArea area);\n}\n```",
+        "testStrategy": "1. Performance profiling on all target platforms\n2. Verify frame rate targets are met (60 FPS on PC/PS5/Xbox, 30 FPS on Switch)\n3. Test loading times between areas (target: under 5 seconds)\n4. Validate memory usage stays under 4GB on console platforms\n5. Test asset streaming with rapid player movement\n6. Verify occlusion culling effectiveness in complex scenes\n7. Performance testing during intense combat with multiple effects",
+        "priority": "high",
+        "dependencies": [
+          1,
+          5
+        ],
+        "status": "pending",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Design local save data structure",
+            "description": "Create a robust data structure for storing game progress locally",
+            "dependencies": [],
+            "details": "Define JSON schema for save data, including player stats, inventory, and game state",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 2,
+            "title": "Implement local save/load functionality",
+            "description": "Develop methods to save and load game data to/from local storage",
+            "dependencies": [
+              1
+            ],
+            "details": "Use platform-specific APIs for file I/O, implement data encryption for security",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 3,
+            "title": "Design cloud save architecture",
+            "description": "Plan the structure for cloud-based save synchronization",
+            "dependencies": [
+              1
+            ],
+            "details": "Choose cloud service provider, design API endpoints, plan data flow",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 4,
+            "title": "Implement cloud save/load functionality",
+            "description": "Develop methods to synchronize local saves with cloud storage",
+            "dependencies": [
+              2,
+              3
+            ],
+            "details": "Implement API calls, handle authentication, manage data transfer",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 5,
+            "title": "Develop conflict resolution mechanism",
+            "description": "Create a system to handle conflicts between local and cloud saves",
+            "dependencies": [
+              4
+            ],
+            "details": "Implement versioning, timestamp comparison, and merge strategies",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 6,
+            "title": "Implement automatic save feature",
+            "description": "Create a system for periodic automatic saving of game progress",
+            "dependencies": [
+              2,
+              4
+            ],
+            "details": "Set up timers, determine save frequency, handle background saves",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 7,
+            "title": "Test and optimize save system",
+            "description": "Conduct thorough testing and performance optimization of the save system",
+            "dependencies": [
+              5,
+              6
+            ],
+            "details": "Create test scenarios, benchmark save/load times, optimize data transfer",
+            "status": "pending",
+            "testStrategy": ""
+          }
+        ]
+      },
+      {
+        "id": 14,
+        "title": "Implement Platform-Specific Features",
+        "description": "Integrate platform-specific features including Steam achievements, PlayStation 5 DualSense haptics, Xbox Quick Resume, and Nintendo Switch HD Rumble and touchscreen support.",
+        "details": "1. Implement Steam integration:\n   - Achievements and stats tracking\n   - Rich Presence showing current progress\n   - Steam Cloud save integration\n\n2. Develop PlayStation 5 features:\n   - DualSense haptic feedback for soul-binding and combat\n   - Adaptive trigger resistance for different abilities\n   - Activity Cards for game progression\n\n3. Implement Xbox Series X/S features:\n   - Smart Delivery for optimized assets\n   - Quick Resume support for instant game switching\n   - Achievement integration\n\n4. Create Nintendo Switch optimizations:\n   - HD Rumble support with precise feedback\n   - Touchscreen menu navigation\n   - Performance optimizations for portable mode\n\n5. Develop platform-specific UI adaptations\n\nCode structure:\n```csharp\npublic class PlatformManager : MonoBehaviour {\n    private IPlatformService platformService;\n    \n    private void InitializePlatformService();\n}\n\npublic interface IPlatformService {\n    void Initialize();\n    void UnlockAchievement(string achievementId);\n    void UpdatePresence(string status);\n    void SynchronizeSaves();\n    void ApplyHapticFeedback(HapticEvent hapticEvent);\n}\n\npublic class SteamPlatformService : IPlatformService { /* Implementation */ }\npublic class PlayStationPlatformService : IPlatformService { /* Implementation */ }\npublic class XboxPlatformService : IPlatformService { /* Implementation */ }\npublic class SwitchPlatformService : IPlatformService { /* Implementation */ }\n```",
+        "testStrategy": "1. Verify Steam achievements and Rich Presence\n2. Test PlayStation 5 DualSense haptic feedback\n3. Validate Xbox Quick Resume functionality\n4. Test Nintendo Switch HD Rumble and touchscreen support\n5. Verify platform-specific UI adaptations\n6. Test platform-specific save synchronization\n7. Performance testing on each platform with platform features active",
+        "priority": "medium",
+        "dependencies": [
+          1,
+          12
+        ],
+        "status": "pending",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Design analytics data schema",
+            "description": "Create a comprehensive data schema for tracking player analytics",
+            "dependencies": [],
+            "details": "Define data structures for progression milestones, player choices, and performance metrics. Ensure GDPR compliance and data minimization.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 2,
+            "title": "Implement progression milestone tracking",
+            "description": "Develop system to track and record player progression milestones",
+            "dependencies": [
+              1
+            ],
+            "details": "Create functions to log player achievements, level completions, and story progress. Implement real-time updates to the analytics database.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 3,
+            "title": "Implement player choice tracking",
+            "description": "Create system to record and analyze player decisions and choices",
+            "dependencies": [
+              1
+            ],
+            "details": "Develop tracking for dialogue choices, character customization, and gameplay strategy selections. Ensure anonymization of sensitive data.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 4,
+            "title": "Implement performance metrics tracking",
+            "description": "Design and implement system for tracking player performance metrics",
+            "dependencies": [
+              1
+            ],
+            "details": "Create functions to measure and record metrics such as playtime, win/loss ratios, resource management efficiency, and combat performance.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 5,
+            "title": "Develop analytics dashboard and reporting",
+            "description": "Create a user-friendly dashboard for visualizing and analyzing collected data",
+            "dependencies": [
+              2,
+              3,
+              4
+            ],
+            "details": "Design and implement an analytics dashboard with data visualization tools, custom report generation, and export capabilities for further analysis.",
+            "status": "pending",
+            "testStrategy": ""
+          }
+        ]
+      },
+      {
+        "id": 15,
+        "title": "Implement Analytics and Privacy Compliance",
+        "description": "Integrate Firebase Analytics for anonymous gameplay data tracking, implement secure user data management, and ensure compliance with privacy regulations (GDPR, CCPA).",
+        "details": "1. Integrate Firebase Analytics for anonymous data collection\n2. Implement tracking for key gameplay metrics:\n   - Progression milestones\n   - Choice outcomes\n   - Combat encounter statistics\n   - Soul-binding usage patterns\n   - Session duration and drop-off points\n3. Create privacy policy and consent management system\n4. Implement data anonymization for all collected metrics\n5. Develop opt-out functionality for analytics\n6. Create data retention and deletion policies\n7. Ensure compliance with GDPR, CCPA, and regional privacy regulations\n\nCode structure:\n```csharp\npublic class AnalyticsManager : MonoBehaviour {\n    private FirebaseAnalytics firebaseAnalytics;\n    private bool analyticsEnabled;\n    \n    public void Initialize();\n    public void SetAnalyticsEnabled(bool enabled);\n    public void TrackProgressionEvent(string milestone);\n    public void TrackChoiceEvent(string choiceId, string outcome);\n    public void TrackCombatEvent(string enemyType, bool playerVictory, float duration);\n    public void TrackSoulBindingEvent(string essenceType, bool banked);\n    public void TrackSessionEvent(SessionEventType type, float duration);\n}\n\npublic class PrivacyManager : MonoBehaviour {\n    private bool userConsented;\n    \n    public void ShowPrivacyConsent();\n    public void SetUserConsent(bool consent);\n    public void DeleteUserData();\n    public bool IsConsentRequired();\n}\n\npublic enum SessionEventType { Start, End, Pause, Resume }\n```",
+        "testStrategy": "1. Verify Firebase Analytics integration\n2. Test tracking for all gameplay metrics\n3. Validate privacy consent management\n4. Test opt-out functionality disables all tracking\n5. Verify data anonymization for collected metrics\n6. Test data deletion functionality\n7. Compliance testing for GDPR and CCPA requirements\n8. Verify analytics work across all platforms",
+        "priority": "medium",
+        "dependencies": [
+          1
+        ],
+        "status": "pending",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Analyze current performance metrics",
+            "description": "Gather and analyze existing performance data for each platform to identify areas for improvement.",
+            "dependencies": [],
+            "details": "Use profiling tools to measure load times, frame rates, and resource usage on each platform. Create a baseline report for comparison.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 2,
+            "title": "Optimize rendering pipeline for each platform",
+            "description": "Implement platform-specific rendering optimizations to improve graphics performance.",
+            "dependencies": [
+              1
+            ],
+            "details": "Utilize platform-specific APIs and hardware features. Implement shader optimizations, LOD systems, and occlusion culling techniques tailored to each platform.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 3,
+            "title": "Implement memory management improvements",
+            "description": "Optimize memory usage and allocation strategies for each platform.",
+            "dependencies": [
+              1
+            ],
+            "details": "Implement efficient asset streaming, memory pooling, and garbage collection techniques. Optimize texture compression and asset loading based on platform capabilities.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 4,
+            "title": "Enhance input handling and UI responsiveness",
+            "description": "Optimize input processing and UI rendering for each platform's specific input methods and display characteristics.",
+            "dependencies": [
+              1
+            ],
+            "details": "Implement platform-specific input APIs, optimize touch controls for mobile, and ensure proper scaling and responsiveness of UI elements across different screen sizes and resolutions.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 5,
+            "title": "Optimize network performance",
+            "description": "Implement platform-specific network optimizations to improve multiplayer and online features.",
+            "dependencies": [
+              1
+            ],
+            "details": "Utilize platform-specific network APIs, implement efficient data compression and serialization techniques, and optimize server communication protocols for each platform.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 6,
+            "title": "Conduct platform-specific testing and fine-tuning",
+            "description": "Perform thorough testing and optimization on each platform to ensure consistent performance and feature parity.",
+            "dependencies": [
+              2,
+              3,
+              4,
+              5
+            ],
+            "details": "Conduct extensive playtesting, profile and analyze performance metrics, and make platform-specific adjustments to achieve optimal performance and user experience across all supported platforms.",
+            "status": "pending",
+            "testStrategy": ""
+          }
+        ]
+      }
+    ],
+    "metadata": {
+      "created": "2025-06-25T15:26:09.714Z",
+      "updated": "2025-06-25T15:32:57.098Z",
+      "description": "Tasks for master context"
+    }
+  }
+}
