@@ -1,0 +1,296 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# Unity Metadata Export Rules
+
+**Maintain comprehensive Unity hierarchy documentation for AI context awareness and development workflow optimization.**
+
+## **Core Requirements**
+
+### **Automatic Metadata Export**
+- **Trigger Events**: Any scene or prefab modification must generate corresponding metadata
+- **Export Location**: All metadata files saved to `Documentation/UnityExports/`
+- **File Format**: Structured markdown with consistent naming convention
+- **Update Frequency**: Real-time export on save, build, or manual trigger
+
+### **Mandatory Export Content**
+- **Object Hierarchy**: Complete parent-child relationships with indentation
+- **Component Details**: All attached components with script references
+- **Serialized Values**: Important public fields and configured properties
+- **Asset References**: Materials, textures, prefabs, and other linked assets
+- **Metadata Properties**: Layer, tag, active state, and transform data
+
+## **File Organization Structure**
+
+### **Naming Convention**
+```
+Documentation/UnityExports/
+├── Scenes/
+│   ├── Scene_[SceneName]_Metadata.md
+│   └── Scene_[SceneName]_LastExported.txt
+└── Prefabs/
+    ├── Prefab_[PrefabName]_Metadata.md
+    └── Prefab_[PrefabName]_LastExported.txt
+```
+
+### **Required Metadata Format**
+```markdown
+# [Scene/Prefab Name] Metadata
+
+## Export Information
+**Type**: Scene/Prefab
+**Unity Path**: [Assets/path/to/file]
+**Last Exported**: [ISO 8601 timestamp]
+**Unity Version**: [Version number]
+**Export Script**: [Script name and version]
+
+## Hierarchy Structure
+```
+[ObjectName] (Layer: [LayerName], Tag: [TagName])
+├── [ComponentName] - [ScriptFile.cs]
+│   └── Property: [PropertyName] = [Value]
+├── [ChildObject] (Active: [true/false])
+│   ├── [ComponentName] - [ScriptFile.cs]
+│   └── Transform: Position([x,y,z]) Rotation([x,y,z,w]) Scale([x,y,z])
+```
+
+## Asset Dependencies
+- **Materials**: [List of material assets]
+- **Textures**: [List of texture assets]
+- **Scripts**: [List of script files]
+- **Prefab References**: [List of referenced prefabs]
+- **Audio Clips**: [List of audio assets]
+```
+
+## **Unity Editor Script Requirements**
+
+### **Script Specifications**
+- **Location**: `Assets/Scripts/Editor/MetadataExporter.cs`
+- **Menu Integration**: Tools → Export → Scene/Prefab Metadata
+- **Automatic Triggers**: OnSave callbacks for scenes and prefabs
+- **Batch Export**: Support for exporting all scenes/prefabs at once
+
+### **Export Script Template**
+```csharp
+using UnityEngine;
+using UnityEditor;
+using System.IO;
+using System.Text;
+
+public class MetadataExporter : EditorWindow
+{
+    [MenuItem("Tools/Export/Scene Metadata")]
+    public static void ExportCurrentSceneMetadata()
+    {
+        // Export current scene hierarchy and components
+    }
+    
+    [MenuItem("Tools/Export/All Metadata")]
+    public static void ExportAllMetadata()
+    {
+        // Batch export all scenes and prefabs
+    }
+    
+    private static void ExportSceneToMarkdown(string scenePath)
+    {
+        // Generate markdown for scene hierarchy
+    }
+    
+    private static void ExportPrefabToMarkdown(string prefabPath)
+    {
+        // Generate markdown for prefab hierarchy
+    }
+}
+```
+
+## **Integration with Development Workflow**
+
+### **Task Documentation Integration**
+- **Cross-Reference**: Link Unity metadata files from task implementation logs
+- **Change Tracking**: Reference metadata exports in object documentation
+- **Version History**: Maintain export timestamps for change detection
+
+### **AI Context Enhancement**
+- **Scene Understanding**: Provide AI with complete scene layout and component setup
+- **Prefab Awareness**: Enable AI to understand prefab structure and usage
+- **Configuration Context**: Include serialized values for informed decision making
+- **Dependency Mapping**: Show asset relationships for impact analysis
+
+## **Export Quality Standards**
+
+### **Completeness Requirements**
+- **All GameObjects**: Include every object in hierarchy, even inactive ones
+- **Component Details**: List all components with their key properties
+- **Script References**: Full file paths and class names for scripts
+- **Asset Links**: Complete paths to referenced materials, textures, and other assets
+- **Transform Data**: Position, rotation, and scale for spatial context
+
+### **Accuracy Standards**
+- **Real-Time Data**: Export reflects current Unity state, not cached data
+- **Property Values**: Include actual serialized values, not default values
+- **Reference Integrity**: Verify all asset references are valid and accessible
+- **Hierarchy Precision**: Maintain exact parent-child relationships
+
+## **Automation Implementation**
+
+### **Editor Callbacks**
+```csharp
+[InitializeOnLoad]
+public class AutoMetadataExporter
+{
+    static AutoMetadataExporter()
+    {
+        EditorApplication.hierarchyChanged += OnHierarchyChanged;
+        EditorSceneManager.sceneSaved += OnSceneSaved;
+    }
+    
+    private static void OnSceneSaved(Scene scene)
+    {
+        // Auto-export scene metadata
+    }
+    
+    private static void OnHierarchyChanged()
+    {
+        // Detect prefab modifications
+    }
+}
+```
+
+### **Build Integration**
+- **Pre-Build Export**: Automatically export all metadata before builds
+- **CI/CD Integration**: Include metadata export in automated build processes
+- **Validation Checks**: Verify all scenes and prefabs have current metadata
+
+## **File Management**
+
+### **Version Control**
+- **Track Metadata**: Include exported markdown files in version control
+- **Ignore Temp Files**: Exclude Unity temp files and build artifacts
+- **Merge Strategies**: Handle metadata conflicts during branch merges
+
+### **Cleanup Procedures**
+- **Orphaned Files**: Remove metadata for deleted scenes/prefabs
+- **Outdated Exports**: Clean up files with stale timestamps
+- **Directory Organization**: Maintain clean folder structure
+
+## **Usage Examples**
+
+### **✅ DO: Complete Scene Export**
+```markdown
+# MainGameScene Metadata
+
+## Export Information
+**Type**: Scene
+**Unity Path**: Assets/Scenes/MainGameScene.unity
+**Last Exported**: 2025-01-27T15:30:00Z
+**Unity Version**: 2023.3.0f1
+**Export Script**: MetadataExporter v1.2.0
+
+## Hierarchy Structure
+```
+MainGameScene
+├── Player (Layer: Player, Tag: Player)
+│   ├── PlayerController - PlayerController.cs
+│   │   ├── Movement Speed: 5.0
+│   │   ├── Jump Force: 8.0
+│   │   └── Ground Layer: Ground
+│   ├── CharacterController - Unity Built-in
+│   │   ├── Height: 2.0
+│   │   ├── Radius: 0.5
+│   │   └── Center: (0, 1, 0)
+│   └── Mesh Renderer - Unity Built-in
+│       └── Material: PlayerMaterial
+├── GameManager (Layer: Default, Tag: GameManager)
+│   └── GameManager - GameManager.cs
+│       ├── Player Reference: Player
+│       └── Scene Type: MainGame
+```
+
+## Asset Dependencies
+- **Materials**: PlayerMaterial, EnvironmentMaterial
+- **Scripts**: PlayerController.cs, GameManager.cs
+- **Prefab References**: UI_HUD_Prefab
+```
+
+### **✅ DO: Automated Export Trigger**
+```csharp
+// Proper callback implementation
+[InitializeOnLoad]
+public class AutoMetadataExporter
+{
+    static AutoMetadataExporter()
+    {
+        EditorSceneManager.sceneSaved += OnSceneSaved;
+    }
+    
+    private static void OnSceneSaved(Scene scene)
+    {
+        string exportPath = $"Documentation/UnityExports/Scenes/Scene_{scene.name}_Metadata.md";
+        MetadataExporter.ExportSceneToMarkdown(scene.path, exportPath);
+        Debug.Log($"Exported metadata for scene: {scene.name}");
+    }
+}
+```
+
+### **❌ DON'T: Incomplete Exports**
+```markdown
+# Scene
+Some objects
+- Player
+- Enemy
+```
+
+### **❌ DON'T: Missing Component Details**
+```markdown
+PlayerController (Layer: Player)
+├── Some Script
+└── Another Component
+```
+
+## **Quality Assurance**
+
+### **Validation Checks**
+- **Export Completeness**: Verify all objects and components are included
+- **File Integrity**: Check that exported files are valid markdown
+- **Timestamp Accuracy**: Confirm export times match actual modification times
+- **Asset Reference Validity**: Verify all referenced assets exist
+
+### **Performance Considerations**
+- **Export Efficiency**: Minimize impact on Unity Editor performance
+- **File Size Management**: Keep metadata files reasonably sized
+- **Memory Usage**: Avoid memory leaks during bulk exports
+- **Background Processing**: Use async operations for large exports
+
+## **Troubleshooting**
+
+### **Common Issues**
+- **Missing References**: Handle null or missing asset references gracefully
+- **Permission Errors**: Ensure write access to Documentation/UnityExports/
+- **Large Hierarchies**: Optimize export for scenes with many objects
+- **Circular References**: Detect and handle circular prefab references
+
+### **Error Recovery**
+- **Partial Exports**: Continue export even if individual objects fail
+- **Backup Creation**: Maintain backup of previous export before overwriting
+- **Error Logging**: Comprehensive logging for debugging export issues
+- **Manual Fallback**: Provide manual export options when automation fails
+
+## **Maintenance Requirements**
+
+### **Regular Tasks**
+- **Weekly**: Review export logs for errors or performance issues
+- **Monthly**: Validate that all active scenes and prefabs have current metadata
+- **Quarterly**: Update export script for new Unity features or project needs
+- **Per Release**: Ensure all exported metadata is included in release documentation
+
+### **Script Updates**
+- **Unity Version Changes**: Update export script for Unity API changes
+- **Project Evolution**: Extend export format for new component types
+- **Performance Optimization**: Improve export speed and memory usage
+- **Feature Enhancement**: Add new metadata fields as project needs evolve
+
+**This rule ensures that AI assistants maintain accurate awareness of Unity project structure, enabling more informed development decisions and reducing the need for manual Unity context gathering.**
+
+

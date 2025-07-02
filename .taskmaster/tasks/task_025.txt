@@ -1,0 +1,86 @@
+# Task ID: 25
+# Title: Configure Quality and Build Settings Baseline
+# Status: pending
+# Dependencies: 1, 16
+# Priority: medium
+# Description: Establish standardized render, quality, and platform settings for the project by configuring the URP asset, defining quality profiles, and setting up proper build configurations.
+# Details:
+1. **URP Asset Configuration** (`Assets/Settings/`):
+   - Create a new Universal Render Pipeline asset if not already present
+   - Configure post-processing settings (bloom, color grading, ambient occlusion)
+   - Set up shadow quality parameters (resolution, distance, cascades)
+   - Enable HDR rendering for improved visual fidelity
+   - Configure anti-aliasing settings (FXAA or MSAA)
+
+2. **Quality Settings Profiles**:
+   - Open Project Settings > Quality
+   - Define four distinct quality profiles:
+     * **Low**: Optimized for low-end devices (mobile, Switch)
+       - Disable post-processing effects
+       - Reduce shadow resolution and distance
+       - Lower texture quality and anisotropic filtering
+     * **Medium**: Balanced performance for mid-range hardware
+       - Basic post-processing effects
+       - Medium shadow quality
+       - Medium texture resolution and filtering
+     * **High**: Enhanced visuals for modern consoles and decent PCs
+       - Full post-processing suite
+       - High shadow quality with 2 cascades
+       - High texture resolution with 4x anisotropic filtering
+     * **Ultra**: Maximum quality for high-end PCs
+       - All post-processing effects at maximum quality
+       - High shadow resolution with 4 cascades
+       - Maximum texture resolution with 16x anisotropic filtering
+   - Set appropriate default quality level per platform
+
+3. **Build Settings Configuration**:
+   - Open Build Settings (File > Build Settings)
+   - Add the following scenes to the build:
+     * `Bootstrap.unity` (index 0)
+     * `MainMenu.unity` (index 1)
+     * `PrototypeLevel.unity` (index 2)
+   - Set company name to project company
+   - Set product name to "Soulbinder"
+   - Configure appropriate bundle identifiers for each platform
+   - Set default icons for the application
+
+4. **Scripting Backend Configuration**:
+   - Set Scripting Backend to IL2CPP for improved performance and security
+   - Configure .NET Standard 2.1 compatibility level
+   - Enable appropriate API compatibility level
+   - Configure appropriate stripping level for each platform
+
+5. **Create Documentation**:
+   - Document all settings in a README.md file in the `Assets/Settings/` folder
+   - Include screenshots of final configurations
+   - Document the rationale behind quality profile decisions
+
+# Test Strategy:
+1. **URP Asset Verification**:
+   - Open the URP asset in the Inspector and confirm all settings match specifications
+   - Create a test scene with various lighting conditions to verify shadow quality
+   - Test HDR rendering with high-contrast lighting scenarios
+   - Verify post-processing effects are working as expected
+
+2. **Quality Settings Validation**:
+   - Switch between each quality profile in the editor and verify visual differences
+   - Take screenshots of the same scene in each quality level for comparison
+   - Measure and document performance metrics (FPS) for each quality level
+   - Verify platform-specific default quality settings are appropriate
+
+3. **Build Settings Testing**:
+   - Perform a test build to verify all scenes are included correctly
+   - Confirm the build launches and transitions from Bootstrap to MainMenu correctly
+   - Verify company name, product name, and icons appear correctly in the built application
+   - Test on each target platform to ensure platform-specific settings are applied
+
+4. **Scripting Backend Validation**:
+   - Verify IL2CPP compilation works without errors
+   - Test .NET Standard 2.1 compatibility with existing code
+   - Confirm API compatibility level doesn't cause issues with third-party plugins
+   - Measure build times and final build sizes to ensure they meet requirements
+
+5. **Cross-Platform Testing**:
+   - Test the configuration on at least one device/emulator for each target platform
+   - Verify graphics settings are appropriate for each platform's capabilities
+   - Document any platform-specific issues or considerations

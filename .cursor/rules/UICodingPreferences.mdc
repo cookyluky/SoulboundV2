@@ -1,0 +1,89 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# UI Coding Preferences
+
+## UI Architecture
+
+- **All UI scripts inherit from MonoBehaviour**
+- **Use Unity UI Toolkit (UIElements)** for new UI when possible
+- **Legacy UGUI** only for simple components or existing systems
+- **Separate UI logic from game logic**
+
+## Folder Organization
+
+- **UI scripts**: `Assets/Scripts/UI/`
+- **UI prefabs**: `Assets/Prefabs/UI/`
+- **UI stylesheets**: `Assets/UI/Styles/` (when using UIElements)
+- **UI assets**: `Assets/Art/UI/`
+
+## Coding Patterns
+
+- **Use serialized C# properties** for data binding
+- **Avoid GameObject.Find() and FindObjectOfType()** at runtime
+- **Cache UI references** in Awake() or Start()
+- **Use events** for UI communication
+- **Implement INotifyPropertyChanged** for data binding when needed
+
+## Example UI Script
+
+```csharp
+public class HealthBar : MonoBehaviour
+{
+    [SerializeField] private Slider _healthSlider;
+    [SerializeField] private TextMeshProUGUI _healthText;
+    
+    public float MaxHealth { get; set; } = 100f;
+    public float CurrentHealth { get; private set; }
+    
+    public event Action<float> OnHealthChanged;
+    
+    private void Awake()
+    {
+        ValidateReferences();
+    }
+    
+    public void UpdateHealth(float newHealth)
+    {
+        CurrentHealth = Mathf.Clamp(newHealth, 0f, MaxHealth);
+        UpdateDisplay();
+        OnHealthChanged?.Invoke(CurrentHealth);
+    }
+    
+    private void UpdateDisplay()
+    {
+        if (_healthSlider != null)
+        {
+            _healthSlider.value = CurrentHealth / MaxHealth;
+        }
+        
+        if (_healthText != null)
+        {
+            _healthText.text = $"{CurrentHealth:F0}/{MaxHealth:F0}";
+        }
+    }
+    
+    private void ValidateReferences()
+    {
+        if (_healthSlider == null || _healthText == null)
+        {
+            Debug.LogError($"Missing UI references in {gameObject.name}");
+        }
+    }
+}
+```
+
+## UI Best Practices
+
+- **Always validate UI references**
+- **Use null-conditional operators**
+- **Implement proper error handling**
+- **Use Unity Events** for inspector-assigned callbacks
+- **Keep UI update methods lightweight**
+
+## File Types Affected
+- `**/UI/*.cs` - UI scripts in UI folder
+- `**/UI/**/*.cs` - UI scripts in UI subfolders
+- `**/*UI*.cs` - Any files with UI in the name

@@ -1,0 +1,88 @@
+# Task ID: 2
+# Title: Implement Core Soul-Binding System
+# Status: pending
+# Dependencies: 1
+# Priority: high
+# Description: Develop the fundamental soul essence absorption mechanics that allow players to absorb essences from defeated enemies for health/stamina restoration or banking for upgrades.
+# Details:
+1. Create SoulEssence class with properties for type, quantity, and effects
+2. Implement EssenceManager singleton to track collected essences
+3. Develop absorption mechanics with timing window (3 seconds post-enemy defeat)
+4. Create visual particle effects and audio feedback for absorption events
+5. Implement decision system for immediate consumption vs. banking
+6. Design UI indicators for essence types and quantities
+7. Develop scaling absorption rate based on player progression
+8. Create data structures for essence inventory management
+
+Code structure:
+```csharp
+public enum EssenceType { Vitality, Strength, Arcane, Forbidden }
+
+public class SoulEssence {
+    public EssenceType Type { get; private set; }
+    public float Quantity { get; private set; }
+    public float AbsorptionRate { get; private set; }
+    
+    // Methods for consumption and banking
+}
+
+public class EssenceManager : MonoBehaviour {
+    private Dictionary<EssenceType, float> bankedEssence;
+    
+    public void AbsorbEssence(SoulEssence essence, bool consumeImmediately);
+    public float GetBankedEssence(EssenceType type);
+}
+```
+
+# Test Strategy:
+1. Unit tests for SoulEssence and EssenceManager classes
+2. Verify absorption timing window functions correctly
+3. Test visual and audio feedback systems
+4. Validate essence tracking and inventory management
+5. Playtest immediate consumption vs. banking decision points
+6. Performance testing with multiple simultaneous essence absorptions
+7. Verify scaling absorption rate with player progression
+
+# Subtasks:
+## 1. Design essence collection mechanics [pending]
+### Dependencies: None
+### Description: Create a system for players to collect soul essence from defeated enemies or specific in-game events.
+### Details:
+Define types of essence, collection methods, and drop rates. Consider player level and enemy difficulty in essence acquisition.
+
+## 2. Implement essence storage system [pending]
+### Dependencies: 2.1
+### Description: Develop a storage mechanism for collected essence, including UI elements and backend data management.
+### Details:
+Create inventory system for essence, design UI for displaying essence types and quantities, implement save/load functionality for essence data.
+
+## 3. Design soul-binding mechanics [pending]
+### Dependencies: 2.1, 2.2
+### Description: Create the core mechanics for binding collected essence to weapons or abilities.
+### Details:
+Define binding process, essence requirements for different item tiers, and effects of soul-binding on item properties.
+
+## 4. Implement soul-bound item enhancement system [pending]
+### Dependencies: 2.3
+### Description: Develop a system for upgrading and customizing soul-bound items using additional essence.
+### Details:
+Create upgrade paths, define essence costs for enhancements, implement UI for upgrade selection and confirmation.
+
+## 5. Create essence usage mechanics for abilities [pending]
+### Dependencies: 2.1, 2.2
+### Description: Implement a system for using essence to power special abilities or spells.
+### Details:
+Design essence-powered abilities, balance essence consumption rates, create UI for ability selection and activation.
+
+## 6. Develop essence regeneration and management systems [pending]
+### Dependencies: 2.1, 2.2, 2.5
+### Description: Implement mechanics for essence regeneration and overall essence economy management.
+### Details:
+Define essence regeneration rates, create essence sinks to maintain game balance, implement UI for tracking essence regeneration.
+
+## 7. Balance and playtest soul-binding system [pending]
+### Dependencies: 2.1, 2.2, 2.3, 2.4, 2.5, 2.6
+### Description: Conduct thorough playtesting and balancing of the entire soul-binding system.
+### Details:
+Analyze player feedback, adjust essence drop rates and usage costs, fine-tune soul-binding effects, ensure system integrates well with overall game balance.
+

@@ -1,0 +1,510 @@
+---
+description: Everytime a task or subtask is compelted, or the agent needs physcial test in unity for me to preform to test what they just sent
+globs: 
+alwaysApply: false
+---
+# Interactive Test Documentation Rules
+
+**Enforce comprehensive test creation, documentation, and interactive execution for all completed tasks and manual testing scenarios.**
+
+## **Core Testing Requirements**
+
+### **Mandatory Unity Editor Integration**
+All tests must include comprehensive Unity Editor instructions:
+- **Step-by-Step Unity Actions**: Every test step must specify exact Unity Editor operations
+- **Menu Navigation**: Precise menu paths (e.g., "GameObject → 3D Object → Cube")
+- **Window Management**: Instructions for arranging and using Unity windows
+- **Component Interaction**: Specific steps for adjusting properties and settings
+- **Visual Verification**: Clear guidance on what to look for in Unity's interface
+
+### **Mandatory Interactive Observation Pattern**
+Claude must always follow this exact interaction sequence:
+1. **Present Unity Editor Instructions**: Detailed step-by-step Unity actions
+2. **State Expected Results**: Clear description of anticipated outcomes
+3. **Request Execution**: Ask user to perform the Unity actions
+4. **Ask "What did you observe?"**: This exact phrase is mandatory for every step
+5. **Document Response**: Record user's actual observations in test file
+6. **Assess and Act**: Determine pass/fail and create fix subtasks if needed
+
+### **Mandatory Test Creation Triggers**
+- **Task Completion**: Every completed task must have corresponding test documentation
+- **Subtask Completion**: Each completed subtask requires validation testing
+- **Manual Testing Needs**: When manual verification is required for any functionality
+- **Priority Testing Areas** (especially critical):
+  - **Gameplay Mechanics**: Player movement, combat, progression systems
+  - **UI Changes**: Interface modifications, user interactions, visual feedback
+  - **System Changes**: Core system modifications, manager updates, data flow changes
+- **Integration Points**: When systems interact or dependencies are established
+- **User-Facing Features**: All features visible to end users must be tested
+- **Critical Functionality**: Core game mechanics and systems require thorough testing
+
+### **Test File Location and Naming**
+- **Directory**: All test files must be saved to `Documentation/tests/`
+- **Naming Convention**: `<TaskOrSubtaskID>_Test.md`
+  - Examples: `Task_7_Test.md`, `Subtask_7.1.2_Test.md`, `Task_15.3_Test.md`
+- **Organization**: Group related tests in subdirectories when appropriate
+  - `Documentation/tests/PlayerMechanics/`
+  - `Documentation/tests/CombatSystem/`
+  - `Documentation/tests/UI/`
+
+## **Mandatory Test File Structure**
+
+### **Required Sections Template**
+```markdown
+# Test [TestID]: [Descriptive Title]
+
+## Test Information
+**Test ID**: [TestID]
+**Related Task**: @Task_[ID] - [Task Title]
+**Test Type**: [Manual/Automated/Integration/Unit]
+**Created**: [YYYY-MM-DD HH:MM]
+**Last Updated**: [YYYY-MM-DD HH:MM]
+**Tester**: [Name/Role]
+
+## Cross-References
+**Tests Task**: @Task_[ID]
+**Tests Object**: @[ObjectName]
+**Related Tests**: @Test_[IDs]
+**Dependencies**: @Task_[prerequisiteIDs]
+
+## Test Objective
+[Clear description of what this test validates]
+
+## Preconditions
+- [ ] [Condition 1 - specific setup requirements]
+- [ ] [Condition 2 - required system state]
+- [ ] [Condition 3 - necessary assets or data]
+
+## Unity Editor Instructions
+**Setup Requirements**: [Specific Unity Editor setup needed]
+**Scene Configuration**: [Which scene to load and how to configure it]
+**Object Preparation**: [GameObjects that need to be placed or configured]
+**Component Settings**: [Specific component properties to verify/set]
+
+## Test Steps
+### Step 1: [Action Description]
+**Unity Editor Action**: [Specific Unity Editor steps to perform]
+**Expected Result**: [What should happen]
+**Actual Result**: [Initially blank - filled during execution]
+
+### Step 2: [Action Description]
+**Unity Editor Action**: [Specific Unity Editor steps to perform]
+**Expected Result**: [What should happen]
+**Actual Result**: [Initially blank - filled during execution]
+
+### Step 3: [Action Description]
+**Unity Editor Action**: [Specific Unity Editor steps to perform]
+**Expected Result**: [What should happen]
+**Actual Result**: [Initially blank - filled during execution]
+
+## Test Status
+**Current Status**: Pending
+**Pass/Fail Criteria**: [Specific conditions for success]
+**Overall Result**: [Initially blank]
+
+## Test Results Summary
+**Execution Date**: [YYYY-MM-DD HH:MM]
+**Test Duration**: [Time taken]
+**Pass Rate**: [X/Y steps passed]
+**Critical Issues**: [List any blocking issues]
+**Minor Issues**: [List non-blocking issues]
+
+## Detailed Results
+[Comprehensive results filled during interactive testing]
+
+## Follow-up Actions
+**Required Fixes**: [List of issues requiring fixes]
+**New Tasks Created**: @Task_[newTaskIDs]
+**Retesting Required**: [Yes/No and reasoning]
+
+## Changelog
+### [YYYY-MM-DD HH:MM] - Test Created
+- Initial test documentation created for @Task_[ID]
+- Test steps defined based on task requirements
+
+### [YYYY-MM-DD HH:MM] - Test Executed
+- Test executed with user interaction
+- Results documented and status updated
+```
+
+## **Interactive Testing Workflow**
+
+### **Phase 1: Test Creation**
+When Claude identifies a testing trigger:
+
+1. **Create Test File**: Generate test documentation using the mandatory template
+2. **Populate Initial Content**: Fill in Test ID, Related Task, Objective, Preconditions, and Steps
+3. **Cross-Reference**: Add appropriate links to related tasks and objects
+4. **Notify User**: Inform user that test has been created and is ready for execution
+
+### **Phase 2: Interactive Test Execution**
+Claude must guide the user through each test step with specific Unity Editor instructions:
+
+#### **Pre-Execution Setup**
+```markdown
+Claude: "I've created Test [TestID] for @Task_[ID]. Let's execute it step by step.
+
+**Unity Editor Setup:**
+- [Specific Unity Editor setup instructions]
+- [Scene loading requirements]
+- [Object placement instructions]
+- [Component configuration steps]
+
+First, let's verify the preconditions:
+- [ ] [Precondition 1]
+- [ ] [Precondition 2] 
+- [ ] [Precondition 3]
+
+Are all preconditions met? Please confirm before we proceed."
+```
+
+#### **Mandatory Step-by-Step Execution Pattern**
+For each test step, Claude must follow this exact pattern:
+
+1. **Present Unity Editor Instructions**: Provide specific Unity Editor steps
+2. **State Expected Result**: Explain what should happen
+3. **Request Execution**: Ask user to perform the Unity Editor actions
+4. **Mandatory Observation Request**: Always ask "What did you observe?"
+5. **Document Result**: Update the test file with actual results
+6. **Assess Step**: Determine if step passed or failed
+7. **Generate Fix Tasks**: If failed, immediately create remediation subtasks
+
+**Example Interaction Pattern**:
+```markdown
+Claude: "Let's execute Step 1:
+
+**Step 1**: Open Unity and load the MainGameScene
+**Unity Editor Action**: 
+1. Open Unity Editor
+2. File → Open Scene → Assets/Scenes/MainGameScene.unity
+3. Wait for scene to fully load
+4. Check Hierarchy window for PlayerController GameObject
+**Expected Result**: Scene loads without errors, PlayerController is visible in hierarchy
+
+Please perform these Unity Editor actions and tell me: What did you observe?"
+
+User: [Provides response]
+
+Claude: [Updates test file with actual result, assesses pass/fail, and either continues to next step or creates fix subtasks if failed]
+```
+
+#### **Observation Documentation**
+After each user response, Claude must:
+
+1. **Update Test File**: Add actual result to the corresponding step
+2. **Assess Outcome**: Compare actual vs expected results
+3. **Note Issues**: Document any discrepancies or problems
+4. **Continue or Stop**: Decide whether to proceed based on step outcome
+
+### **Phase 3: Test Completion and Follow-up**
+
+#### **Test Summary and Status Update**
+Upon completion, Claude must:
+
+1. **Calculate Pass Rate**: Determine how many steps passed vs failed
+2. **Update Overall Status**: Set status to Passed, Failed, or Partially Passed
+3. **Document Issues**: List all identified problems
+4. **Update Test File**: Complete all remaining sections
+
+#### **Mandatory Failure Handling and Immediate Subtask Generation**
+When ANY test step fails, Claude must immediately:
+
+1. **Document Failure**: Record exact failure details in test file
+2. **Analyze Root Cause**: Identify specific issue causing the failure
+3. **Generate Remediation Subtasks**: Create new subtasks for each problem
+4. **Update Task Documentation**: Add failure information to related task logs
+5. **Link Dependencies**: Connect fix subtasks to original task and test
+6. **Schedule Retesting**: Plan for re-execution after all fixes complete
+
+**Immediate Fix Subtask Creation Template**:
+```markdown
+Claude: "Step [X] of Test [TestID] has FAILED. I'm immediately creating remediation subtasks:
+
+**Failure Details**: [Specific observed vs expected results]
+**Root Cause**: [Analysis of why the failure occurred]
+
+**New Subtask Created**: @Task_[ID].[SubID].Fix.1 - [Specific Issue Description]
+**Priority**: High (blocks test completion)
+**Details**: [Exact fix requirements based on test failure]
+**Success Criteria**: [How to verify the fix works]
+
+**New Subtask Created**: @Task_[ID].[SubID].Fix.2 - [Another Issue Description]  
+**Priority**: Medium (quality improvement)
+**Details**: [Specific fix requirements]
+**Success Criteria**: [Verification criteria]
+
+These remediation subtasks have been added to your task list and must be completed before Test [TestID] can be re-executed successfully."
+```
+
+## **Test Documentation Standards**
+
+### **Test Step Quality Requirements**
+- **Specific Actions**: Each step must describe exact actions to perform
+- **Measurable Results**: Expected results must be observable and verifiable
+- **Clear Language**: Use simple, unambiguous instructions
+- **Logical Sequence**: Steps must follow a logical progression
+- **Comprehensive Coverage**: Test all aspects of the implemented functionality
+
+### **Cross-Reference Requirements**
+Every test file must include:
+```markdown
+## Cross-References
+**Tests Task**: @Task_[ID] - [Task_ID_Overview.md](mdc:Documentation/Tasks/Task_ID/Task_ID_Overview.md)
+**Tests Object**: @[ObjectName] - [ObjectName.md](mdc:Documentation/Objects/ObjectName.md)
+**Related Tests**: @Test_[relatedTestIDs]
+**Implementation**: [ScriptName.cs](mdc:Assets/Scripts/ScriptName.cs)
+```
+
+### **Bidirectional Linking**
+When creating test files, Claude must also update:
+- **Task Implementation Logs**: Add reference to created test
+- **Object Documentation**: Link test to tested objects
+- **Related Task Files**: Cross-reference with dependent tests
+
+## **Test Types and Categories**
+
+### **Manual Testing Categories**
+- **Functional Tests**: Verify feature works as designed
+- **Integration Tests**: Confirm systems work together correctly
+- **User Experience Tests**: Validate user-facing functionality
+- **Performance Tests**: Check system performance under load
+- **Edge Case Tests**: Test boundary conditions and error handling
+
+### **Test Complexity Levels**
+- **Simple Tests**: 3-5 steps, single feature verification
+- **Moderate Tests**: 6-10 steps, multiple feature interaction
+- **Complex Tests**: 11+ steps, full workflow validation
+
+### **Automated vs Manual Testing**
+- **Manual Required**: UI interactions, visual verification, user experience
+- **Automation Candidate**: Repetitive steps, data validation, performance metrics
+- **Hybrid Approach**: Automated setup with manual verification
+
+## **Interactive Testing Examples**
+
+### **✅ DO: Complete Interactive Test Flow**
+
+#### **Test Creation**
+```markdown
+Claude: "Task 7 (Core Player Movement) has been completed. I'm creating a comprehensive test to validate the implementation.
+
+Test Created: Documentation/tests/Task_7_Test.md
+Test ID: Test_7_PlayerMovement
+Related Task: @Task_7
+
+The test includes 8 steps covering:
+- Scene loading and setup
+- Basic movement in all directions
+- Jump mechanics
+- Collision detection
+- Movement speed validation
+
+Would you like to execute this test now?"
+```
+
+#### **Step-by-Step Execution**
+```markdown
+Claude: "Let's begin Test_7_PlayerMovement. 
+
+**Unity Editor Setup Required**:
+- Unity Editor open with MainGameScene loaded
+- PlayerController GameObject active in hierarchy
+- Game view window visible for testing
+- Console window open to monitor for errors
+
+**Preconditions Check**:
+- [ ] Unity Editor is open
+- [ ] MainGameScene is loaded  
+- [ ] PlayerController prefab is in the scene
+- [ ] Game view and Console windows are visible
+
+Are all preconditions met?"
+
+User: "Yes, everything is ready."
+
+Claude: "Perfect! Let's start with Step 1:
+
+**Step 1**: Press Play in Unity Editor
+**Unity Editor Action**: 
+1. Click the Play button (▶) in Unity Editor toolbar
+2. Wait for game to start in Game view
+3. Check Console window for any error messages
+**Expected Result**: Game starts, player character appears, no console errors
+
+Please perform these Unity Editor actions. What did you observe?"
+
+User: "Game started successfully, player character is visible, no errors in console."
+
+Claude: "Excellent! Step 1 PASSED. Moving to Step 2:
+
+**Step 2**: Use WASD keys to move the player character  
+**Unity Editor Action**:
+1. Ensure Game view window has focus (click on it)
+2. Press and hold W key for 2 seconds
+3. Press and hold S key for 2 seconds  
+4. Press and hold A key for 2 seconds
+5. Press and hold D key for 2 seconds
+6. Observe movement speed and smoothness
+**Expected Result**: Player moves smoothly in all four directions at speed 5.0
+
+Please perform these movement tests. What did you observe?"
+
+User: "Player moves but seems slower than expected, maybe speed 3.0 instead of 5.0"
+
+Claude: "I've documented this failure. Step 2 FAILED - movement speed incorrect.
+
+**Creating Remediation Subtask**:
+@Task_7.2.Fix.1 - Correct PlayerController movement speed from 3.0 to 5.0
+**Priority**: High (blocks test completion)
+**Details**: Update _moveSpeed field in PlayerController.cs to match specification
+
+Continuing with Step 3:
+
+**Step 3**: Press Spacebar to make player jump
+**Unity Editor Action**:
+1. Ensure player character is on ground
+2. Press Spacebar key once
+3. Observe jump height and landing behavior
+4. Check for smooth animation transitions
+**Expected Result**: Player jumps with force 8.0, lands smoothly
+
+What did you observe when testing the jump?"
+```
+
+#### **Test Completion and Follow-up**
+```markdown
+Claude: "Test_7_PlayerMovement completed with results:
+- 5/8 steps PASSED
+- 3/8 steps FAILED
+- Overall Status: FAILED
+
+Issues identified:
+1. Movement speed too slow (expected 5.0, actual ~3.0)
+2. Jump height insufficient (expected 8.0 force, appears ~5.0)
+3. Collision detection not working with walls
+
+I'm creating fix tasks:
+
+**Created**: @Task_7.Fix.1 - Correct movement speed configuration
+**Created**: @Task_7.Fix.2 - Adjust jump force parameters  
+**Created**: @Task_7.Fix.3 - Fix collision detection system
+
+These tasks have been added to your task list. After completing the fixes, we'll re-run Test_7_PlayerMovement to validate the corrections."
+```
+
+### **✅ DO: Proper Test Documentation Updates**
+```markdown
+# Test Test_7_PlayerMovement: Core Player Movement Validation
+
+## Test Information
+**Test ID**: Test_7_PlayerMovement
+**Related Task**: @Task_7 - Core Player Movement Implementation
+**Test Type**: Manual/Integration
+**Created**: 2025-01-27 15:30:00
+**Last Updated**: 2025-01-27 16:15:00
+**Tester**: User/Claude
+
+## Cross-References
+**Tests Task**: @Task_7 - [Task_7_Overview.md](mdc:Documentation/Tasks/Task_7/Task_7_Overview.md)
+**Tests Object**: @PlayerController - [PlayerController.md](mdc:Documentation/Objects/PlayerController.md)
+**Implementation**: [PlayerController.cs](mdc:Assets/Scripts/PlayerController.cs)
+
+## Test Results Summary
+**Execution Date**: 2025-01-27 16:00:00
+**Test Duration**: 15 minutes
+**Pass Rate**: 5/8 steps passed
+**Critical Issues**: Movement speed, jump force, collision detection
+**Overall Result**: FAILED - requires fixes
+
+## Follow-up Actions
+**Required Fixes**: Movement speed calibration, jump mechanics, collision system
+**New Tasks Created**: @Task_7.Fix.1, @Task_7.Fix.2, @Task_7.Fix.3
+**Retesting Required**: Yes - after all fixes completed
+
+## Changelog
+### 2025-01-27 15:30:00 - Test Created
+- Initial test documentation created for @Task_7
+- 8 test steps defined covering all movement mechanics
+
+### 2025-01-27 16:15:00 - Test Executed
+- Interactive test completed with user participation
+- 3 critical issues identified and documented
+- Fix tasks created for resolution
+```
+
+### **❌ DON'T: Incomplete Test Interaction**
+```markdown
+Claude: "Test created. Please run it and let me know if it works."
+User: "It doesn't work."
+Claude: "Okay, I'll create a fix task."
+```
+
+### **❌ DON'T: Missing Test Documentation**
+```markdown
+# Test
+Some steps to test
+Results: Failed
+```
+
+## **Quality Assurance and Validation**
+
+### **Test Creation Validation**
+Before presenting a test to the user, Claude must verify:
+- **Complete Template**: All required sections are populated
+- **Clear Steps**: Each step has specific actions and expected results
+- **Proper Cross-References**: All @ references are accurate and bidirectional
+- **Logical Flow**: Steps follow a coherent sequence
+- **Realistic Expectations**: Expected results are achievable and verifiable
+
+### **Interactive Execution Validation**
+During test execution, Claude must:
+- **Confirm Understanding**: Ensure user understands each step before proceeding
+- **Document Accurately**: Capture user observations precisely
+- **Assess Objectively**: Compare actual vs expected results fairly
+- **Handle Ambiguity**: Ask clarifying questions when user responses are unclear
+- **Maintain Momentum**: Keep testing process moving efficiently
+
+### **Follow-up Task Quality**
+When creating fix tasks, Claude must ensure:
+- **Specific Problem Definition**: Clearly describe what needs to be fixed
+- **Actionable Solutions**: Provide concrete steps for resolution
+- **Appropriate Priority**: Set priority based on test failure impact
+- **Clear Success Criteria**: Define how to verify the fix works
+- **Proper Integration**: Link fix tasks to original tasks and tests
+
+## **Maintenance and Continuous Improvement**
+
+### **Test File Maintenance**
+- **Regular Review**: Validate test steps remain current with implementation
+- **Update Dependencies**: Ensure cross-references reflect current project state
+- **Expand Coverage**: Add new test scenarios as features evolve
+- **Archive Obsolete**: Remove or archive tests for deprecated functionality
+
+### **Testing Process Improvement**
+- **Analyze Patterns**: Identify common failure types and root causes
+- **Optimize Steps**: Streamline test procedures based on execution experience
+- **Enhance Documentation**: Improve test clarity based on user feedback
+- **Automate When Possible**: Convert stable manual tests to automated when beneficial
+
+### **Integration with Development Workflow**
+- **Pre-Commit Testing**: Ensure critical tests pass before code commits
+- **Release Validation**: Execute comprehensive test suites before releases
+- **Regression Testing**: Re-run tests when making changes to tested functionality
+- **Performance Monitoring**: Track test execution time and failure rates
+
+## **Error Handling and Edge Cases**
+
+### **Test Execution Issues**
+- **Environment Problems**: Handle Unity crashes, missing assets, or configuration issues
+- **User Confusion**: Provide additional guidance when steps are unclear
+- **Unexpected Results**: Investigate discrepancies between expected and actual outcomes
+- **Partial Failures**: Handle tests that partially work but have minor issues
+
+### **Documentation Consistency**
+- **Cross-Reference Integrity**: Maintain accurate links when files are moved or renamed
+- **Status Synchronization**: Ensure test status reflects current implementation state
+- **Version Control**: Handle test file conflicts during merge operations
+- **Backup Procedures**: Maintain test history for regression analysis
+
+**This rule ensures comprehensive testing coverage with interactive user validation, detailed documentation, and systematic follow-up for all development work.**
+

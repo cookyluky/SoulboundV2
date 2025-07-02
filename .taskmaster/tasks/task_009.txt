@@ -1,0 +1,92 @@
+# Task ID: 9
+# Title: Implement Narrative and Choice System
+# Status: pending
+# Dependencies: 1, 6
+# Priority: medium
+# Description: Develop the five-act narrative structure with branching dialogue choices, multiple endings based on corruption level and key decisions, and the Elysia trust system.
+# Details:
+1. Create DialogueManager for conversation handling
+2. Implement choice system with corruption and trust consequences
+3. Develop StoryManager tracking act progression and key decisions
+4. Create three possible ending paths based on corruption and choices
+5. Implement Elysia trust system influencing guidance and story reveals
+6. Develop cinematic sequence system for key story moments
+7. Create save/load system for narrative state persistence
+
+Code structure:
+```csharp
+public class DialogueManager : MonoBehaviour {
+    [SerializeField] private TextAsset dialogueDatabase;
+    
+    private Dictionary<string, DialogueNode> dialogueNodes;
+    
+    public void StartDialogue(string nodeId);
+    public void MakeChoice(int choiceIndex);
+    private void ApplyChoiceConsequences(DialogueChoice choice);
+}
+
+public class StoryManager : MonoBehaviour {
+    [SerializeField] private int currentAct = 1;
+    
+    private Dictionary<string, bool> keyDecisions = new Dictionary<string, bool>();
+    private float elysiasTrust = 50f; // 0-100 scale
+    
+    public void AdvanceToNextAct();
+    public void RecordDecision(string decisionId, bool choice);
+    public void ModifyElysiasTrust(float amount);
+    public string DetermineEnding();
+}
+```
+
+# Test Strategy:
+1. Unit tests for DialogueManager and StoryManager
+2. Verify branching dialogue paths function correctly
+3. Test corruption and trust consequences from choices
+4. Validate all three ending paths are reachable
+5. Test Elysia trust system effects on guidance
+6. Verify cinematic sequence triggering
+7. Test save/load functionality for narrative state
+
+# Subtasks:
+## 1. Design dialogue system architecture [pending]
+### Dependencies: None
+### Description: Create a flexible dialogue system architecture that can handle branching conversations and player choices
+### Details:
+Define data structures for dialogue nodes, conversation trees, and choice options. Design APIs for integrating dialogue with other game systems.
+
+## 2. Develop narrative structure for five acts [pending]
+### Dependencies: None
+### Description: Outline the main story beats and key decision points for each of the game's five acts
+### Details:
+Create a high-level narrative flowchart showing major plot points, character arcs, and potential branching paths across all five acts.
+
+## 3. Implement dialogue scripting system [pending]
+### Dependencies: 9.1
+### Description: Create a scripting language or tool for writers to easily create and manage complex dialogues
+### Details:
+Develop a user-friendly interface for writing branching dialogues, including support for variables, conditions, and callbacks to game systems.
+
+## 4. Design choice consequence tracking system [pending]
+### Dependencies: 9.1, 9.2
+### Description: Develop a system to track player choices and their impacts throughout the game
+### Details:
+Create a database to store player decisions, implement methods to query and update this database, and design interfaces for other systems to react to these choices.
+
+## 5. Write dialogue content for Act 1 [pending]
+### Dependencies: 9.2, 9.3
+### Description: Create all dialogue content for the first act of the game
+### Details:
+Write character dialogues, narrative descriptions, and player choice options for Act 1, ensuring they align with the overall narrative structure and utilize the dialogue scripting system.
+
+## 6. Implement dialogue UI and interaction system [pending]
+### Dependencies: 9.1, 9.3
+### Description: Develop the user interface for displaying dialogues and handling player interactions
+### Details:
+Create UI elements for dialogue boxes, choice selection, and character portraits. Implement input handling for player choices and dialogue progression.
+
+## 7. Integrate dialogue system with game world [pending]
+### Dependencies: 9.1, 9.3, 9.4, 9.6
+### Description: Connect the dialogue system to other game systems such as quests, inventory, and character relationships
+### Details:
+Implement callbacks and events to trigger changes in the game world based on dialogue choices. Ensure dialogue options reflect current game state and character relationships.
+

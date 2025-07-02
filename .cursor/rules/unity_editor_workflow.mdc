@@ -1,0 +1,278 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# Unity Editor Workflow & Object Documentation
+
+**All Unity development work must include detailed Editor instructions and maintain comprehensive object documentation.**
+
+## **Unity Editor Step Instructions**
+
+**When any change requires manual Unity Editor actions, provide complete step-by-step instructions:**
+
+### **Required Instruction Format**
+- **Menu Navigation**: Exact path (e.g., `GameObject → 3D Object → Cube`)
+- **Object Naming**: Specific names following project conventions
+- **Component Attachment**: Precise component addition steps
+- **Property Configuration**: Exact values and settings
+- **Hierarchy Placement**: Where to position objects
+- **Prefab Creation**: How to create and save prefabs
+- **Scene Setup**: Scene creation and configuration steps
+
+### **Instruction Categories**
+
+#### **GameObject Creation & Setup**
+```markdown
+**Unity Editor Steps:**
+1. Right-click in Hierarchy → Create Empty → Name: "PlayerController"
+2. Select PlayerController → Add Component → Scripts → PlayerController
+3. In PlayerController Inspector:
+   - Movement Speed: 5.0
+   - Jump Force: 8.0
+   - Ground Layer: Ground (Layer 8)
+4. Add Component → Character Controller
+5. Set Character Controller:
+   - Height: 2.0
+   - Radius: 0.5
+   - Center: (0, 1, 0)
+```
+
+#### **Prefab Creation & Modification**
+```markdown
+**Unity Editor Steps:**
+1. Drag configured GameObject from Hierarchy to Assets/Prefabs/
+2. Name prefab: "Player_Prefab"
+3. Double-click prefab to enter Prefab Mode
+4. [Modify components as needed]
+5. Click "Open Prefab" button to save changes
+6. Exit Prefab Mode (arrow button top-left)
+```
+
+#### **Scene Setup & Configuration**
+```markdown
+**Unity Editor Steps:**
+1. File → New Scene → Name: "BootstrapScene"
+2. Save scene to Assets/Scenes/Core/
+3. Create GameObject: "SceneBootstrap"
+4. Attach script: BootstrapManager.cs
+5. Configure scene in Build Settings:
+   - File → Build Settings → Add Open Scenes
+   - Move to index 0 (first scene)
+```
+
+#### **Component Configuration**
+```markdown
+**Unity Editor Steps:**
+1. Select [ObjectName] in Hierarchy
+2. Add Component → [ScriptName]
+3. Configure [ScriptName] properties:
+   - [PropertyName]: [Value]
+   - [Reference Field]: Drag [TargetObject] from Hierarchy
+4. Apply changes to prefab (if applicable)
+```
+
+## **Object Documentation Requirements**
+
+**Every GameObject, Prefab, and Scene must have corresponding markdown documentation under `Documentation/Objects/`.**
+
+### **Documentation File Structure**
+- **File Location**: `Documentation/Objects/<ObjectName>.md`
+- **Naming Convention**: PascalCase matching Unity object name
+- **Content Requirements**: Complete object specification and change history
+
+### **Required Documentation Template**
+```markdown
+# [ObjectName]
+
+## Object Information
+**Type**: [Prefab/Scene/GameObject]
+**Location**: [Unity project path]
+**Created**: [Date]
+**Last Modified**: [Date]
+
+## Purpose
+[Clear description of object's role and functionality]
+
+## Components
+### [ComponentName]
+- **Script**: [ScriptName.cs]
+- **Purpose**: [Component function]
+- **Key Properties**:
+  - [PropertyName]: [Value] - [Description]
+
+## Hierarchy Structure
+```
+[ObjectName]
+├── [ChildObject1]
+│   └── [GrandChildObject]
+└── [ChildObject2]
+```
+
+## Dependencies
+- **Prefab Dependencies**: [List of prefabs this object uses]
+- **Script Dependencies**: [Required scripts and managers]
+- **Asset Dependencies**: [Materials, textures, audio clips]
+
+## Integration Points
+- **Systems**: [Which game systems interact with this object]
+- **Events**: [Events this object sends/receives]
+- **Interfaces**: [Implemented interfaces]
+
+## Usage Instructions
+[How developers should use/instantiate this object]
+
+## History Log
+### [YYYY-MM-DD HH:MM] - [Change Description]
+[Detailed description of changes made]
+
+**Files Modified**: [List of affected files]
+**Unity Steps**: [Editor steps taken]
+**Integration Impact**: [How change affects other systems]
+```
+
+### **Documentation Update Requirements**
+
+#### **New Object Creation**
+- **Always** create new `.md` file when instructing object creation
+- Include complete initial documentation
+- Reference from related task documentation
+
+#### **Object Modification**
+- **Always** append timestamped entry to existing `.md` file
+- Document what changed and why
+- Include Unity Editor steps taken
+- Note integration impacts
+
+#### **Documentation Categories**
+
+**Prefabs** (`Documentation/Objects/Prefabs/`)
+- Player character prefabs
+- Enemy archetypes
+- Interactive objects
+- UI prefabs
+- Effect prefabs
+
+**Scenes** (`Documentation/Objects/Scenes/`)
+- Core scenes (Bootstrap, MainMenu)
+- Level scenes
+- Test scenes
+- Special purpose scenes
+
+**GameObjects** (`Documentation/Objects/GameObjects/`)
+- Manager objects
+- System controllers
+- Singleton objects
+- Special hierarchy objects
+
+## **Integration with Task Documentation**
+
+### **Cross-Reference Requirements**
+- **Task Files**: Reference object documentation from task implementation logs
+- **Object Files**: Reference originating tasks and related tasks
+- **Change Tracking**: Maintain bidirectional links between task progress and object changes
+
+### **Linking Format**
+```markdown
+**Related Tasks**: [Task 16](mdc:Documentation/Tasks/Task_16/Task_16_Overview.md)
+**Object Documentation**: [PlayerController](mdc:Documentation/Objects/PlayerController.md)
+```
+
+## **Quality Standards**
+
+### **Unity Editor Instructions**
+- **Completeness**: Every manual step documented
+- **Precision**: Exact menu paths and property values
+- **Verification**: Include verification steps to confirm success
+- **Troubleshooting**: Note common issues and solutions
+
+### **Object Documentation**
+- **Accuracy**: Documentation reflects actual Unity object state
+- **Timeliness**: Updated immediately after changes
+- **Searchability**: Clear naming and categorization
+- **Maintenance**: Regular review and cleanup
+
+## **Examples**
+
+### **✅ DO: Complete Unity Instructions**
+```markdown
+**Unity Editor Steps for Soul Fragment Prefab:**
+1. GameObject → Create Empty → Name: "SoulFragment"
+2. Add Component → MeshRenderer
+3. Add Component → SphereCollider
+   - Is Trigger: ✓ (checked)
+   - Radius: 0.5
+4. Add Component → Scripts → SoulFragment
+5. Configure SoulFragment script:
+   - Essence Type: Minor
+   - Absorption Range: 2.0
+   - Visual Effect: Drag "SoulGlow_Effect" from Assets/Prefabs/Effects/
+6. Drag to Assets/Prefabs/Items/ → Save as "SoulFragment_Prefab"
+```
+
+### **✅ DO: Comprehensive Object Documentation**
+```markdown
+# PlayerController
+
+## Object Information
+**Type**: Prefab
+**Location**: Assets/Prefabs/Player/PlayerController_Prefab.prefab
+**Created**: 2025-01-27
+**Last Modified**: 2025-01-27
+
+## Purpose
+Primary player character controller managing movement, input, and core gameplay interactions.
+
+## Components
+### CharacterController
+- **Script**: Unity built-in
+- **Purpose**: Physics-based movement and collision
+- **Key Properties**:
+  - Height: 2.0 - Player capsule height
+  - Radius: 0.5 - Collision radius
+  - Center: (0, 1, 0) - Offset from ground
+
+### PlayerController
+- **Script**: PlayerController.cs
+- **Purpose**: Input handling and movement logic
+- **Key Properties**:
+  - Movement Speed: 5.0 - Base walking speed
+  - Jump Force: 8.0 - Vertical jump strength
+  - Ground Layer: Ground - Layer mask for ground detection
+```
+
+### **❌ DON'T: Vague Instructions**
+```markdown
+"Add a player controller script to a game object"
+"Set up the character somehow"
+"Configure the movement settings"
+```
+
+### **❌ DON'T: Missing Documentation**
+```markdown
+// Creating GameObject without documenting it
+// Modifying existing object without updating its .md file
+// Not cross-referencing with task documentation
+```
+
+## **Enforcement Guidelines**
+
+### **Code Review Triggers**
+- Any script requiring GameObject attachment
+- Prefab creation or modification
+- Scene setup or hierarchy changes
+- Component configuration changes
+
+### **Documentation Validation**
+- Verify `.md` files exist for all referenced objects
+- Check timestamp accuracy in history logs
+- Confirm Unity steps are complete and accurate
+- Validate cross-references between tasks and objects
+
+### **Maintenance Requirements**
+- Review object documentation during task completion
+- Update documentation when objects are deprecated
+- Clean up orphaned documentation files
+- Maintain consistent naming conventions
+
+**This rule ensures that Unity development work is reproducible, well-documented, and maintains clear traceability between code changes, Unity Editor actions, and project documentation.**

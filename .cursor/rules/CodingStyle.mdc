@@ -1,0 +1,67 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# Coding Style & Language Preferences
+
+## C# Formatting
+
+- **Indentation**: 4 spaces (no tabs)
+- **Curly braces**: Always on new line (Allman style)
+- **Access modifiers**: Always explicit (public, private, protected)
+- **No #region directives** - use clear class organization instead
+- **Line length**: Prefer 120 characters max
+- **File encoding**: UTF-8 without BOM
+
+## C# Structure
+
+- **Order**: Fields, Properties, Events, Methods
+- **Group related members together**
+- **Use meaningful variable names**
+- **Add XML documentation for public APIs**
+- **Prefer composition over inheritance**
+- **Use Unity's [SerializeField] for inspector fields**
+
+## Code Example
+
+```csharp
+public class ExampleClass : MonoBehaviour
+{
+    [SerializeField] private float _moveSpeed = 5f;
+    
+    public float MoveSpeed
+    {
+        get => _moveSpeed;
+        set => _moveSpeed = value;
+    }
+    
+    public event Action<float> OnSpeedChanged;
+    
+    private void Start()
+    {
+        InitializeComponent();
+    }
+    
+    /// <summary>
+    /// Initializes the component with default values
+    /// </summary>
+    private void InitializeComponent()
+    {
+        // Implementation here
+    }
+}
+```
+
+## Markdown Formatting
+
+- **Use English language**
+- **Write concisely and clearly**
+- **Use ## for main headings, ### for subheadings**
+- **Use bullet points for lists**
+- **Include code examples in fenced blocks**
+- **Keep tone professional but approachable**
+
+## File Types Affected
+- `*.cs` - C# scripts
+- `*.md` - Markdown documentation

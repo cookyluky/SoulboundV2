@@ -1,0 +1,91 @@
+# Task ID: 23
+# Title: Create Core Prefabs for Level Design
+# Status: pending
+# Dependencies: 16, 17, 21, 22
+# Priority: medium
+# Description: Create and configure essential prefabs that designers will use to build levels, including Player, UICanvas, SoulEssence, and DebugMenu prefabs with appropriate components and optimized settings.
+# Details:
+1. Create `Assets/Prefabs/Player.prefab`:
+   - Add a placeholder 3D model (capsule or character model)
+   - Attach a stub `PlayerController` script with basic movement variables
+   - Configure appropriate colliders (CapsuleCollider recommended)
+   - Set the tag to "Player" and layer to "Player"
+   - Add placeholder animations and Animator component if applicable
+   - Configure appropriate rigidbody settings (constraints, interpolation)
+
+2. Create `Assets/Prefabs/UICanvas.prefab`:
+   - Set up Canvas with Screen Space - Overlay render mode
+   - Configure proper scaling for different resolutions (Scale With Screen Size)
+   - Add EventSystem component for UI interactions
+   - Create a debug HUD panel with basic text elements for displaying:
+     * FPS counter
+     * Player position
+     * Current game state
+   - Set the Canvas to the "UI" layer
+   - Configure proper sorting order and camera references
+
+3. Create `Assets/Prefabs/SoulEssence.prefab`:
+   - Add a placeholder sphere mesh with appropriate scale
+   - Create and attach `SoulEssence.cs` script with:
+     * Variables for essence type and value
+     * OnTriggerEnter method for player collection
+     * Visual feedback methods (glow, particle effects)
+   - Add a trigger collider for player interaction
+   - Set appropriate tag ("Interactable") and layer
+   - Add placeholder particle effects for visual feedback
+
+4. Create `Assets/Prefabs/DebugMenu.prefab`:
+   - Create a UI panel with toggle visibility
+   - Add buttons for Save/Load functionality
+   - Implement debug-specific controls and information displays
+   - Connect to the SaveManager through appropriate interfaces
+   - Add additional debug tools (level reset, player position, etc.)
+   - Configure proper UI navigation for keyboard/controller
+
+Each prefab should follow these optimization guidelines:
+- Use shared materials where possible
+- Configure appropriate LOD settings for 3D models
+- Minimize draw calls through batching-friendly setups
+- Ensure proper component organization and references
+- Document any specific setup requirements in prefab variants
+
+# Test Strategy:
+1. Verify Prefab Creation and Structure:
+   - Confirm all prefabs exist in the correct project locations
+   - Validate that each prefab contains all required components
+   - Check that scripts are properly attached with default values
+   - Verify proper tag and layer assignments match project settings
+
+2. Test Player Prefab:
+   - Instantiate the Player prefab in a test scene
+   - Verify the PlayerController stub script functions correctly
+   - Test collisions with environment objects
+   - Confirm the player appears correctly with appropriate scale
+   - Validate that camera follows player correctly when using Cinemachine
+
+3. Test UICanvas Prefab:
+   - Add the UICanvas prefab to a test scene
+   - Verify the canvas scales correctly at different resolutions
+   - Test EventSystem interaction with UI elements
+   - Confirm debug HUD displays correct information
+   - Check performance impact is minimal (profiler)
+
+4. Test SoulEssence Prefab:
+   - Place multiple SoulEssence prefabs in a test scene
+   - Verify collision detection with the player works correctly
+   - Test visual feedback when player approaches/collects
+   - Validate that essence values are correctly configured
+   - Check for any rendering or performance issues
+
+5. Test DebugMenu Prefab:
+   - Verify Save/Load buttons connect to appropriate manager functions
+   - Test visibility toggling functionality
+   - Confirm UI navigation works with keyboard/controller
+   - Validate that debug tools function as expected
+   - Check for any UI scaling or layout issues
+
+6. Integration Testing:
+   - Create a test scene with all prefabs instantiated
+   - Verify prefabs interact correctly with each other
+   - Test performance with multiple instances of each prefab
+   - Validate that prefabs work with the existing manager systems

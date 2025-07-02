@@ -1,0 +1,57 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# Project Structure
+
+## Folder Organization
+
+### Assets/Scripts/
+All C# scripts organized by functionality
+
+- **Systems/** - Core game systems (Combat, Progression, Exploration)
+- **Characters/** - Character-specific scripts (Aric, Elysia, Kaelen)
+- **Items/** - Item and inventory related scripts
+- **UI/** - All user interface scripts
+
+### Assets/Art/
+Visual assets organized by type
+
+- **Characters/** - Character models, textures, animations
+- **Environments/** - Environment assets, props, materials
+
+### Assets/Audio/
+Sound assets
+
+- **Music/** - Background music and ambient sounds
+- **SFX/** - Sound effects and UI sounds
+
+### Assets/Prefabs/
+Reusable Unity prefabs
+
+### Assets/Scenes/
+Unity scene files
+
+### Documentation/
+Project documentation
+
+- **Tasks/** - Task management and project planning
+- **Design/** - Game design documents
+- **Tech/** - Technical specifications
+- **Art/** - Art guidelines and style guides
+- **TasksMDC/** - Markdown Component documentation
+
+### .cursor/
+AI assistant configuration
+
+## Structure Rules
+
+1. **All new code must follow this structure**
+2. **New top-level folders require explicit approval**
+3. **Scripts must be placed in appropriate subfolders**
+4. **Keep related files grouped together**
+5. **Use descriptive folder names that indicate purpose**
+
+## File Types Affected
+- All files (`**/*`)

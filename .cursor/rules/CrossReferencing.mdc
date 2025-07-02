@@ -1,0 +1,379 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# Cross-Referencing Documentation Rules
+
+**Maintain comprehensive bi-directional links between all documentation components for enhanced navigation and traceability.**
+
+## **Core Linking Requirements**
+
+### **Mandatory Cross-Reference Types**
+- **Task References**: Link to specific tasks and subtasks using `@Task_ID` format
+- **Object References**: Link to Unity objects, prefabs, and scenes using `@ObjectName` format
+- **Test References**: Link to test files and test cases using `@Test_ID` format
+- **Implementation References**: Link between related documentation components
+- **Dependency References**: Explicit links showing prerequisite relationships
+
+### **Bidirectional Linking Principle**
+- **Forward Links**: Every reference must include outbound links to related components
+- **Back Links**: Referenced files must include return links to the referencing component
+- **Update Requirement**: When adding a reference, both files must be updated simultaneously
+- **Consistency Check**: All cross-references must be validated for accuracy and completeness
+
+## **Reference Format Standards**
+
+### **Task Reference Format**
+```markdown
+**Related Tasks**: @Task_7, @Task_15, @Task_22.3
+**Depends On**: @Task_5, @Task_6.2
+**Blocks**: @Task_8, @Task_9.1
+**Subtask Parent**: @Task_7 (for subtask documentation)
+```
+
+### **Unity Object Reference Format**
+```markdown
+**Related Objects**: @PlayerController, @EnemyAI, @SoulFragment_Prefab
+**Scene Dependencies**: @MainGameScene, @UIScene
+**Prefab References**: @Player_Prefab, @UI_HUD_Prefab
+**Script Dependencies**: @GameManager, @CombatSystem
+```
+
+### **Test Reference Format**
+```markdown
+**Test Coverage**: @Test_7.1.2, @Test_Unit_PlayerController, @Test_Integration_CombatSystem
+**Validates**: @Task_7.2, @PlayerController_Movement
+**Test Suite**: @TestSuite_PlayerMechanics
+**Performance Tests**: @Test_Performance_Rendering
+```
+
+### **Cross-Component Reference Format**
+```markdown
+**Implementation**: @Task_7 → @PlayerController → @Test_7.1.2
+**Documentation Chain**: @Task_7_Overview → @Task_7_Implementation_log → @PlayerController_Object_Doc
+**Related Systems**: @CombatSystem, @ProgressionSystem, @UISystem
+```
+
+## **File-Specific Requirements**
+
+### **Task Documentation Files**
+
+#### **Task Overview Files (`Task_ID_Overview.md`)**
+**Must Include**:
+```markdown
+## Cross-References
+**Related Tasks**: @Task_[dependencies]
+**Implemented Objects**: @[UnityObjects]
+**Test Coverage**: @Test_[testIDs]
+**Related Systems**: @[SystemNames]
+**Documentation**: [Task_ID_Implementation_log.md](mdc:Documentation/Tasks/Task_ID/Task_ID_Implementation_log.md)
+```
+
+#### **Task Implementation Log Files (`Task_ID_Implementation_log.md`)**
+**Must Include**:
+```markdown
+## Cross-References
+**Parent Task**: @Task_[ID] - [Task_ID_Overview.md](mdc:Documentation/Tasks/Task_ID/Task_ID_Overview.md)
+**Objects Modified**: @[ObjectNames]
+**Tests Added**: @Test_[testIDs]
+**Related Tasks**: @Task_[relatedIDs]
+```
+
+#### **Subtask Files (`Subtask_ID.SubID.Step.md`)**
+**Must Include**:
+```markdown
+## Cross-References
+**Parent Task**: @Task_[ID]
+**Related Subtasks**: @Task_[ID.SubID]
+**Objects Created/Modified**: @[ObjectNames]
+**Test Implementation**: @Test_[testID]
+```
+
+### **Unity Object Documentation Files**
+
+#### **Object Documentation (`ObjectName.md`)**
+**Must Include**:
+```markdown
+## Cross-References
+**Created In**: @Task_[ID]
+**Modified By**: @Task_[ID1], @Task_[ID2]
+**Related Objects**: @[ObjectNames]
+**Test Coverage**: @Test_[testIDs]
+**Used In Scenes**: @[SceneNames]
+**Dependencies**: @[ObjectNames]
+**Scripts**: @[ScriptNames]
+```
+
+### **Test Documentation Files**
+
+#### **Test Files (`Test_*.md`)**
+**Must Include**:
+```markdown
+## Cross-References
+**Tests Task**: @Task_[ID]
+**Tests Object**: @[ObjectName]
+**Related Tests**: @Test_[testIDs]
+**Test Suite**: @TestSuite_[name]
+**Implementation**: [TestScript.cs](mdc:Assets/Scripts/Tests/TestScript.cs)
+```
+
+## **Linking Syntax Standards**
+
+### **Internal Documentation Links**
+```markdown
+// Markdown file references within Documentation folder
+[Task_7_Overview.md](mdc:Documentation/Tasks/Task_7/Task_7_Overview.md)
+[PlayerController.md](mdc:Documentation/Objects/PlayerController.md)
+[Test_7.1.2.md](mdc:Documentation/Tests/Test_7.1.2.md)
+```
+
+### **Code File References**
+```markdown
+// Unity script and asset references
+[PlayerController.cs](mdc:Assets/Scripts/PlayerController.cs)
+[Player_Prefab.prefab](mdc:Assets/Prefabs/Player_Prefab.prefab)
+[MainGameScene.unity](mdc:Assets/Scenes/MainGameScene.unity)
+```
+
+### **Cross-Reference Anchors**
+```markdown
+// Use @ symbol for quick reference identification
+@Task_7 - Core player movement implementation
+@PlayerController - Main player control script and prefab
+@Test_7.1.2 - Player movement validation test
+```
+
+## **Bidirectional Linking Process**
+
+### **When Adding References**
+
+#### **Step 1: Add Forward Link**
+```markdown
+// In source file (e.g., Task_7_Implementation_log.md)
+**Objects Created**: @PlayerController - Main player control system
+```
+
+#### **Step 2: Add Back Link**
+```markdown
+// In target file (e.g., PlayerController.md)
+**Created In**: @Task_7 - [Task_7_Implementation_log.md](mdc:Documentation/Tasks/Task_7/Task_7_Implementation_log.md)
+```
+
+#### **Step 3: Update Related Components**
+```markdown
+// In related files (e.g., Test_7.1.2.md)
+**Tests Object**: @PlayerController
+**For Task**: @Task_7
+```
+
+### **Link Maintenance Workflow**
+
+#### **On File Creation**
+1. **Identify Related Components**: Determine all related tasks, objects, and tests
+2. **Add Forward Links**: Include references in the new file
+3. **Update Back Links**: Add references in all related existing files
+4. **Validate Links**: Ensure all links are functional and accurate
+
+#### **On File Update**
+1. **Review Existing Links**: Check current cross-references for accuracy
+2. **Add New Links**: Include references to newly related components
+3. **Update Changed Links**: Modify references if relationships change
+4. **Remove Dead Links**: Clean up references to deleted or renamed components
+
+## **Cross-Reference Categories**
+
+### **Implementation Relationships**
+```markdown
+**Implements**: @Task_7 → Creates @PlayerController
+**Tests**: @Test_7.1.2 → Validates @PlayerController
+**Documents**: @PlayerController.md → Describes @PlayerController
+```
+
+### **Dependency Relationships**
+```markdown
+**Depends On**: @Task_5 must complete before @Task_7
+**Requires**: @PlayerController needs @GameManager
+**Blocks**: @Task_7 must finish before @Task_8 can start
+```
+
+### **Hierarchical Relationships**
+```markdown
+**Parent**: @Task_7 contains @Task_7.1, @Task_7.2
+**Child**: @Task_7.1 is part of @Task_7
+**Sibling**: @Task_7.1 relates to @Task_7.2
+```
+
+### **System Relationships**
+```markdown
+**Integrates With**: @PlayerController works with @CombatSystem
+**Extends**: @AdvancedPlayerController extends @PlayerController
+**Uses**: @PlayerController uses @InputSystem
+```
+
+## **Quality Standards**
+
+### **Link Accuracy Requirements**
+- **Valid Paths**: All file references must point to existing files
+- **Correct IDs**: Task and test IDs must match actual component identifiers
+- **Current Names**: Object names must reflect current Unity object names
+- **Functional Links**: All markdown links must be clickable and navigate correctly
+
+### **Completeness Standards**
+- **All Relationships**: Every meaningful relationship must be documented
+- **Bidirectional**: Every forward link must have a corresponding back link
+- **Consistent Format**: All references must follow the established format standards
+- **Up-to-Date**: Links must be updated when relationships change
+
+## **Automation Support**
+
+### **Link Validation Script**
+```bash
+# Example validation script structure
+#!/bin/bash
+# validate_cross_references.sh
+
+echo "Validating cross-references..."
+
+# Check for broken file links
+grep -r "mdc:" Documentation/ | while read line; do
+    # Validate file existence
+done
+
+# Check for unidirectional links
+grep -r "@Task_" Documentation/ | while read line; do
+    # Verify bidirectional linking
+done
+
+# Check for orphaned references
+grep -r "@Test_" Documentation/ | while read line; do
+    # Validate test existence
+done
+```
+
+### **Link Generation Templates**
+```markdown
+<!-- Template for task implementation -->
+## Cross-References
+**Parent Task**: @Task_{{TASK_ID}}
+**Objects Modified**: @{{OBJECT_NAMES}}
+**Tests Added**: @Test_{{TEST_IDS}}
+**Related Tasks**: @Task_{{RELATED_TASK_IDS}}
+
+<!-- Template for object documentation -->
+## Cross-References
+**Created In**: @Task_{{CREATING_TASK}}
+**Modified By**: @Task_{{MODIFYING_TASKS}}
+**Test Coverage**: @Test_{{TEST_IDS}}
+**Related Objects**: @{{RELATED_OBJECTS}}
+```
+
+## **Integration Examples**
+
+### **✅ DO: Complete Cross-Referencing**
+
+#### **Task Implementation Log**
+```markdown
+# Task 7 Implementation Log: Core Player Movement
+
+## Cross-References
+**Parent Task**: @Task_7 - [Task_7_Overview.md](mdc:Documentation/Tasks/Task_7/Task_7_Overview.md)
+**Objects Created**: @PlayerController - [PlayerController.md](mdc:Documentation/Objects/PlayerController.md)
+**Tests Added**: @Test_7.1.2 - [Test_7.1.2.md](mdc:Documentation/Tests/Test_7.1.2.md)
+**Related Tasks**: @Task_5, @Task_6.2
+**Blocks**: @Task_8, @Task_9.1
+
+## Implementation Notes
+Created @PlayerController object with movement mechanics.
+Integrates with @InputSystem and @CombatSystem.
+Validated by @Test_7.1.2 for movement accuracy.
+```
+
+#### **Object Documentation**
+```markdown
+# PlayerController
+
+## Cross-References
+**Created In**: @Task_7 - [Task_7_Implementation_log.md](mdc:Documentation/Tasks/Task_7/Task_7_Implementation_log.md)
+**Modified By**: @Task_15, @Task_22.3
+**Test Coverage**: @Test_7.1.2, @Test_Unit_PlayerController
+**Related Objects**: @GameManager, @InputSystem, @CombatSystem
+**Used In Scenes**: @MainGameScene, @TestScene
+**Script File**: [PlayerController.cs](mdc:Assets/Scripts/PlayerController.cs)
+```
+
+#### **Test Documentation**
+```markdown
+# Test 7.1.2: Player Movement Validation
+
+## Cross-References
+**Tests Task**: @Task_7 - [Task_7_Overview.md](mdc:Documentation/Tasks/Task_7/Task_7_Overview.md)
+**Tests Object**: @PlayerController - [PlayerController.md](mdc:Documentation/Objects/PlayerController.md)
+**Related Tests**: @Test_7.1.1, @Test_7.2.1
+**Test Suite**: @TestSuite_PlayerMechanics
+**Implementation**: [PlayerMovementTests.cs](mdc:Assets/Scripts/Tests/PlayerMovementTests.cs)
+```
+
+### **✅ DO: Bidirectional Linking**
+```markdown
+// When adding reference in Task_7_Implementation_log.md
+**Objects Created**: @PlayerController
+
+// Must also add in PlayerController.md
+**Created In**: @Task_7 - [Task_7_Implementation_log.md](mdc:Documentation/Tasks/Task_7/Task_7_Implementation_log.md)
+```
+
+### **❌ DON'T: One-Way Links**
+```markdown
+// Only adding forward link without back link
+**Objects Created**: @PlayerController
+// Missing corresponding entry in PlayerController.md
+```
+
+### **❌ DON'T: Incomplete References**
+```markdown
+**Related Tasks**: Task 7, some other task
+**Objects**: PlayerController
+**Tests**: some tests
+```
+
+## **Maintenance Requirements**
+
+### **Daily Tasks**
+- **Link Validation**: Check new documentation for proper cross-references
+- **Bidirectional Verification**: Ensure all new links have corresponding back links
+- **Format Consistency**: Verify all references follow the established format
+
+### **Weekly Tasks**
+- **Dead Link Check**: Identify and fix broken file references
+- **Orphaned Reference Cleanup**: Remove references to deleted components
+- **Cross-Reference Audit**: Validate accuracy of all existing links
+
+### **Monthly Tasks**
+- **Relationship Review**: Assess if all meaningful relationships are documented
+- **Format Updates**: Update reference standards as project evolves
+- **Automation Enhancement**: Improve validation scripts and templates
+
+### **Per Release Tasks**
+- **Complete Link Audit**: Comprehensive validation of all cross-references
+- **Documentation Integration**: Ensure all components are properly cross-referenced
+- **Archive Management**: Update links for archived or deprecated components
+
+## **Error Prevention**
+
+### **Common Mistakes to Avoid**
+- **Unidirectional Links**: Adding reference without corresponding back link
+- **Incorrect Formatting**: Using inconsistent reference format
+- **Broken Paths**: Links to non-existent files or incorrect locations
+- **Stale References**: Outdated links to renamed or moved components
+- **Missing Context**: References without descriptive text
+
+### **Quality Checks**
+- **Pre-Commit**: Validate cross-references before committing changes
+- **Review Process**: Include link verification in documentation reviews
+- **Automated Testing**: Use scripts to check link integrity
+- **Team Training**: Ensure all contributors understand cross-referencing requirements
+
+**This rule ensures comprehensive traceability and navigation throughout the project documentation, enabling efficient development workflow and maintaining clear relationships between all project components.**
+
+

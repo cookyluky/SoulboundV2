@@ -1,0 +1,281 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+---
+description: Enforce comprehensive task documentation for all development work
+globs: **/*.py, **/*.js, **/*.ts, **/*.md, documentations/Tasks/**/*
+alwaysApply: true
+---
+
+# Task Documentation Requirements
+
+**When completing any task, Claude must generate detailed documentation in Markdown format under the `Documentation/Tasks/` directory.**
+
+## **Enhanced Documentation Structure**
+
+### **Main Task Folders**
+- For each main task (e.g., Task 7), create a folder at `Documentation/Tasks/Task_7/` if it doesn't exist
+- Each task folder contains:
+  - `Task_{ID}_Overview.md` - Detailed explanation and requirements for the task
+  - `Task_{ID}_Implementation_log.md` - Progress tracking and implementation notes
+  - Subtask files following the established naming convention
+
+### **Subtask Files**
+- Create or append to `.md` files using the convention `Subtask_<task_number>.<subtask_number>.<step>.md`
+  - Example: `Subtask_7.1.1.md` for the first step of subtask 7.1
+  - Example: `Subtask_9.2.3.md` for the third step of subtask 9.2
+- Place subtask files in the appropriate task folder: `Documentation/Tasks/Task_7/Subtask_7.1.1.md`
+
+## **Task Overview File Requirements**
+
+### **Content for Task_{ID}_Overview.md**
+- **Task Description**: Clear summary of the task's purpose and goals
+- **Priority Level**: High/Medium/Low with justification
+- **Dependencies**: List of prerequisite tasks with their IDs
+- **Detailed Breakdown**: Comprehensive analysis of task components
+- **Technical Requirements**: Specific technical specifications and constraints
+- **Success Criteria**: Measurable completion criteria with checkboxes
+- **Risk Factors**: Potential challenges and mitigation strategies
+- **Related Systems**: Integration points with other game systems
+- **Estimated Completion Time**: Realistic time estimates
+
+### **Overview File Template**
+```markdown
+# Task {ID} Overview: {Task Title}
+
+## Task Description
+{Brief description of the task}
+
+## Priority Level
+**{High/Medium/Low}** - {Justification}
+
+## Dependencies
+- Task {ID}: {Task Title}
+
+## Detailed Breakdown
+{Comprehensive breakdown of task components}
+
+## Technical Requirements
+{Specific technical specifications}
+
+## Success Criteria
+- [ ] {Measurable completion criteria}
+
+## Risk Factors
+{Potential challenges and risks}
+
+## Related Systems
+{Integration points with other systems}
+
+## Estimated Completion Time
+**{Time estimate}** - {Reasoning}
+```
+
+## **Task Implementation Log Requirements**
+
+### **Content for Task_{ID}_Implementation_log.md**
+- **Implementation Status**: Current status, start date, last updated
+- **Progress Overview**: High-level progress summary
+- **Subtask Progress**: Individual subtask status tracking with progress percentages
+- **Implementation Notes**: Detailed technical implementation notes
+- **Challenges Encountered**: Problems, blockers, and issues
+- **Solutions and Workarounds**: How problems were resolved
+- **Code Changes Summary**: Major code modifications and additions
+- **Testing Results**: Testing outcomes and validation results
+- **Performance Impact**: Performance implications of implementation
+- **Dependencies and Integration**: How task integrates with other systems
+- **Next Steps**: Immediate next actions for implementation
+
+### **Implementation Log Template**
+```markdown
+# Task {ID} Implementation Log: {Task Title}
+
+## Implementation Status
+**Current Status**: {Pending/In Progress/Done}
+**Started Date**: {Date or "Not yet started"}
+**Last Updated**: {Current Date}
+
+## Progress Overview
+{High-level summary of implementation progress}
+
+## Subtask Progress
+### Subtask {ID}.{SubID} - {Subtask Title}
+- **Status**: {Status}
+- **Progress**: {Percentage}%
+- **Notes**: {Implementation notes}
+
+## Implementation Notes
+{Detailed implementation notes with timestamps}
+
+## Challenges Encountered
+{Document challenges and blockers}
+
+## Solutions and Workarounds
+{Solutions and workarounds implemented}
+
+## Code Changes Summary
+{Major code changes and system modifications}
+
+## Testing Results
+{Testing outcomes and validation results}
+
+## Performance Impact
+{Performance implications}
+
+## Dependencies and Integration
+{Integration notes with other systems}
+
+## Next Steps
+{Immediate next steps for implementation}
+
+---
+*This log will be continuously updated as implementation progresses.*
+```
+
+## **Mandatory Workflow Requirements**
+
+### **When Working on Any Task**
+1. **Before Starting**: Ensure task overview file exists and is current
+2. **During Implementation**: 
+   - Update the task implementation log with progress notes
+   - Create/update subtask files as work progresses
+   - Document challenges and solutions in real-time
+3. **After Completing Work**: Update implementation log with completion status and final notes
+
+### **Implementation Log Update Requirements**
+- **Every work session**: Add timestamped entries to implementation log
+- **Subtask completion**: Update subtask progress in implementation log
+- **Problem encounters**: Document challenges and solutions immediately
+- **Code changes**: Summarize major modifications in implementation log
+- **Testing completion**: Document test results and outcomes
+
+### **Integration with Taskmaster Tool**
+- **Task Status Updates**: When using Taskmaster tools to update task status, also update the corresponding implementation log
+- **Subtask Progress**: Reflect Taskmaster subtask progress in implementation log files
+- **Code Integration**: Link implementation log entries to actual code changes and commits
+- **Cross-Reference**: Maintain consistency between Taskmaster data and documentation files
+
+## **File Handling Rules**
+
+- **Never Delete or Overwrite**: If a `.md` file for the subtask already exists, always append new content
+- **Additive Documentation**: Edits must always be additive and clearly marked with timestamps
+- **Preserve History**: All existing documentation must remain intact
+- **Implementation Logs**: Always append to implementation logs, never overwrite previous entries
+
+## **Required Content for Each Documentation File**
+
+- **Timestamped Log Entry**: Clear timestamp of when work was completed
+- **Files Affected**: List of all files modified, created, or deleted
+- **Code Snippets/Diffs**: Include relevant code changes with before/after examples
+- **Implementation Reasoning**: Explain why specific approaches were chosen
+- **Integration Notes**: How changes affect other parts of the system
+- **Testing Notes**: What testing was performed or is recommended
+
+## **Documentation Format Examples**
+
+### **Implementation Log Entry Example**
+```markdown
+## 2025-01-27 15:30:00 - Implementation Step 1
+
+### Files Modified
+- `Assets/Scripts/Systems/EssenceManager.cs` - Created new file
+- `Assets/Scripts/Systems/CombatSystem.cs` - Added essence integration
+- `Assets/Scripts/UI/EssenceUI.cs` - Created essence display components
+
+### Changes Made
+**Added Core Soul-Binding System**
+
+```csharp
+// New EssenceManager class in Assets/Scripts/Systems/EssenceManager.cs
+public class EssenceManager : MonoBehaviour {
+    private Dictionary<EssenceType, float> bankedEssence;
+    
+    public void AbsorbEssence(SoulEssence essence, bool consumeImmediately) {
+        // Implementation for essence absorption mechanics
+    }
+}
+```
+
+### Reasoning
+Implemented the core soul-binding system using Unity's MonoBehaviour pattern for easy integration with existing systems. The EssenceManager uses a singleton pattern to ensure centralized essence tracking across all game systems.
+
+### Integration Points
+- CombatSystem now triggers essence release on enemy death
+- UI System displays essence counters and decision prompts
+- Save System persists banked essence across game sessions
+- Corruption System handles forbidden essence consequences
+
+### Testing Results
+- Unit tests pass for EssenceManager functionality
+- Integration testing confirms essence triggers work correctly
+- Performance testing shows < 1ms processing time per absorption
+
+### Next Steps
+- Implement visual particle effects for essence absorption
+- Add audio feedback for different essence types
+- Create UI prompts for immediate vs. banking decisions
+- Balance essence drop rates and absorption efficiency
+```
+
+## **Application Scope**
+
+- **All Development Work**: This rule applies to background agents and inline edits
+- **Task-Related Changes**: Must be followed every time Claude modifies code related to a task or subtask
+- **Cross-Reference Tasks**: Link to related tasks when changes affect multiple areas
+- **Taskmaster Integration**: Coordinate with Taskmaster tool updates and status changes
+
+## **File Organization**
+
+```
+Documentation/Tasks/
+├── Task_1/
+│   ├── Task_1_Overview.md
+│   ├── Task_1_Implementation_log.md
+│   ├── Subtask_1.1.1.md
+│   └── Subtask_1.2.1.md
+├── Task_7/
+│   ├── Task_7_Overview.md
+│   ├── Task_7_Implementation_log.md
+│   ├── Subtask_7.1.1.md
+│   ├── Subtask_7.1.2.md
+│   └── task_summary.md
+└── Task_15/
+    ├── Task_15_Overview.md
+    ├── Task_15_Implementation_log.md
+    ├── Subtask_15.1.1.md
+    ├── Subtask_15.2.1.md
+    ├── Subtask_15.2.2.md
+    └── Subtask_15.3.1.md
+```
+
+## **Quality Standards**
+
+- **Clarity**: Documentation must be clear enough for another developer to understand and continue the work
+- **Completeness**: Include all relevant technical details and decisions
+- **Searchability**: Use consistent terminology and clear headings
+- **Maintenance**: Keep documentation current with code changes
+- **Traceability**: Maintain clear links between documentation, code changes, and Taskmaster tasks
+
+**✅ DO:**
+- Create timestamped entries for each significant change
+- Include code snippets showing key implementations
+- Explain the reasoning behind technical decisions
+- Reference related files and dependencies
+- Update existing files by appending new sections
+- Coordinate updates with Taskmaster tool usage
+- Maintain consistency between overview and implementation log files
+
+**❌ DON'T:**
+- Overwrite existing documentation content
+- Create vague or incomplete entries
+- Skip documentation for "small" changes
+- Use inconsistent file naming conventions
+- Delete historical information
+- Ignore integration with Taskmaster system
+- Document without considering related systems and dependencies
+
+
+
+

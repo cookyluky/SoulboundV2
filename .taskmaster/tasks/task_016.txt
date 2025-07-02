@@ -1,0 +1,133 @@
+# Task ID: 16
+# Title: Create Phase 0: Core Architecture & Foundations
+# Status: pending
+# Dependencies: 1
+# Priority: high
+# Description: Establish the foundational architecture including core scenes, managers, services, data assets, prefabs, and project settings to ensure all subsequent development work plugs in cleanly.
+# Details:
+1. Bootstrap Scene & Service Locator:
+   - Create a bootstrap scene that initializes all core systems
+   - Implement a service locator pattern for dependency management
+   - Design initialization sequence for core services
+
+2. Core Manager Singletons:
+   - Develop base Manager class with lifecycle hooks
+   - Implement key manager classes (AudioManager, UIManager, etc.)
+   - Create manager registration and access system
+
+3. Input System & Player Controller:
+   - Configure Unity's new Input System package
+   - Create input action maps for all control schemes
+   - Implement base PlayerController with movement fundamentals
+
+4. GameState & Save/Load Foundation:
+   - Design GameState class to track global game state
+   - Implement serialization system for game data
+   - Create save/load infrastructure with file I/O
+
+5. ScriptableObject Data Definitions:
+   - Design base ScriptableObject classes for game data
+   - Create asset creation menus and organization
+   - Implement reference resolution system
+
+6. Layers, Tags & Physics Settings:
+   - Configure physics layers for proper collision detection
+   - Set up tags for object identification
+   - Establish physics settings for consistent simulation
+
+7. Lighting & Camera Setup:
+   - Configure URP lighting settings
+   - Create camera prefab with follow/targeting scripts
+   - Implement post-processing profile baseline
+
+8. Core Prefabs:
+   - Create essential game object prefabs
+   - Design prefab variants system
+   - Implement prefab pooling for performance
+
+9. MainMenu & Prototype Level Scenes:
+   - Build main menu scene with placeholder UI
+   - Create prototype level with basic navigation
+   - Implement scene loading/transition system
+
+10. Quality & Build Settings Baseline:
+    - Configure quality settings for all platforms
+    - Set up build settings for development builds
+    - Establish performance budgets and targets
+
+# Test Strategy:
+1. Verify Bootstrap Process:
+   - Test bootstrap scene loads and initializes all core systems
+   - Validate service locator correctly resolves dependencies
+   - Confirm proper initialization sequence and error handling
+
+2. Test Manager Singletons:
+   - Verify each manager initializes correctly
+   - Test manager persistence across scene loads
+   - Validate manager communication and event handling
+
+3. Validate Input System:
+   - Test input mapping for keyboard/mouse, controller, and touch
+   - Verify input action events trigger appropriate responses
+   - Confirm input system works across different platforms
+
+4. Test Save/Load System:
+   - Verify data serialization and deserialization
+   - Test save file creation, loading, and error handling
+   - Validate save data persistence across application restarts
+
+5. Verify ScriptableObject System:
+   - Test creation and modification of data assets
+   - Validate reference resolution between ScriptableObjects
+   - Confirm data integrity during runtime
+
+6. Check Physics Configuration:
+   - Test collision detection between appropriate layers
+   - Verify physics settings produce expected behavior
+   - Validate raycasting and trigger functionality
+
+7. Validate Camera and Lighting:
+   - Test camera behavior in different environments
+   - Verify lighting settings across different quality levels
+   - Confirm post-processing effects work as expected
+
+8. Test Core Prefabs:
+   - Verify prefab instantiation and destruction
+   - Test prefab pooling performance under load
+   - Validate prefab variants maintain proper inheritance
+
+9. Verify Scene Management:
+   - Test scene loading and transitions
+   - Validate UI navigation in main menu
+   - Confirm prototype level contains all required elements
+
+10. Validate Build Settings:
+    - Generate test builds for primary development platform
+    - Verify quality settings apply correctly
+    - Test performance against established budgets
+
+# Subtasks:
+## 1. Bootstrap Scene & Service Locator [pending]
+### Dependencies: None
+### Description: Never-unload scene that wires up every core manager via a central service container.
+### Details:
+1. Create `Assets/Scenes/Bootstrap.unity` and add to Build Settings as Scene 0.
+2. `Assets/Scripts/Core/Bootstrapper.cs`:
+   - On `Awake()`: `DontDestroyOnLoad(this)`
+   - Instantiate/register each core manager via ServiceLocator
+   - `SceneManager.LoadSceneAsync("MainMenu")`
+3. `Assets/Scripts/Core/ServiceLocator.cs`:
+   - Static `Register<T>(T instance)` / `Get<T>()`
+
+## 2. Core Manager Singletons [pending]
+### Dependencies: 16.1
+### Description: Scaffold & register every fundamental manager.
+### Details:
+Managers to create (MonoBehaviours under `Assets/Scripts/Core/`):
+- `GameManager` (game state, act transitions)
+- `InputManager` (new Input System → C# events)
+- `SaveManager` (stub Save/Load methods)
+- `UIManager` (Open/Close menus, UpdateHUD)
+- `AudioManager` (PlayMusic, PlaySFX)
+- `SceneLoader` (async scene transitions + loading screen)
+

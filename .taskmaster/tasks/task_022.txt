@@ -1,0 +1,50 @@
+# Task ID: 22
+# Title: Implement Lighting and Camera Setup
+# Status: pending
+# Dependencies: 1, 16
+# Priority: medium
+# Description: Set up basic scene lighting with a directional light and implement a Cinemachine camera rig with virtual camera prefab and UI infrastructure in the Bootstrap scene.
+# Details:
+1. In the `Bootstrap.unity` scene, add the following components:
+   - **Directional Light**: Configure at 45-degree angle with soft shadows and neutral color temperature
+   - **Cinemachine Brain**: Add to the main Camera GameObject with default settings
+   
+2. Create a Virtual Camera prefab:
+   - Create `Assets/Prefabs/VirtualCamera.prefab` containing a `CinemachineVirtualCamera` component
+   - Configure the virtual camera to target GameObjects with the `Player` tag
+   - Set up appropriate follow and look-at damping settings
+   - Configure default FOV, near/far clip planes, and noise profiles
+   
+3. Add UI infrastructure:
+   - Add an `EventSystem` GameObject to the Bootstrap scene
+   - Create a UI Canvas with CanvasScaler component configured for the target resolution
+   - Set the Canvas render mode to "Screen Space - Overlay"
+   - Create a debug menu panel (initially disabled) as a child of the Canvas
+   
+4. Implement camera transitions:
+   - Configure blend settings in the Cinemachine Brain for smooth transitions
+   - Set up appropriate default noise profiles for different gameplay states
+   
+5. Ensure all components are properly registered with the ServiceLocator for access by other systems
+
+# Test Strategy:
+1. Visual Inspection:
+   - Verify the directional light casts appropriate shadows and provides sufficient scene illumination
+   - Confirm the Cinemachine Brain is correctly attached to the main camera
+   - Check that the VirtualCamera prefab exists in the correct location
+   - Ensure the UI Canvas and EventSystem are present in the scene
+
+2. Functional Testing:
+   - Test that the virtual camera correctly follows objects with the Player tag
+   - Verify camera transitions work smoothly when switching between virtual cameras
+   - Confirm the UI Canvas displays correctly at different screen resolutions
+   - Test that the EventSystem properly handles input for UI elements
+   
+3. Integration Testing:
+   - Verify the lighting and camera setup works correctly with existing player movement
+   - Test that the debug menu can be toggled on/off
+   - Ensure the camera system integrates properly with the scene loading system
+   
+4. Performance Testing:
+   - Check that the lighting setup maintains acceptable frame rates
+   - Verify that camera transitions don't cause performance spikes

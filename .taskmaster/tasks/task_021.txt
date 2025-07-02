@@ -1,0 +1,67 @@
+# Task ID: 21
+# Title: Configure Project Layers, Tags, and Physics Settings
+# Status: pending
+# Dependencies: 1, 16
+# Priority: medium
+# Description: Establish project-wide layers, tags, and configure the physics collision matrix to ensure proper object interactions throughout the game.
+# Details:
+1. In Project Settings → Tags & Layers:
+   - Add the following Layers:
+     * `Player` (Layer 8)
+     * `Enemy` (Layer 9)
+     * `Environment` (Layer 10)
+     * `UI` (Layer 11)
+     * Ensure `Ignore Raycast` layer is properly configured (Layer 2)
+
+   - Add the following Tags:
+     * `Player`
+     * `Enemy`
+     * `NPC`
+     * `Interactable`
+     * `Projectile`
+
+2. Configure Physics Settings:
+   - Open the Physics section in Project Settings
+   - Access the Layer Collision Matrix
+   - Configure the following collision rules:
+     * Disable collisions between UI and all other layers
+     * Disable collisions between Player and Projectile layers
+     * Disable collisions between Enemy and Enemy layers
+     * Ensure Environment collides with Player, Enemy, and Projectile layers
+     * Configure Ignore Raycast layer to not collide with any other layers
+
+3. Document collision rules in a README.md file in the project repository for team reference
+
+4. Create a custom editor script to validate layer and tag configurations:
+   - Create `Assets/Editor/LayerTagValidator.cs`
+   - Implement validation logic to ensure required layers and tags exist
+   - Add warning messages for missing configurations
+
+5. Save all settings to ensure they are properly tracked in version control
+
+# Test Strategy:
+1. Verify Layer Configuration:
+   - Open Project Settings → Tags & Layers
+   - Confirm all required layers are properly defined with correct names
+   - Verify layer numbering is consistent with documentation
+
+2. Validate Tag Configuration:
+   - Check that all required tags are present in the Tags list
+   - Ensure no duplicate or unnecessary tags exist
+
+3. Test Collision Matrix:
+   - Create test objects with each layer assignment
+   - Write and run a simple physics test scene that verifies:
+     * UI objects don't collide with game objects
+     * Player doesn't collide with projectiles
+     * Enemies don't collide with other enemies
+     * Environment properly blocks player and enemy movement
+
+4. Run the LayerTagValidator script:
+   - Verify it correctly identifies any missing layers or tags
+   - Fix any reported issues and rerun validation
+
+5. Version Control Check:
+   - Commit changes to version control
+   - Have another team member pull changes and verify settings are properly applied
+   - Confirm settings persist across project reloads

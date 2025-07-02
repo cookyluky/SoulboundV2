@@ -1,0 +1,66 @@
+# Task ID: 24
+# Title: Implement Scene Management for MainMenu and PrototypeLevel
+# Status: pending
+# Dependencies: 17, 19, 21, 23
+# Priority: medium
+# Description: Create and configure the MainMenu and PrototypeLevel scenes with proper transitions, ensuring the game can flow from startup to gameplay with appropriate UI elements and player spawning.
+# Details:
+1. Create `Assets/Scenes/MainMenu.unity`:
+   - Add a UI Canvas with appropriate scaling settings for all target platforms
+   - Create a simple title graphic and "Start Game" button with proper styling
+   - Implement a minimal MainMenuController script to handle button interactions
+   - Wire the "Start Game" button to call SceneLoader.LoadScene("PrototypeLevel")
+   - Add any necessary audio sources for menu music/sounds
+
+2. Create `Assets/Scenes/PrototypeLevel.unity`:
+   - Add a flat plane as the ground with appropriate material and collider
+   - Create a designated player spawn point (empty GameObject with transform)
+   - Add the Player prefab to the scene or instantiate it at runtime at the spawn point
+   - Include the UICanvas prefab for in-game UI elements
+   - Add a simple DebugMenu panel with game state information (FPS, player position, etc.)
+   - Configure appropriate lighting and post-processing settings
+
+3. Update `SceneLoader` class in the Core managers:
+   - Implement LoadScene(string sceneName) method with proper transitions
+   - Add fade in/out transitions between scenes
+   - Ensure proper scene unloading to prevent memory leaks
+   - Add scene loading progress feedback for longer loads
+   - Handle any necessary state persistence between scenes
+
+4. Update Build Settings:
+   - Add both scenes to the build settings in the correct order
+   - Set MainMenu as the initial scene (index 0)
+   - Verify scene indices match any hardcoded references
+
+5. Scene Transition Testing:
+   - Implement proper state management during transitions
+   - Ensure GameManager maintains appropriate state during scene changes
+   - Add error handling for failed scene loads
+
+# Test Strategy:
+1. Scene Structure Verification:
+   - Confirm MainMenu scene contains all required UI elements
+   - Verify PrototypeLevel has ground plane, player spawn point, and debug UI
+   - Check that all referenced prefabs are properly connected
+
+2. Functionality Testing:
+   - Test "Start Game" button functionality in the MainMenu
+   - Verify scene transition from MainMenu to PrototypeLevel works correctly
+   - Confirm player spawns at the designated spawn point
+   - Test that the debug UI displays correct information
+   - Verify any audio transitions between scenes work as expected
+
+3. Performance Testing:
+   - Measure load times between scenes (should be under 3 seconds on target hardware)
+   - Monitor memory usage during scene transitions to detect leaks
+   - Verify no frame rate drops during scene loading
+
+4. Edge Case Testing:
+   - Test rapid scene transition requests (spam clicking)
+   - Verify behavior when attempting to load a non-existent scene
+   - Test scene loading during different game states (paused, etc.)
+   - Confirm proper cleanup of scene-specific resources
+
+5. Build Verification:
+   - Build the project and verify scene flow works in the built application
+   - Test on at least one target platform to confirm cross-platform compatibility

@@ -1,0 +1,40 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# Tech Stack & Versions
+
+## Unity Engine Requirements
+
+- **Unity Engine**: 2024.3 LTS (or latest LTS if newer)
+- **Rendering Pipeline**: Universal Render Pipeline (URP) v17.x or compatible
+- **Build Backend**: IL2CPP for production builds
+- **C# Language Version**: C# 10
+- **.NET Target**: .NET Standard 2.1
+
+## Package Dependencies
+
+### Core Packages
+- **Unity UI Toolkit (UIElements)** - for modern UI development
+- **Unity Input System** - for cross-platform input handling
+- **Unity Addressables** - for asset management (when needed)
+
+### External Packages
+- **Firebase SDK v9.0+** - for backend services (when implemented)
+- **FMOD Unity Integration v3.0+** - for advanced audio (when implemented)
+
+## Guidelines for New Dependencies
+
+When suggesting new packages or dependencies:
+
+1. **Always specify exact version numbers**
+2. **Verify compatibility** with Unity 2024.3 LTS
+3. **Consider build size and performance impact**
+4. **Update this document** if new core packages are added
+
+## File Types Affected
+- `*.cs` - C# scripts
+- `*.md` - Documentation files
+- `manifest.json` - Package manifest
+- `packages-lock.json` - Package lock file

@@ -1,0 +1,142 @@
+# Task ID: 18
+# Title: Implement Input System and Player Controller
+# Status: pending
+# Dependencies: 16, 17
+# Priority: high
+# Description: Configure Unity's Input System package and create a PlayerController that handles player movement and actions through a centralized input management system.
+# Details:
+1. Import and enable the Input System package through Package Manager:
+   - Add the Input System package (com.unity.inputsystem)
+   - Enable the new Input System in Project Settings
+   - Configure Input System to work alongside the old input system if needed
+
+2. Create the input action asset at `Assets/Input/InputActions.inputactions`:
+   - Define action maps for gameplay, UI, and dialogue contexts
+   - Configure the following actions:
+     - Move (Vector2): WASD/Arrow keys and gamepad left stick
+     - Attack: Mouse button/gamepad button
+     - Dodge: Space/gamepad button
+     - Interact: E key/gamepad button
+     - Pause: Escape/gamepad start button
+   - Set up appropriate control schemes (Keyboard/Mouse, Gamepad)
+
+3. Implement the InputManager class at `Assets/Scripts/Core/InputManager.cs`:
+   - Create a singleton pattern implementation
+   - Register with the ServiceLocator
+   - Expose the following C# events:
+     - `public event Action<Vector2> OnMove;`
+     - `public event Action OnAttack;`
+     - `public event Action OnDodge;`
+     - `public event Action OnInteract;`
+     - `public event Action OnPause;`
+   - Implement methods to switch between input contexts (gameplay, UI, dialogue)
+   - Add methods to enable/disable input temporarily
+
+4. Create the PlayerController script at `Assets/Scripts/Characters/PlayerController.cs`:
+   - Subscribe to InputManager events in OnEnable()
+   - Unsubscribe in OnDisable()
+   - Implement stub methods for player actions:
+     ```csharp
+     public class PlayerController : MonoBehaviour
+     {
+         private InputManager inputManager;
+         private Rigidbody rb;
+         
+         private void Awake()
+         {
+             rb = GetComponent<Rigidbody>();
+             inputManager = ServiceLocator.Get<InputManager>();
+         }
+         
+         private void OnEnable()
+         {
+             // Subscribe to input events
+             inputManager.OnMove += Move;
+             inputManager.OnAttack += Attack;
+             inputManager.OnDodge += Dodge;
+             inputManager.OnInteract += Interact;
+             inputManager.OnPause += PauseGame;
+         }
+         
+         private void OnDisable()
+         {
+             // Unsubscribe from input events
+             inputManager.OnMove -= Move;
+             inputManager.OnAttack -= Attack;
+             inputManager.OnDodge -= Dodge;
+             inputManager.OnInteract -= Interact;
+             inputManager.OnPause -= PauseGame;
+         }
+         
+         private void Move(Vector2 moveInput)
+         {
+             // Stub: Will implement actual movement logic later
+             Debug.Log($"Player move: {moveInput}");
+         }
+         
+         private void Attack()
+         {
+             // Stub: Will implement attack logic later
+             Debug.Log("Player attack");
+         }
+         
+         private void Dodge()
+         {
+             // Stub: Will implement dodge logic later
+             Debug.Log("Player dodge");
+         }
+         
+         private void Interact()
+         {
+             // Stub: Will implement interaction logic later
+             Debug.Log("Player interact");
+         }
+         
+         private void PauseGame()
+         {
+             // Stub: Will implement pause functionality later
+             Debug.Log("Game paused");
+         }
+     }
+     ```
+
+5. Create the Player prefab at `Assets/Prefabs/Player.prefab`:
+   - Add a Capsule primitive for the player representation
+   - Attach the PlayerController script
+   - Add a Rigidbody component (configure for character movement)
+   - Add a CapsuleCollider component
+   - Configure appropriate tags and layers
+   - Set up the prefab for instantiation in gameplay scenes
+
+# Test Strategy:
+1. Verify Input System Package Installation:
+   - Confirm the Input System package is properly imported
+   - Check that the Input System is enabled in Project Settings
+   - Validate that the InputSystem API is accessible in code
+
+2. Test InputActions Asset Configuration:
+   - Open the InputActions asset and verify all required actions are defined
+   - Test each action mapping with different input devices
+   - Confirm action maps for different contexts (gameplay, UI, dialogue)
+   - Validate that control schemes are properly configured
+
+3. Test InputManager Implementation:
+   - Verify singleton pattern works correctly
+   - Confirm ServiceLocator registration and retrieval
+   - Test each exposed event by triggering inputs and checking for event firing
+   - Validate context switching between gameplay, UI, and dialogue
+   - Test enabling/disabling input functionality
+
+4. Test PlayerController Integration:
+   - Verify event subscriptions are working correctly
+   - Test that input events properly trigger the corresponding methods
+   - Confirm proper unsubscription when the component is disabled
+   - Check for any memory leaks or reference issues
+   - Validate that debug logs appear when actions are triggered
+
+5. Test Player Prefab:
+   - Instantiate the Player prefab in a test scene
+   - Verify all components are properly attached
+   - Test basic movement and collision
+   - Confirm the prefab can be spawned at runtime
+   - Validate that the prefab works across different scenes

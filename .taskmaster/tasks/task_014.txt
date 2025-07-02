@@ -1,0 +1,91 @@
+# Task ID: 14
+# Title: Implement Platform-Specific Features
+# Status: pending
+# Dependencies: 1, 12
+# Priority: medium
+# Description: Integrate platform-specific features including Steam achievements, PlayStation 5 DualSense haptics, Xbox Quick Resume, and Nintendo Switch HD Rumble and touchscreen support.
+# Details:
+1. Implement Steam integration:
+   - Achievements and stats tracking
+   - Rich Presence showing current progress
+   - Steam Cloud save integration
+
+2. Develop PlayStation 5 features:
+   - DualSense haptic feedback for soul-binding and combat
+   - Adaptive trigger resistance for different abilities
+   - Activity Cards for game progression
+
+3. Implement Xbox Series X/S features:
+   - Smart Delivery for optimized assets
+   - Quick Resume support for instant game switching
+   - Achievement integration
+
+4. Create Nintendo Switch optimizations:
+   - HD Rumble support with precise feedback
+   - Touchscreen menu navigation
+   - Performance optimizations for portable mode
+
+5. Develop platform-specific UI adaptations
+
+Code structure:
+```csharp
+public class PlatformManager : MonoBehaviour {
+    private IPlatformService platformService;
+    
+    private void InitializePlatformService();
+}
+
+public interface IPlatformService {
+    void Initialize();
+    void UnlockAchievement(string achievementId);
+    void UpdatePresence(string status);
+    void SynchronizeSaves();
+    void ApplyHapticFeedback(HapticEvent hapticEvent);
+}
+
+public class SteamPlatformService : IPlatformService { /* Implementation */ }
+public class PlayStationPlatformService : IPlatformService { /* Implementation */ }
+public class XboxPlatformService : IPlatformService { /* Implementation */ }
+public class SwitchPlatformService : IPlatformService { /* Implementation */ }
+```
+
+# Test Strategy:
+1. Verify Steam achievements and Rich Presence
+2. Test PlayStation 5 DualSense haptic feedback
+3. Validate Xbox Quick Resume functionality
+4. Test Nintendo Switch HD Rumble and touchscreen support
+5. Verify platform-specific UI adaptations
+6. Test platform-specific save synchronization
+7. Performance testing on each platform with platform features active
+
+# Subtasks:
+## 1. Design analytics data schema [pending]
+### Dependencies: None
+### Description: Create a comprehensive data schema for tracking player analytics
+### Details:
+Define data structures for progression milestones, player choices, and performance metrics. Ensure GDPR compliance and data minimization.
+
+## 2. Implement progression milestone tracking [pending]
+### Dependencies: 14.1
+### Description: Develop system to track and record player progression milestones
+### Details:
+Create functions to log player achievements, level completions, and story progress. Implement real-time updates to the analytics database.
+
+## 3. Implement player choice tracking [pending]
+### Dependencies: 14.1
+### Description: Create system to record and analyze player decisions and choices
+### Details:
+Develop tracking for dialogue choices, character customization, and gameplay strategy selections. Ensure anonymization of sensitive data.
+
+## 4. Implement performance metrics tracking [pending]
+### Dependencies: 14.1
+### Description: Design and implement system for tracking player performance metrics
+### Details:
+Create functions to measure and record metrics such as playtime, win/loss ratios, resource management efficiency, and combat performance.
+
+## 5. Develop analytics dashboard and reporting [pending]
+### Dependencies: 14.2, 14.3, 14.4
+### Description: Create a user-friendly dashboard for visualizing and analyzing collected data
+### Details:
+Design and implement an analytics dashboard with data visualization tools, custom report generation, and export capabilities for further analysis.
+

@@ -1,0 +1,107 @@
+---
+description: If a subtask/task is completed or a test is passed. For version control should be used at high frequency
+globs: 
+alwaysApply: false
+---
+# Git Workflow & Task Management
+
+## Mandatory Push After Task Completion
+
+**Always perform a git push after completing each task or subtask** - this ensures work is backed up and available to the team immediately.
+
+## Commit Message Format
+
+Use the following standardized format for all commits:
+
+### For Subtasks
+```
+Subtask_X.X.X--{detailed_description}
+```
+
+### For Main Tasks  
+```
+Task_X--{detailed_description}
+```
+
+### For General Changes
+```
+{Type}--{detailed_description}
+```
+
+## Commit Message Examples
+
+### Good Examples
+- `Subtask_1.2.3--Implement player health bar UI with damage animations`
+- `Subtask_2.1.1--Add character movement physics and collision detection`
+- `Task_5--Complete combat system with all weapon types and special abilities`
+- `Refactor--Reorganize UI scripts and improve component architecture`
+- `Bugfix--Resolve memory leak in audio system during scene transitions`
+- `Feature--Add save/load functionality with encrypted player data`
+
+### Bad Examples
+- `update` (too vague)
+- `fixed stuff` (not descriptive)
+- `wip` (work in progress should be more specific)
+- `changes` (doesn't explain what changed)
+
+## Required Workflow Steps
+
+1. **Complete your task/subtask** - finish the work completely
+2. **Test your changes** - ensure everything works as expected
+3. **Stage your files** - `git add .` or specific files
+4. **Commit with detailed message** - follow the format above
+5. **Push immediately** - `git push` to backup and share your work
+
+## Commit Description Guidelines
+
+### Quick but Detailed Descriptions Should Include:
+- **What** was implemented/changed/fixed
+- **Which** components/systems were affected
+- **Key functionality** that was added
+- **Notable technical decisions** if relevant
+
+### Description Length
+- **Minimum**: 3-5 words describing the change
+- **Optimal**: 8-15 words with specific details
+- **Maximum**: Keep under 100 characters for readability
+
+## Special Cases
+
+### Multiple Related Changes
+```
+Subtask_1.1.1--Implement player controller with movement, jumping, and ground detection
+```
+
+### Bug Fixes
+```
+Bugfix_Subtask_3.2.1--Fix null reference exception in inventory system on item pickup
+```
+
+### Refactoring
+```
+Refactor_Subtask_4.1.2--Extract UI manager singleton and improve event handling
+```
+
+## Integration with Development
+
+- **Before starting work**: `git pull` to get latest changes
+- **During work**: Make small, logical commits as you progress
+- **After completing task**: Always push with the standardized message format
+- **Code reviews**: Reference commit messages in pull request descriptions
+
+## Benefits of This Approach
+
+1. **Clear progress tracking** - each commit shows completed work
+2. **Easy rollback** - can revert specific subtasks if needed  
+3. **Team awareness** - everyone sees what's been completed
+4. **Project management** - commit history matches task breakdown
+5. **Debugging help** - detailed messages help identify when issues were introduced
+
+## File References
+
+This workflow applies to all development work, including:
+- [GameManager.cs](mdc:Assets/Scripts/GameManager.cs) - Core game logic
+- [PlayerController.cs](mdc:Assets/Scripts/PlayerController.cs) - Player mechanics
+- All UI components in [Assets/Scripts/UI/](mdc:Assets/Scripts/UI) directory
+- Documentation updates in [Documentation/](mdc:Documentation) folders
+

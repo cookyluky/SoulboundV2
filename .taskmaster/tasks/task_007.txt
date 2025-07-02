@@ -1,0 +1,128 @@
+# Task ID: 7
+# Title: Design and Implement Enemy Archetypes
+# Status: pending
+# Dependencies: 1, 3
+# Priority: high
+# Description: Create 10 unique enemy types with distinct behaviors, weaknesses, and attack patterns, including specialized enemies like Wraithborne Stalkers, Hollow Sentinels, and Soul Gorgers.
+# Details:
+1. Develop base Enemy class with shared functionality
+2. Implement specialized enemy types with unique behaviors:
+   - Wraithborne Stalkers (invisibility when unobserved)
+   - Hollow Sentinels (positional attack requirements)
+   - Soul Gorgers (steal banked soul resources)
+   - 7 additional enemy types with distinct behaviors
+3. Create AI state machines for each enemy type
+4. Implement enemy spawning and difficulty scaling system
+5. Develop enemy-specific animations and effects
+6. Create enemy-specific audio cues for player feedback
+
+Code structure:
+```csharp
+public abstract class Enemy : MonoBehaviour {
+    [SerializeField] protected float health;
+    [SerializeField] protected float damage;
+    [SerializeField] protected EssenceType primaryEssenceType;
+    [SerializeField] protected float essenceQuantity;
+    
+    protected StateMachine stateMachine;
+    
+    public abstract void SpecialBehavior();
+    public virtual void TakeDamage(float amount, AttackType type);
+    protected virtual void Die();
+}
+
+public class WraithborneStalker : Enemy {
+    private bool isObserved;
+    
+    public override void SpecialBehavior() {
+        // Invisibility logic when not observed
+    }
+    
+    private void CheckIfObserved();
+}
+
+public class HollowSentinel : Enemy {
+    [SerializeField] private Transform weakPoint;
+    
+    public override void TakeDamage(float amount, AttackType type) {
+        // Only take damage when attacked from behind
+    }
+}
+
+public class SoulGorger : Enemy {
+    [SerializeField] private float soulStealAmount;
+    
+    public void StealSouls(PlayerController player);
+}
+```
+
+# Test Strategy:
+1. Unit tests for base enemy functionality
+2. Verify unique behaviors for each enemy type
+3. Test enemy AI state machines and decision making
+4. Validate enemy spawning and difficulty scaling
+5. Performance testing with multiple enemies active
+6. Playtest enemy encounters for balance and engagement
+7. Verify audio-visual feedback for enemy states and attacks
+
+# Subtasks:
+## 1. Define enemy types and characteristics [pending]
+### Dependencies: None
+### Description: Create a comprehensive list of enemy types and their unique characteristics
+### Details:
+Identify at least 5 distinct enemy types, outlining their basic attributes, strengths, and weaknesses
+
+## 2. Design enemy AI behavior patterns [pending]
+### Dependencies: 7.1
+### Description: Develop AI behavior patterns for each enemy type
+### Details:
+Create flowcharts or state machines for each enemy's decision-making process and movement patterns
+
+## 3. Implement basic enemy movement [pending]
+### Dependencies: 7.1, 7.2
+### Description: Code the basic movement mechanics for enemies
+### Details:
+Implement pathfinding, obstacle avoidance, and different movement speeds for each enemy type
+
+## 4. Develop unique attack patterns [pending]
+### Dependencies: 7.1, 7.2
+### Description: Create and implement unique attack patterns for each enemy type
+### Details:
+Design and code specific attack animations, projectiles, and damage calculations for each enemy
+
+## 5. Integrate enemies with combat system [pending]
+### Dependencies: 7.3, 7.4
+### Description: Ensure enemies interact properly with the existing combat system
+### Details:
+Implement hit detection, damage application, and enemy reactions to player attacks
+
+## 6. Create enemy spawning system [pending]
+### Dependencies: 7.1, 7.3, 7.4
+### Description: Develop a system for spawning enemies in the game world
+### Details:
+Implement enemy spawn points, spawn triggers, and balance spawn rates for different enemy types
+
+## 7. Implement enemy health and death mechanics [pending]
+### Dependencies: 7.1, 7.5
+### Description: Code health systems and death animations for enemies
+### Details:
+Create health bars, damage feedback, and unique death animations for each enemy type
+
+## 8. Design and implement boss enemies [pending]
+### Dependencies: 7.1, 7.2, 7.3, 7.4, 7.5
+### Description: Create more complex boss enemies with multiple phases and attack patterns
+### Details:
+Design at least 2 boss enemies with unique mechanics, multiple attack phases, and complex AI behaviors
+
+## 9. Balance enemy difficulty [pending]
+### Dependencies: 7.5, 7.6, 7.7, 7.8
+### Description: Adjust enemy attributes and behaviors for balanced gameplay
+### Details:
+Playtest and iterate on enemy difficulty, adjusting health, damage, and AI aggressiveness as needed
+
+## 10. Optimize enemy performance [pending]
+### Dependencies: 7.3, 7.4, 7.5, 7.6, 7.7, 7.8
+### Description: Optimize enemy AI and rendering for improved game performance
+### Details:
+Profile and optimize enemy-related code, implement LOD systems, and ensure smooth performance with multiple enemies on screen
+

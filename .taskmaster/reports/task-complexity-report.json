@@ -1,0 +1,189 @@
+{
+	"meta": {
+		"generatedAt": "2025-06-29T16:20:46.466Z",
+		"tasksAnalyzed": 21,
+		"totalTasks": 25,
+		"analysisCount": 22,
+		"thresholdScore": 5,
+		"projectName": "Taskmaster",
+		"usedResearch": true
+	},
+	"complexityAnalysis": [
+		{
+			"taskId": 1,
+			"taskTitle": "Setup Unity Project with Required SDKs",
+			"complexityScore": 7,
+			"recommendedSubtasks": 6,
+			"expansionPrompt": "Break down the Unity project setup process into detailed steps for each SDK integration and configuration task.",
+			"reasoning": "This task involves setting up a complex development environment with multiple SDKs and configurations. It requires careful planning and execution to ensure compatibility across platforms."
+		},
+		{
+			"taskId": 2,
+			"taskTitle": "Implement Core Soul-Binding System",
+			"complexityScore": 8,
+			"recommendedSubtasks": 10,
+			"expansionPrompt": "Break down the implementation of the core soul-binding system into detailed subtasks, including essence collection, storage, usage mechanics, UI elements, and integration with other game systems.",
+			"reasoning": "This task involves creating a complex game mechanic that interacts with multiple systems, requires careful balancing, and needs extensive testing. It includes data structures, UI elements, and core gameplay features."
+		},
+		{
+			"taskId": 3,
+			"taskTitle": "Develop Third-Person Combat System",
+			"complexityScore": 9,
+			"recommendedSubtasks": 12,
+			"expansionPrompt": "Expand on the development of the third-person combat system, detailing subtasks for implementing player controls, enemy AI, hit detection, combo systems, and special abilities.",
+			"reasoning": "Combat systems are central to gameplay and require intricate mechanics, precise timing, and extensive balancing. This task involves physics, animations, AI, and user input handling, making it highly complex."
+		},
+		{
+			"taskId": 4,
+			"taskTitle": "Create Multi-Branch Skill Progression System",
+			"complexityScore": 7,
+			"recommendedSubtasks": 8,
+			"expansionPrompt": "Break down the creation of the multi-branch skill progression system into subtasks covering skill tree design, UI implementation, progression tracking, and integration with the soul-binding and combat systems.",
+			"reasoning": "While complex, this task is more focused on data management and UI implementation. It requires careful design but is less technically challenging than the combat or soul-binding systems."
+		},
+		{
+			"taskId": 5,
+			"taskTitle": "Design and Implement Three Distinct Biomes",
+			"complexityScore": 8,
+			"recommendedSubtasks": 9,
+			"expansionPrompt": "Expand on the design and implementation of the three distinct biomes, detailing subtasks for environment creation, unique gameplay elements, asset development, and performance optimization.",
+			"reasoning": "Creating distinct biomes involves a mix of artistic and technical challenges, including environment design, asset creation, and optimization for performance. It requires coordination between multiple disciplines."
+		},
+		{
+			"taskId": 6,
+			"taskTitle": "Implement Dynamic Corruption System",
+			"complexityScore": 7,
+			"recommendedSubtasks": 8,
+			"expansionPrompt": "Break down the implementation of the dynamic corruption system into subtasks covering corruption tracking, visual feedback, gameplay effects, and integration with other game systems.",
+			"reasoning": "This system affects multiple aspects of gameplay but is more straightforward than the combat or soul-binding systems. It primarily involves state tracking and applying effects based on that state."
+		},
+		{
+			"taskId": 7,
+			"taskTitle": "Design and Implement Enemy Archetypes",
+			"complexityScore": 8,
+			"recommendedSubtasks": 10,
+			"expansionPrompt": "Expand on the design and implementation of enemy archetypes, detailing subtasks for AI behavior, unique abilities, balancing, and integration with the combat system.",
+			"reasoning": "Creating diverse enemy types with distinct behaviors and abilities is complex, requiring AI programming, balancing, and integration with the combat system. It also involves asset creation and extensive testing."
+		},
+		{
+			"taskId": 8,
+			"taskTitle": "Develop Boss Battle System",
+			"complexityScore": 9,
+			"recommendedSubtasks": 11,
+			"expansionPrompt": "Break down the development of the boss battle system into subtasks covering multi-phase battles, unique mechanics, arena design, and integration with the narrative and progression systems.",
+			"reasoning": "Boss battles are highly complex, involving unique mechanics, multi-phase fights, and integration with multiple game systems. They require extensive design, programming, and balancing efforts."
+		},
+		{
+			"taskId": 9,
+			"taskTitle": "Implement Narrative and Choice System",
+			"complexityScore": 8,
+			"recommendedSubtasks": 9,
+			"expansionPrompt": "Expand on the implementation of the narrative and choice system, detailing subtasks for dialogue management, branching storylines, consequence tracking, and integration with the game state.",
+			"reasoning": "This system involves complex data structures for managing branching narratives and player choices. It requires integration with multiple game systems and careful design to ensure narrative coherence."
+		},
+		{
+			"taskId": 10,
+			"taskTitle": "Create Side Quest System",
+			"complexityScore": 7,
+			"recommendedSubtasks": 8,
+			"expansionPrompt": "Break down the creation of the side quest system into subtasks covering quest design, tracking mechanisms, reward systems, and integration with the main narrative and world state.",
+			"reasoning": "While complex, this system is more self-contained than some others. It primarily involves data management, UI implementation, and integration with existing systems rather than introducing entirely new mechanics."
+		},
+		{
+			"taskId": 11,
+			"taskTitle": "Design and Implement UI System",
+			"complexityScore": 7,
+			"recommendedSubtasks": 8,
+			"expansionPrompt": "Expand on the design and implementation of the UI system, detailing subtasks for menu creation, HUD elements, inventory management, and accessibility features.",
+			"reasoning": "UI design and implementation is a significant task involving both artistic and technical challenges. It requires careful consideration of user experience and integration with multiple game systems."
+		},
+		{
+			"taskId": 12,
+			"taskTitle": "Implement Cross-Platform Save Synchronization",
+			"complexityScore": 8,
+			"recommendedSubtasks": 9,
+			"expansionPrompt": "Break down the implementation of cross-platform save synchronization into subtasks covering local save management, cloud storage integration, conflict resolution, and platform-specific considerations.",
+			"reasoning": "This task involves complex networking, data management, and security considerations. It requires handling various edge cases and ensuring data integrity across different platforms."
+		},
+		{
+			"taskId": 13,
+			"taskTitle": "Optimize Performance Across Platforms",
+			"complexityScore": 9,
+			"recommendedSubtasks": 10,
+			"expansionPrompt": "Expand on the performance optimization process, detailing subtasks for profiling, asset optimization, rendering improvements, and platform-specific optimizations.",
+			"reasoning": "Performance optimization is a complex and ongoing process that requires deep technical knowledge across multiple areas of game development. It involves careful analysis and platform-specific considerations."
+		},
+		{
+			"taskId": 14,
+			"taskTitle": "Implement Platform-Specific Features",
+			"complexityScore": 8,
+			"recommendedSubtasks": 9,
+			"expansionPrompt": "Break down the implementation of platform-specific features into subtasks for each platform, covering unique hardware capabilities, achievement systems, and platform-specific optimizations.",
+			"reasoning": "This task requires in-depth knowledge of multiple platforms and their unique features. It involves working with different SDKs and ensuring consistent gameplay experience across platforms."
+		},
+		{
+			"taskId": 15,
+			"taskTitle": "Implement Analytics and Privacy Compliance",
+			"complexityScore": 7,
+			"recommendedSubtasks": 8,
+			"expansionPrompt": "Expand on the implementation of analytics and privacy compliance, detailing subtasks for data collection, anonymization, consent management, and compliance with different regional regulations.",
+			"reasoning": "While technically complex, this task is more focused on data management and legal compliance rather than core gameplay features. It requires careful consideration of privacy laws and data handling practices."
+		},
+		{
+			"taskId": 18,
+			"taskTitle": "Implement Input System and Player Controller",
+			"complexityScore": 5,
+			"recommendedSubtasks": 3,
+			"expansionPrompt": "Break down this task with a focus on implement input system and player controller.",
+			"reasoning": "Automatically added due to missing analysis in AI response."
+		},
+		{
+			"taskId": 19,
+			"taskTitle": "Implement GameState and Save/Load Foundation",
+			"complexityScore": 5,
+			"recommendedSubtasks": 3,
+			"expansionPrompt": "Break down this task with a focus on implement gamestate and save/load foundation.",
+			"reasoning": "Automatically added due to missing analysis in AI response."
+		},
+		{
+			"taskId": 20,
+			"taskTitle": "Implement ScriptableObject Data Definitions",
+			"complexityScore": 5,
+			"recommendedSubtasks": 3,
+			"expansionPrompt": "Break down this task with a focus on implement scriptableobject data definitions.",
+			"reasoning": "Automatically added due to missing analysis in AI response."
+		},
+		{
+			"taskId": 22,
+			"taskTitle": "Implement Lighting and Camera Setup",
+			"complexityScore": 5,
+			"recommendedSubtasks": 3,
+			"expansionPrompt": "Break down this task with a focus on implement lighting and camera setup.",
+			"reasoning": "Automatically added due to missing analysis in AI response."
+		},
+		{
+			"taskId": 23,
+			"taskTitle": "Create Core Prefabs for Level Design",
+			"complexityScore": 5,
+			"recommendedSubtasks": 3,
+			"expansionPrompt": "Break down this task with a focus on create core prefabs for level design.",
+			"reasoning": "Automatically added due to missing analysis in AI response."
+		},
+		{
+			"taskId": 24,
+			"taskTitle": "Implement Scene Management for MainMenu and PrototypeLevel",
+			"complexityScore": 5,
+			"recommendedSubtasks": 3,
+			"expansionPrompt": "Break down this task with a focus on implement scene management for mainmenu and prototypelevel.",
+			"reasoning": "Automatically added due to missing analysis in AI response."
+		},
+		{
+			"taskId": 25,
+			"taskTitle": "Configure Quality and Build Settings Baseline",
+			"complexityScore": 5,
+			"recommendedSubtasks": 3,
+			"expansionPrompt": "Break down this task with a focus on configure quality and build settings baseline.",
+			"reasoning": "Automatically added due to missing analysis in AI response."
+		}
+	]
+}

@@ -1,0 +1,52 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# Naming Conventions
+
+## C# Files & Classes
+
+- **Use PascalCase** for all class names
+- **File names must match class names** exactly
+- **One class per file** (except for small helper classes)
+- **Examples**: `GameManager.cs`, `PlayerController.cs`, `CombatSystem.cs`
+
+## Folders
+
+- **Script folders**: Use PascalCase (`Scripts/Systems/`, `Scripts/Characters/`)
+- **Asset folders**: Use PascalCase or kebab-case (`Art/Characters/`, `Audio/Music/`)
+- **Keep folder names concise but descriptive**
+
+## Unity Assets
+
+### Prefabs
+- **Format**: `Prefab_<ObjectName>.prefab`
+- **Examples**: `Prefab_Player.prefab`, `Prefab_HealthBar.prefab`
+
+### Scenes
+- **Format**: `Scene_<Name>.unity`
+- **Examples**: `Scene_MainMenu.unity`, `Scene_Level01.unity`
+
+### Materials & Textures
+- **Materials**: `Mat_<Name>.mat`
+- **Textures**: `Tex_<Name>.<ext>`
+
+## Variables & Methods
+
+- **Public fields/properties**: PascalCase
+- **Private fields**: camelCase with underscore prefix (`_privateField`)
+- **Methods**: PascalCase
+- **Constants**: UPPER_SNAKE_CASE
+- **Events**: PascalCase with 'On' prefix (`OnPlayerDeath`)
+
+## Documentation
+
+- **Markdown files**: Use descriptive names in PascalCase
+- **Examples**: `TechSpecs.md`, `ArtGuidelines.md`
+
+## File Types Affected
+- `*.cs` - C# scripts
+- `*.prefab` - Unity prefabs
+- `*.unity` - Unity scenes
+- `*.md` - Markdown documentation

@@ -1,0 +1,81 @@
+# Task ID: 5
+# Title: Design and Implement Three Distinct Biomes
+# Status: pending
+# Dependencies: 1
+# Priority: medium
+# Description: Create the three main game environments (Singing Meadowlands, Whispering Canopy, Floating Garden Archipelago) with unique visual styles, gameplay characteristics, and environmental storytelling.
+# Details:
+1. Design and implement Singing Meadowlands (tutorial area):
+   - Open meadow environment with gentle terrain
+   - Tutorial integration points
+   - Basic enemy encounters
+   - Initial lore fragments
+
+2. Design and implement Whispering Canopy (mid-game):
+   - Vertical forest environment with platforming elements
+   - Mid-game puzzle focus
+   - Intermediate enemy encounters
+   - Hidden paths and secrets
+
+3. Design and implement Floating Garden Archipelago (late-game):
+   - Disconnected floating islands requiring advanced traversal
+   - Late-game challenges and puzzles
+   - Advanced enemy encounters
+   - Major lore revelations
+
+4. Implement Veil Sight ability revealing hidden paths and spirit trails
+5. Create environmental storytelling through discoverable lore fragments
+6. Develop dynamic waypoint system for optional guidance
+
+Implementation approach:
+- Use Unity Terrain system with custom shaders for each biome
+- Implement procedural foliage placement with wind animation
+- Create custom post-processing profiles for each biome's atmosphere
+- Develop transition zones between biomes for seamless world
+
+# Test Strategy:
+1. Performance testing in each biome for target frame rates
+2. Verify loading times under 5 seconds between areas
+3. Test Veil Sight ability functionality across all biomes
+4. Validate environmental storytelling elements and lore fragments
+5. Playtest navigation and exploration flow
+6. Verify secrets are accessible through different progression stages
+7. Test dynamic waypoint system functionality
+
+# Subtasks:
+## 1. Define biome characteristics [pending]
+### Dependencies: None
+### Description: Outline the unique features, climate, and overall atmosphere for each biome
+### Details:
+Create a detailed document specifying the visual style, color palette, and environmental elements for each biome
+
+## 2. Develop terrain generation algorithms [pending]
+### Dependencies: 5.1
+### Description: Create algorithms for procedurally generating terrain specific to each biome
+### Details:
+Implement height maps, noise functions, and erosion simulations to create realistic and varied landscapes
+
+## 3. Design and create biome-specific assets [pending]
+### Dependencies: 5.1
+### Description: Develop 3D models, textures, and vegetation assets unique to each biome
+### Details:
+Model and texture rocks, plants, trees, and other environmental objects that fit the biome's theme
+
+## 4. Implement asset placement system [pending]
+### Dependencies: 5.2, 5.3
+### Description: Create a system for procedurally placing assets within each biome
+### Details:
+Develop algorithms for distributing assets based on terrain features, density maps, and biome-specific rules
+
+## 5. Design unique gameplay elements [pending]
+### Dependencies: 5.1
+### Description: Create gameplay mechanics and interactions specific to each biome
+### Details:
+Develop features such as weather effects, environmental hazards, and biome-specific resources or challenges
+
+## 6. Integrate and test biome generation [pending]
+### Dependencies: 5.2, 5.3, 5.4, 5.5
+### Description: Combine all elements and test the complete biome generation process
+### Details:
+Implement the full biome creation pipeline, including terrain generation, asset placement, and gameplay elements, then conduct thorough testing and refinement
+

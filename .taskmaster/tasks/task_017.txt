@@ -1,0 +1,155 @@
+# Task ID: 17
+# Title: Implement Core Manager Singletons
+# Status: pending
+# Dependencies: 16
+# Priority: high
+# Description: Create and register six fundamental manager classes following the singleton pattern to handle core game functionality including game state, input, saving, UI, audio, and scene loading.
+# Details:
+1. Create the following MonoBehaviour manager classes under `Assets/Scripts/Core/`:
+
+- `GameManager.cs`: 
+  - Implement game state management (paused, playing, menu)
+  - Handle act/level transitions
+  - Track global game progression
+  - Provide events for major game state changes
+
+- `InputManager.cs`:
+  - Implement wrapper for Unity's new Input System
+  - Convert input events to C# events/delegates
+  - Handle input context switching (gameplay, menu, dialogue)
+  - Provide methods to enable/disable input types
+
+- `SaveManager.cs`:
+  - Create data structures for save data
+  - Implement Save/Load methods with serialization
+  - Handle save file management (create, delete, list)
+  - Implement auto-save functionality
+
+- `UIManager.cs`:
+  - Provide methods to open/close menu screens
+  - Handle HUD updates and animations
+  - Manage UI navigation and focus
+  - Implement screen transitions
+
+- `AudioManager.cs`:
+  - Create methods for playing music and SFX
+  - Implement audio pooling for performance
+  - Handle volume controls and settings
+  - Support spatial audio for game world
+
+- `SceneLoader.cs`:
+  - Implement async scene loading with progress tracking
+  - Create loading screen functionality
+  - Handle scene transitions with fade effects
+  - Manage scene dependencies and preloading
+
+For each manager:
+1. Implement the singleton pattern with a static Instance property:
+```csharp
+public class GameManager : MonoBehaviour
+{
+    private static GameManager _instance;
+    
+    public static GameManager Instance
+    {
+        get
+        {
+            if (_instance == null)
+            {
+                Debug.LogError("GameManager is null!");
+            }
+            return _instance;
+        }
+    }
+    
+    private void Awake()
+    {
+        if (_instance != null && _instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        
+        _instance = this;
+        DontDestroyOnLoad(gameObject);
+        
+        // Register with ServiceLocator
+        ServiceLocator.Register<GameManager>(this);
+        
+        Initialize();
+    }
+}
+```
+
+2. Implement proper initialization and cleanup lifecycle:
+```csharp
+private void Initialize()
+{
+    // Initialize manager-specific systems
+    // Subscribe to events
+}
+
+private void OnDestroy()
+{
+    // Unsubscribe from events
+    // Clean up resources
+    
+    if (_instance == this)
+    {
+        ServiceLocator.Unregister<GameManager>();
+        _instance = null;
+    }
+}
+```
+
+3. Handle cross-manager dependencies by using ServiceLocator for references:
+```csharp
+// Example in UIManager
+private void ShowLoadingScreen(float progress)
+{
+    // Get reference to SceneLoader through ServiceLocator
+    var sceneLoader = ServiceLocator.Get<SceneLoader>();
+    if (sceneLoader != null)
+    {
+        // Use sceneLoader functionality
+    }
+}
+```
+
+4. Create a prefab for each manager that can be instantiated in the bootstrap scene
+5. Ensure each manager has appropriate public APIs for its core functionality
+6. Document each manager's responsibilities and public methods
+
+# Test Strategy:
+1. Unit Tests:
+   - Create unit tests for each manager class to verify core functionality
+   - Test singleton pattern implementation for proper instance management
+   - Verify ServiceLocator registration and retrieval works correctly
+
+2. Integration Tests:
+   - Test cross-manager dependencies and communication
+   - Verify managers can be accessed from other game systems
+   - Test initialization order and dependency resolution
+
+3. Functional Testing:
+   - GameManager: Test game state transitions and event broadcasting
+   - InputManager: Verify input events are correctly translated to C# events
+   - SaveManager: Test save/load functionality with sample game data
+   - UIManager: Verify menu opening/closing and HUD updates
+   - AudioManager: Test audio playback for music and sound effects
+   - SceneLoader: Verify scene loading with progress tracking
+
+4. Edge Cases:
+   - Test behavior when managers are destroyed and recreated
+   - Verify error handling when accessing managers before initialization
+   - Test performance with multiple scene transitions
+   - Verify cleanup on application quit
+
+5. Integration with Bootstrap Scene:
+   - Verify all managers are properly instantiated in the bootstrap scene
+   - Test the complete initialization sequence
+   - Verify managers persist across scene changes
+
+6. Documentation Verification:
+   - Ensure all public APIs are properly documented
+   - Verify usage examples are provided for each manager

@@ -1,0 +1,96 @@
+# Task ID: 4
+# Title: Create Multi-Branch Skill Progression System
+# Status: pending
+# Dependencies: 1, 2
+# Priority: high
+# Description: Implement the character progression system with 15 abilities across Wraith, Hollow, and Arcanum branches, including memory fragment collection and corruption-level effects.
+# Details:
+1. Design data structure for 15 abilities across 3 branches (Wraith, Hollow, Arcanum)
+2. Implement SkillTree class to manage ability unlocks and prerequisites
+3. Create MemoryFragment collection system for Soulstone abilities
+4. Develop cross-branch synergy system with prerequisite chains
+5. Implement corruption level tracking affecting ability availability
+6. Create UI visualization for skill trees as branching plant growth
+7. Develop save/load system for progression persistence
+
+Code structure:
+```csharp
+public enum SkillBranch { Wraith, Hollow, Arcanum }
+
+[System.Serializable]
+public class Ability {
+    public string Id;
+    public string Name;
+    public string Description;
+    public SkillBranch Branch;
+    public List<string> Prerequisites;
+    public int CorruptionRequirement;
+    public bool IsForbidden;
+    public UnityEvent OnActivated;
+}
+
+public class ProgressionManager : MonoBehaviour {
+    [SerializeField] private List<Ability> allAbilities;
+    private List<string> unlockedAbilities = new List<string>();
+    private int memoryFragments;
+    private float corruptionLevel;
+    
+    public bool UnlockAbility(string abilityId);
+    public bool CanUnlockAbility(string abilityId);
+    public void CollectMemoryFragment();
+    public void ModifyCorruption(float amount);
+}
+```
+
+# Test Strategy:
+1. Unit tests for ProgressionManager and ability unlock logic
+2. Verify prerequisite chains function correctly
+3. Test corruption level effects on ability availability
+4. Validate memory fragment collection and Soulstone abilities
+5. Test cross-branch synergy activation
+6. Verify save/load functionality for progression data
+7. UI visualization testing for skill tree representation
+
+# Subtasks:
+## 1. Design Skill Tree Data Structure [pending]
+### Dependencies: None
+### Description: Create a data structure to represent the skill tree, including nodes, connections, and skill properties.
+### Details:
+Define classes or structures for skills, branches, and the overall tree. Include properties such as skill name, description, level, prerequisites, and effects.
+
+## 2. Implement UI Representation [pending]
+### Dependencies: 4.1
+### Description: Develop the user interface to visually represent the skill tree and allow player interaction.
+### Details:
+Create a scalable and intuitive UI that displays skills as nodes, connections as lines, and allows zooming and panning. Implement click/tap functionality for skill selection and information display.
+
+## 3. Develop Skill Activation System [pending]
+### Dependencies: 4.1
+### Description: Create a system to handle skill activation, deactivation, and level progression.
+### Details:
+Implement methods to activate skills, check prerequisites, handle skill point allocation, and update the player's active skills. Include validation to prevent illegal skill activations.
+
+## 4. Implement Gameplay Effects [pending]
+### Dependencies: 4.3
+### Description: Integrate skill effects into the game's core mechanics and systems.
+### Details:
+Create a flexible system to apply skill effects to relevant game systems (e.g., combat, crafting, exploration). Ensure effects are properly scaled with skill levels and can be easily modified or expanded.
+
+## 5. Balance Skill Tree [pending]
+### Dependencies: 4.4
+### Description: Analyze and adjust skill values, costs, and effects for game balance.
+### Details:
+Conduct playtesting and data analysis to identify overpowered or underpowered skills. Adjust skill point costs, effect magnitudes, and progression paths to ensure a balanced and engaging experience.
+
+## 6. Implement Save/Load System [pending]
+### Dependencies: 4.3
+### Description: Develop functionality to save and load skill tree progress.
+### Details:
+Create methods to serialize and deserialize the skill tree state, including activated skills, levels, and available skill points. Integrate with the game's overall save/load system.
+
+## 7. Optimize Performance [pending]
+### Dependencies: 4.2, 4.4, 4.6
+### Description: Analyze and improve the performance of the skill tree system.
+### Details:
+Profile the skill tree implementation, identifying any performance bottlenecks. Optimize data structures, algorithms, and UI rendering to ensure smooth performance, especially with large skill trees.
+

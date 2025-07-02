@@ -1,0 +1,102 @@
+# Task ID: 3
+# Title: Develop Third-Person Combat System
+# Status: pending
+# Dependencies: 1
+# Priority: high
+# Description: Implement the core third-person melee combat system with dodge, block, and spirit-infused attack combinations, stamina-based action economy, and parry mechanics.
+# Details:
+1. Create PlayerCombatController with input handling for attacks, dodges, blocks
+2. Implement stamina system with regeneration mechanics
+3. Develop hit detection and damage calculation systems
+4. Create combo system for spirit-infused attack combinations
+5. Implement parry system with slow-motion counterattack opportunities
+6. Develop environmental hazard integration affecting all entities
+7. Create animation state machine for combat actions
+8. Implement camera control optimized for combat
+
+Code structure:
+```csharp
+public class PlayerCombatController : MonoBehaviour {
+    [SerializeField] private float maxStamina = 100f;
+    [SerializeField] private float staminaRegenRate = 10f;
+    [SerializeField] private float dodgeCost = 20f;
+    [SerializeField] private float attackCost = 15f;
+    
+    private float currentStamina;
+    private bool isBlocking;
+    private int comboCounter;
+    
+    public void Attack();
+    public void Dodge();
+    public void Block(bool isBlocking);
+    public bool TryParry(Attack incomingAttack);
+    private void RegenerateStamina();
+}
+
+public class ParrySystem : MonoBehaviour {
+    [SerializeField] private float parryWindow = 0.2f;
+    [SerializeField] private float slowMotionFactor = 0.3f;
+    
+    public void TriggerSlowMotion();
+    public void EndSlowMotion();
+}
+```
+
+# Test Strategy:
+1. Unit tests for combat mechanics and stamina system
+2. Playtest dodge, block, and attack combinations
+3. Verify parry timing windows and slow-motion effects
+4. Test stamina regeneration rates and action costs
+5. Validate environmental hazard interactions
+6. Performance testing during intense combat scenarios
+7. Controller and keyboard/mouse input validation
+
+# Subtasks:
+## 1. Implement Basic Character Movement [pending]
+### Dependencies: None
+### Description: Create the core movement system for characters including walking, running, and directional controls.
+### Details:
+Implement character controller with appropriate physics, ensure smooth movement with acceleration/deceleration, add animation transitions between movement states, and implement camera following logic.
+
+## 2. Develop Basic Attack System [pending]
+### Dependencies: 3.1
+### Description: Create the fundamental attack mechanics including light and heavy attacks with appropriate animations and hit detection.
+### Details:
+Implement attack input handling, create attack animations, develop hit detection system using raycasts or colliders, add basic damage calculation, and create visual/audio feedback for successful hits.
+
+## 3. Implement Dodging Mechanics [pending]
+### Dependencies: 3.1
+### Description: Create a dodge/roll system that allows players to evade attacks with appropriate invincibility frames.
+### Details:
+Implement dodge input handling, create dodge animations, add invincibility frame system during appropriate animation frames, implement dodge cooldown, and create visual effects for dodging.
+
+## 4. Develop Blocking System [pending]
+### Dependencies: 3.2
+### Description: Implement a blocking mechanic that reduces incoming damage and potentially staggers attackers.
+### Details:
+Create block input handling, implement damage reduction calculations, add block animations and effects, develop block stamina system, and implement perfect block timing mechanics for advanced players.
+
+## 5. Create Combat Stats System [pending]
+### Dependencies: 3.2, 3.3, 3.4
+### Description: Develop the underlying stats system that powers combat, including health, stamina, and spirit energy.
+### Details:
+Implement health system with damage handling, create stamina system for attacks/dodges/blocks, develop spirit energy accumulation mechanics, add UI elements to display all stats, and implement regeneration logic.
+
+## 6. Implement Spirit-Infused Abilities [pending]
+### Dependencies: 3.5
+### Description: Create special abilities powered by spirit energy that provide powerful combat options.
+### Details:
+Design 3-5 unique spirit abilities, implement spirit energy consumption, create special effects and animations for each ability, add cooldown systems, and balance damage/utility of each ability.
+
+## 7. Develop Enemy AI Combat Behaviors [pending]
+### Dependencies: 3.2, 3.3, 3.4, 3.6
+### Description: Create AI systems for enemies to engage in combat using the implemented mechanics.
+### Details:
+Implement enemy attack patterns, create AI decision making for different combat situations, add difficulty scaling, implement enemy use of special abilities, and create varied enemy types with different combat styles.
+
+## 8. Combat System Testing and Balancing [pending]
+### Dependencies: 3.1, 3.2, 3.3, 3.4, 3.5, 3.6, 3.7
+### Description: Test all combat mechanics for balance, responsiveness, and fun factor, making adjustments as needed.
+### Details:
+Create combat testing scenarios, gather feedback on feel and responsiveness, balance damage values and cooldowns, fix any bugs or inconsistencies, and polish animations and effects for maximum impact.
+

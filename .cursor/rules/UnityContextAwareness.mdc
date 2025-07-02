@@ -1,0 +1,333 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# Unity Context Awareness Rules
+
+**Whenever generating new Unity code, Claude must automatically reference relevant files from `Documentation/UnityExports/`, `Objects/`, or `Tasks/` to ground the code in Unity context.**
+
+## **Mandatory Context Reference Requirements**
+
+### **Before Writing Any Unity Code**
+Claude must check and reference:
+
+1. **Unity Exports**: Review `Documentation/UnityExports/` for scene and prefab metadata
+2. **Object Documentation**: Check `Documentation/Objects/` for existing component specifications
+3. **Task Context**: Reference `Documentation/Tasks/` for implementation requirements
+4. **Cross-References**: Use `@` notation to link generated code to documentation
+
+### **Required Context Sources**
+
+#### **Scene Context (`Documentation/UnityExports/Scenes/`)**
+```markdown
+Before creating scene-related code, Claude must reference:
+- Scene_[SceneName]_Metadata.md for hierarchy understanding
+- Existing GameObject names and component configurations
+- Transform positions, rotations, and scales
+- Layer and tag assignments
+- Asset dependencies and material references
+```
+
+#### **Prefab Context (`Documentation/UnityExports/Prefabs/`)**
+```markdown
+Before creating prefab-related code, Claude must reference:
+- Prefab_[PrefabName]_Metadata.md for component structure
+- Existing script attachments and property values
+- Child object hierarchies and relationships
+- Asset references and dependency chains
+```
+
+#### **Object Documentation (`Documentation/Objects/`)**
+```markdown
+Before modifying existing objects, Claude must reference:
+- [ObjectName].md for complete object specifications
+- Creation history and modification logs
+- Integration points with other systems
+- Testing coverage and validation requirements
+```
+
+#### **Task Context (`Documentation/Tasks/`)**
+```markdown
+Before implementing task-related code, Claude must reference:
+- Task_[ID]_Overview.md for requirements and specifications
+- Task_[ID]_Implementation_log.md for progress and decisions
+- Subtask files for detailed implementation steps
+- Cross-referenced dependencies and related tasks
+```
+
+## **Context Integration Workflow**
+
+### **Step 1: Context Discovery**
+Before writing Unity code, Claude must:
+
+1. **Identify Related Documentation**: Determine which context files are relevant
+2. **Read Current State**: Review Unity exports for current project structure
+3. **Check Object Documentation**: Understand existing components and their purposes
+4. **Review Task Requirements**: Understand implementation goals and constraints
+
+### **Step 2: Context Validation**
+Claude must verify:
+
+1. **Naming Consistency**: Use names that match existing Unity objects
+2. **Component Compatibility**: Ensure new components work with existing ones
+3. **Hierarchy Respect**: Maintain proper parent-child relationships
+4. **Dependency Awareness**: Account for existing script dependencies
+
+### **Step 3: Context-Grounded Implementation**
+When writing code, Claude must:
+
+1. **Reference Existing Patterns**: Follow established coding patterns in the project
+2. **Maintain Integration**: Ensure new code integrates with existing systems
+3. **Document Decisions**: Explain how context influenced implementation choices
+4. **Update Documentation**: Reflect changes in relevant documentation files
+
+## **Context Reference Examples**
+
+### **✅ DO: Context-Aware Scene Script Creation**
+
+#### **Before Creating PlayerController Script**
+```markdown
+Claude: "I'm creating a PlayerController script. Let me first check the Unity context:
+
+**Reviewing Context:**
+- Scene_MainGameScene_Metadata.md shows existing Player GameObject with Transform at (0, 1, 0)
+- PlayerController.md indicates this object needs movement speed 5.0 and jump force 8.0
+- Task_7_Overview.md specifies WASD movement and spacebar jumping
+- Existing components: CharacterController (Height: 2.0, Radius: 0.5)
+
+**Context-Informed Implementation:**
+Based on the Unity exports, I see the Player GameObject already has a CharacterController component configured. I'll create the PlayerController script to work with these existing settings."
+```
+
+#### **Generated Code with Context References**
+```csharp
+using UnityEngine;
+
+/// <summary>
+/// PlayerController for @Task_7 - Core Player Movement Implementation
+/// Integrates with existing CharacterController component found in Scene_MainGameScene_Metadata.md
+/// Configuration matches specifications from @PlayerController object documentation
+/// </summary>
+public class PlayerController : MonoBehaviour
+{
+    [Header("Movement Settings - From Task_7_Overview.md")]
+    [SerializeField] private float _moveSpeed = 5.0f; // Specified in PlayerController.md
+    [SerializeField] private float _jumpForce = 8.0f; // From task requirements
+    
+    [Header("References - Based on Scene Hierarchy")]
+    private CharacterController _characterController; // Existing component per metadata
+    
+    private void Awake()
+    {
+        // Component exists per Scene_MainGameScene_Metadata.md
+        _characterController = GetComponent<CharacterController>();
+        
+        if (_characterController == null)
+        {
+            Debug.LogError($"CharacterController component missing on {gameObject.name}. " +
+                         "Expected based on Unity export metadata.");
+        }
+    }
+    
+    private void Update()
+    {
+        HandleMovement(); // WASD movement per @Task_7 requirements
+        HandleJump();     // Spacebar jumping per task specifications
+    }
+    
+    /// <summary>
+    /// WASD movement implementation as specified in @Task_7_Overview
+    /// Uses movement speed from @PlayerController documentation
+    /// </summary>
+    private void HandleMovement()
+    {
+        // Implementation details...
+    }
+}
+```
+
+### **✅ DO: Context-Aware Prefab Integration**
+
+#### **Before Creating UI Component**
+```markdown
+Claude: "I'm implementing UI health bar functionality. Checking context:
+
+**Reviewing Context:**
+- Prefab_UI_HUD_Prefab_Metadata.md shows existing HealthBar GameObject
+- HealthBar.md documents current Slider and TextMeshProUGUI components
+- Task_15_Implementation_log.md shows health system integration requirements
+- Scene exports indicate HealthBar is child of Canvas
+
+**Context Integration:**
+The HealthBar prefab already exists with configured Slider component. I'll create a script that works with this existing structure."
+```
+
+### **❌ DON'T: Context-Ignorant Code Generation**
+
+#### **Generic Code Without Context**
+```csharp
+// BAD: Generic code that ignores existing project structure
+public class PlayerMovement : MonoBehaviour
+{
+    public float speed = 10f; // Arbitrary value, ignores existing specifications
+    
+    void Update()
+    {
+        // Generic movement code that doesn't consider existing components
+        transform.Translate(Vector3.forward * speed * Time.deltaTime);
+    }
+}
+```
+
+#### **Missing Context References**
+```markdown
+Claude: "Here's a player controller script."
+// No mention of:
+// - Existing Unity object structure
+// - Task requirements
+// - Integration with existing components
+// - Documentation cross-references
+```
+
+## **Context-Driven Decision Making**
+
+### **Naming Conventions from Context**
+```markdown
+**Unity Export Check**: Scene_MainGameScene_Metadata.md shows:
+- Player (Layer: Player, Tag: Player)
+- EnemySpawner (Layer: Default, Tag: EnemyManager)
+- GameController (Layer: Default, Tag: GameManager)
+
+**Context-Informed Naming**: New scripts should follow this pattern:
+- PlayerController (matches existing Player object)
+- EnemyAI (matches EnemySpawner pattern)
+- GameManager (matches GameController pattern)
+```
+
+### **Component Integration from Context**
+```markdown
+**Prefab Analysis**: Prefab_Player_Prefab_Metadata.md shows:
+- CharacterController - Unity Built-in (configured)
+- MeshRenderer - Unity Built-in (with PlayerMaterial)
+- Collider - Unity Built-in (trigger setup)
+
+**Integration Decision**: New PlayerController script must:
+- Use existing CharacterController for movement
+- Work with existing collider setup
+- Respect existing material assignments
+```
+
+### **System Architecture from Context**
+```markdown
+**Object Documentation Review**:
+- GameManager.md shows singleton pattern usage
+- CombatSystem.md indicates event-driven architecture
+- PlayerController.md shows dependency on InputSystem
+
+**Architecture Alignment**: New components must:
+- Follow singleton pattern for managers
+- Use events for system communication
+- Integrate with existing InputSystem
+```
+
+## **Documentation Update Requirements**
+
+### **When Creating New Unity Objects**
+Claude must update:
+
+1. **Object Documentation**: Create new `[ObjectName].md` file
+2. **Unity Exports**: Note that exports need regeneration
+3. **Task Documentation**: Update implementation logs with new objects
+4. **Cross-References**: Add bidirectional links to all related files
+
+### **When Modifying Existing Objects**
+Claude must update:
+
+1. **Object Documentation**: Append modification log with timestamp
+2. **Implementation Logs**: Document changes in relevant task files
+3. **Test Documentation**: Note impact on existing tests
+4. **Cross-References**: Update links if relationships change
+
+## **Context Validation Checklist**
+
+### **Pre-Implementation Check**
+Before writing Unity code, Claude must verify:
+
+- [ ] Reviewed relevant Unity export metadata
+- [ ] Checked existing object documentation
+- [ ] Understood task requirements and constraints
+- [ ] Identified integration points with existing systems
+- [ ] Confirmed naming conventions match project patterns
+- [ ] Validated component compatibility
+
+### **Post-Implementation Check**
+After writing Unity code, Claude must verify:
+
+- [ ] Code references match Unity context
+- [ ] Documentation is updated with new objects/changes
+- [ ] Cross-references are bidirectionally linked
+- [ ] Integration points are properly handled
+- [ ] Testing requirements are identified
+- [ ] Context decisions are documented
+
+## **Context Reference Patterns**
+
+### **Scene-Based References**
+```csharp
+/// <summary>
+/// Component for @ObjectName in @SceneName
+/// Based on hierarchy from Scene_[SceneName]_Metadata.md
+/// Integrates with @RelatedObjects per export documentation
+/// </summary>
+```
+
+### **Task-Based References**
+```csharp
+/// <summary>
+/// Implementation for @Task_[ID] - [Task Title]
+/// Requirements from Task_[ID]_Overview.md
+/// Progress tracked in Task_[ID]_Implementation_log.md
+/// </summary>
+```
+
+### **System Integration References**
+```csharp
+/// <summary>
+/// Integrates with @SystemName per [SystemName].md
+/// Dependencies: @RequiredObjects
+/// Events: @EventNames from system documentation
+/// </summary>
+```
+
+## **Error Prevention**
+
+### **Common Context Mistakes to Avoid**
+- **Ignoring Existing Objects**: Creating components that conflict with existing Unity objects
+- **Missing Integration**: Writing code that doesn't work with existing systems
+- **Wrong Naming**: Using names that don't match established project conventions
+- **Duplicate Functionality**: Recreating systems that already exist
+- **Breaking Dependencies**: Modifying objects without considering dependent systems
+
+### **Context Validation Errors**
+- **Outdated Exports**: Using stale Unity export data for decisions
+- **Missing Documentation**: Referencing non-existent documentation files
+- **Broken Cross-References**: Creating links to moved or deleted files
+- **Incomplete Context**: Only checking partial context before implementation
+
+## **Continuous Context Awareness**
+
+### **During Development Sessions**
+- **Regular Context Checks**: Periodically review Unity exports for project changes
+- **Documentation Sync**: Ensure documentation reflects current Unity state
+- **Cross-Reference Maintenance**: Keep links current as project evolves
+- **Integration Testing**: Validate that context-based decisions remain correct
+
+### **Context Evolution Handling**
+- **Export Updates**: Regenerate Unity exports when significant changes occur
+- **Documentation Refresh**: Update object documentation when Unity objects change
+- **Dependency Tracking**: Monitor how context changes affect existing code
+- **Migration Planning**: Plan context updates for major architectural changes
+
+**This rule ensures that all Unity code generation is grounded in actual project context, maintaining consistency with existing implementations and avoiding conflicts with established project structure.**
+

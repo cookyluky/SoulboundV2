@@ -1,0 +1,64 @@
+# Task ID: 19
+# Title: Implement GameState and Save/Load Foundation
+# Status: pending
+# Dependencies: 16, 17
+# Priority: high
+# Description: Create a central GameState class to track game progression and implement a stub SaveManager integration to enable basic save/load functionality.
+# Details:
+1. Create `Assets/Scripts/Core/GameState.cs` class:
+   - Implement fields for `CurrentAct` (enum or int)
+   - Add `CorruptionLevel` (float ranging from 0-100)
+   - Create `UnlockedAbilities` list to track player progression
+   - Implement serialization support for save/load functionality
+   - Add `Reset()` method to initialize default values
+   - Create `GetState()` method to return current state
+
+2. Update `GameManager.cs` to integrate with GameState:
+   - Add reference to GameState instance
+   - Call `GameState.Reset()` during game initialization
+   - Implement `GetState()` method that returns the current GameState
+   - Add methods to modify GameState (change act, update corruption, etc.)
+
+3. Implement stub SaveManager integration:
+   - Create `SaveManager.SaveGame()` method that calls `GameManager.GetState()`
+   - For now, simply log the state to console (actual file I/O will be implemented later)
+   - Implement `LoadGame()` method that applies loaded state to GameManager
+   - Add error handling for missing save data
+
+4. Add debug UI in MainMenu:
+   - Create Save and Load buttons in the MainMenu scene
+   - Wire buttons to call SaveManager methods
+   - Add visual feedback for successful save/load operations
+   - Include debug text to display current GameState values
+
+5. Ensure proper integration with existing systems:
+   - Coordinate with CorruptionSystem (Task 6) for corruption level tracking
+   - Align with SkillProgressionSystem (Task 4) for ability unlocking
+
+# Test Strategy:
+1. Unit Test GameState Class:
+   - Verify GameState properly initializes with default values
+   - Test Reset() method returns GameState to initial values
+   - Confirm serialization/deserialization preserves all fields
+   - Validate UnlockedAbilities list properly tracks abilities
+
+2. Test GameManager Integration:
+   - Verify GameManager correctly initializes GameState
+   - Confirm GetState() returns the current state accurately
+   - Test state modification methods update values correctly
+
+3. Validate SaveManager Functionality:
+   - Verify SaveGame() correctly captures the current GameState
+   - Test LoadGame() properly applies saved state
+   - Confirm error handling works for missing save data
+   - Test edge cases (empty state, corrupted data)
+
+4. UI Testing:
+   - Verify Save/Load buttons appear correctly in MainMenu
+   - Confirm buttons trigger appropriate SaveManager methods
+   - Test visual feedback for successful/failed operations
+   - Validate debug display shows current state accurately
+
+5. Integration Testing:
+   - Perform end-to-end test of saving state, changing values, and loading state
+   - Verify state persistence across application restarts (stub implementation)

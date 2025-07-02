@@ -1,0 +1,87 @@
+# Task ID: 6
+# Title: Implement Dynamic Corruption System
+# Status: pending
+# Dependencies: 1, 4
+# Priority: medium
+# Description: Develop the corruption tracking system that affects abilities, story outcomes, creates environmental damage zones, and influences NPC interactions.
+# Details:
+1. Create CorruptionManager to track player corruption level (0-100)
+2. Implement visual feedback for corruption level (UI and character appearance)
+3. Develop audio feedback that changes with corruption level
+4. Create environmental corruption zones causing damage to player
+5. Implement corruption resistance mechanics through skill investment
+6. Develop NPC interaction system affected by corruption level
+7. Create forbidden ability unlock system tied to high corruption
+
+Code structure:
+```csharp
+public class CorruptionManager : MonoBehaviour {
+    [SerializeField] private float maxCorruption = 100f;
+    [SerializeField] private float startingCorruption = 0f;
+    [SerializeField] private AnimationCurve corruptionEffectCurve;
+    
+    private float currentCorruption;
+    private float corruptionResistance;
+    
+    public event Action<float> OnCorruptionChanged;
+    
+    public void ModifyCorruption(float amount);
+    public void IncreaseResistance(float amount);
+    public float GetCorruptionLevel();
+    public bool IsForbiddenAbilityAvailable(float requiredCorruption);
+}
+
+public class CorruptionZone : MonoBehaviour {
+    [SerializeField] private float damagePerSecond = 5f;
+    [SerializeField] private float corruptionPerSecond = 2f;
+    
+    private void OnTriggerStay(Collider other);
+}
+```
+
+# Test Strategy:
+1. Unit tests for CorruptionManager functionality
+2. Verify visual and audio feedback for corruption changes
+3. Test environmental corruption damage zones
+4. Validate corruption resistance mechanics
+5. Test NPC interaction changes based on corruption level
+6. Verify forbidden ability unlocks at appropriate corruption thresholds
+7. Performance testing with multiple corruption zones active
+
+# Subtasks:
+## 1. Define corruption levels and thresholds [pending]
+### Dependencies: None
+### Description: Establish a clear scale of corruption levels and the thresholds for transitioning between them.
+### Details:
+Create a numerical scale (e.g., 0-100) for corruption, define 3-5 distinct levels (e.g., Low, Medium, High), and set the threshold values for each level transition.
+
+## 2. Implement corruption tracking system [pending]
+### Dependencies: 6.1
+### Description: Develop a system to track and update the player's corruption level based on in-game actions and decisions.
+### Details:
+Create a CorruptionManager class to handle corruption value changes, level calculations, and event triggers when thresholds are crossed.
+
+## 3. Design visual effects for corruption levels [pending]
+### Dependencies: 6.1
+### Description: Create a set of visual effects that represent different corruption levels on the player character and environment.
+### Details:
+Design particle effects, color grading changes, and character appearance modifications for each corruption level. Implement a system to smoothly transition between these effects.
+
+## 4. Implement gameplay impacts of corruption [pending]
+### Dependencies: 6.1, 6.2
+### Description: Develop systems to alter gameplay mechanics based on the player's current corruption level.
+### Details:
+Modify player stats, abilities, and interactions with NPCs and the environment based on corruption levels. This may include unlocking new abilities, changing dialogue options, or altering quest availability.
+
+## 5. Create UI elements for corruption display [pending]
+### Dependencies: 6.1, 6.2
+### Description: Design and implement UI components to show the current corruption level and its effects to the player.
+### Details:
+Develop a corruption meter for the HUD, tooltips explaining corruption effects, and a detailed corruption info page in the character menu.
+
+## 6. Balance and playtest corruption system [pending]
+### Dependencies: 6.1, 6.2, 6.3, 6.4, 6.5
+### Description: Fine-tune the corruption system's impact on gameplay and ensure it provides meaningful choices without being overpowered.
+### Details:
+Conduct playtesting sessions, gather feedback, and iterate on corruption level thresholds, visual effects intensity, and gameplay impacts to achieve the desired balance and player experience.
+

@@ -1,0 +1,110 @@
+# Task ID: 20
+# Title: Implement ScriptableObject Data Definitions
+# Status: pending
+# Dependencies: 16, 17
+# Priority: medium
+# Description: Create data-driven ScriptableObjects for soul essences, abilities, and enemy archetypes, along with a DataManager to load and manage these assets at runtime.
+# Details:
+1. Create `SoulEssenceDefinition.cs` in `Assets/Data/` with the following fields:
+   - `id` (string): Unique identifier for the essence
+   - `type` (enum): Category of the essence
+   - `icon` (Sprite): Visual representation in UI
+   - `baseQuantity` (int): Default amount when collected
+
+2. Create `AbilityDefinition.cs` in `Assets/Data/` with the following fields:
+   - `id` (string): Unique identifier for the ability
+   - `name` (string): Display name of the ability
+   - `branch` (enum): Skill tree branch this ability belongs to
+   - `corruptionCost` (float): Corruption gained when using this ability
+   - `effectPrefab` (GameObject): Visual effect prefab for the ability
+
+3. Create `EnemyArchetypeDefinition.cs` in `Assets/Data/` with the following fields:
+   - `id` (string): Unique identifier for the enemy type
+   - `prefab` (GameObject): Enemy prefab to instantiate
+   - `health` (float): Base health value
+   - `damage` (float): Base damage value
+   - `abilities` (AbilityDefinition[]): Array of abilities this enemy can use
+
+4. Add `[CreateAssetMenu]` attribute to each ScriptableObject class with appropriate menu items:
+   ```csharp
+   [CreateAssetMenu(fileName = "New Soul Essence", menuName = "Game Data/Soul Essence")]
+   public class SoulEssenceDefinition : ScriptableObject
+   {
+       // Fields as defined above
+   }
+   ```
+
+5. Create placeholder asset files for testing:
+   - Create at least 3 SoulEssenceDefinition assets
+   - Create at least 3 AbilityDefinition assets
+   - Create at least 2 EnemyArchetypeDefinition assets
+
+6. Implement `DataManager.cs` in `Assets/Scripts/Core/`:
+   ```csharp
+   public class DataManager : MonoBehaviour
+   {
+       private Dictionary<string, SoulEssenceDefinition> _essences = new Dictionary<string, SoulEssenceDefinition>();
+       private Dictionary<string, AbilityDefinition> _abilities = new Dictionary<string, AbilityDefinition>();
+       private Dictionary<string, EnemyArchetypeDefinition> _enemyArchetypes = new Dictionary<string, EnemyArchetypeDefinition>();
+
+       [SerializeField] private bool _loadResourcesOnAwake = true;
+
+       private void Awake()
+       {
+           if (_loadResourcesOnAwake)
+           {
+               LoadAllDefinitions();
+           }
+       }
+
+       public void LoadAllDefinitions()
+       {
+           LoadDefinitions<SoulEssenceDefinition>(_essences, "SoulEssences");
+           LoadDefinitions<AbilityDefinition>(_abilities, "Abilities");
+           LoadDefinitions<EnemyArchetypeDefinition>(_enemyArchetypes, "EnemyArchetypes");
+       }
+
+       private void LoadDefinitions<T>(Dictionary<string, T> dictionary, string resourcesFolder) where T : ScriptableObject
+       {
+           dictionary.Clear();
+           T[] definitions = Resources.LoadAll<T>(resourcesFolder);
+           
+           foreach (T definition in definitions)
+           {
+               // Use reflection to get the ID field
+               string id = (string)definition.GetType().GetField("id").GetValue(definition);
+               if (!string.IsNullOrEmpty(id))
+               {
+                   dictionary[id] = definition;
+               }
+           }
+       }
+
+       // Getter methods
+       public SoulEssenceDefinition GetEssence(string id) => _essences.TryGetValue(id, out var essence) ? essence : null;
+       public AbilityDefinition GetAbility(string id) => _abilities.TryGetValue(id, out var ability) ? ability : null;
+       public EnemyArchetypeDefinition GetEnemyArchetype(string id) => _enemyArchetypes.TryGetValue(id, out var archetype) ? archetype : null;
+   }
+   ```
+
+7. Register the DataManager with the ServiceLocator in the bootstrap process to ensure it's accessible throughout the game.
+
+# Test Strategy:
+1. Unit Tests:
+   - Create unit tests for each ScriptableObject class to verify field serialization
+   - Test DataManager's loading functionality with mock ScriptableObjects
+   - Verify dictionary population and retrieval methods work correctly
+
+2. Editor Tests:
+   - Create an editor test that creates test assets and verifies they can be loaded
+   - Test the CreateAssetMenu functionality to ensure assets can be created through the editor
+
+3. Runtime Tests:
+   - Create a test scene with DataManager and verify all definitions load correctly on Awake
+   - Test performance with a large number of definitions to ensure loading times remain reasonable
+   - Verify memory usage is appropriate when loading all definitions
+
+4. Integration Tests:
+   - Test integration with other systems that will use these definitions (UI, combat, etc.)
+   - Verify that changes to definition assets are properly reflected in the game at runtime
+   - Test serialization/deserialization of references to these ScriptableObjects in prefabs and scenes

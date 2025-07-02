@@ -1,0 +1,101 @@
+# Task ID: 10
+# Title: Create Side Quest System
+# Status: pending
+# Dependencies: 1, 9
+# Priority: medium
+# Description: Implement eight side quests with moral choice consequences, faction reputation system, and hidden lore that reveals contradictions in the guidance system.
+# Details:
+1. Design QuestManager to track quest states and progress
+2. Implement moral choice system within quests affecting world state
+3. Create faction reputation system influencing NPC interactions
+4. Develop hidden lore discovery system revealing guidance contradictions
+5. Implement quest reward distribution system
+6. Create quest markers and tracking UI elements
+7. Develop quest-specific dialogue and cutscenes
+
+Code structure:
+```csharp
+public class QuestManager : MonoBehaviour {
+    [SerializeField] private List<Quest> availableQuests;
+    
+    private Dictionary<string, QuestState> questStates = new Dictionary<string, QuestState>();
+    private Dictionary<string, float> factionReputation = new Dictionary<string, float>();
+    
+    public void StartQuest(string questId);
+    public void UpdateQuestObjective(string questId, string objectiveId);
+    public void CompleteQuest(string questId);
+    public void ModifyFactionReputation(string factionId, float amount);
+    public float GetFactionReputation(string factionId);
+}
+
+[System.Serializable]
+public class Quest {
+    public string Id;
+    public string Title;
+    public string Description;
+    public List<QuestObjective> Objectives;
+    public List<QuestReward> Rewards;
+    public List<QuestChoice> MoralChoices;
+}
+
+public enum QuestState { NotStarted, InProgress, Completed, Failed }
+```
+
+# Test Strategy:
+1. Unit tests for QuestManager functionality
+2. Verify quest state tracking and progression
+3. Test moral choice consequences on world state
+4. Validate faction reputation effects on NPC interactions
+5. Test hidden lore discovery and revelation system
+6. Verify quest reward distribution
+7. Playtest side quests for narrative coherence and engagement
+
+# Subtasks:
+## 1. Define side quest types and themes [pending]
+### Dependencies: None
+### Description: Categorize and outline different types of side quests and their thematic elements
+### Details:
+Create a list of side quest categories (e.g., fetch quests, escort missions, puzzle-solving) and align them with the game's overall themes and setting
+
+## 2. Design trigger conditions for each side quest [pending]
+### Dependencies: 10.1
+### Description: Specify the conditions that will initiate each side quest in the game
+### Details:
+Define trigger events such as reaching specific locations, interacting with NPCs, or achieving certain milestones in the main storyline
+
+## 3. Develop progression tracking system [pending]
+### Dependencies: 10.1
+### Description: Create a system to track player progress through each side quest
+### Details:
+Implement a data structure to store quest states, objectives, and completion status for each side quest
+
+## 4. Design outcome variations for side quests [pending]
+### Dependencies: 10.1
+### Description: Create multiple possible outcomes for each side quest based on player choices and actions
+### Details:
+Develop branching narratives and consequence systems that affect both the side quest resolution and potentially the main storyline
+
+## 5. Implement side quest dialogue and scripting [pending]
+### Dependencies: 10.1, 10.2, 10.4
+### Description: Write dialogue and create scripts for NPCs and events related to side quests
+### Details:
+Develop conversation trees, cutscenes, and event triggers that guide players through the side quests
+
+## 6. Create reward system for side quests [pending]
+### Dependencies: 10.1, 10.4
+### Description: Design and implement rewards for completing side quests
+### Details:
+Balance rewards such as experience points, items, abilities, or story revelations to incentivize side quest completion without overshadowing the main storyline
+
+## 7. Integrate side quests with main storyline [pending]
+### Dependencies: 10.1, 10.2, 10.3, 10.4, 10.5, 10.6
+### Description: Ensure side quests complement and enhance the main narrative without disrupting its flow
+### Details:
+Adjust pacing, difficulty, and relevance of side quests to maintain coherence with the overall game progression
+
+## 8. Test and balance side quest implementation [pending]
+### Dependencies: 10.1, 10.2, 10.3, 10.4, 10.5, 10.6, 10.7
+### Description: Conduct thorough testing of all side quests and make necessary adjustments
+### Details:
+Playtest each side quest, gather feedback, and iterate on design to ensure engaging and bug-free experiences
+
